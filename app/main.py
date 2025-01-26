@@ -9,11 +9,6 @@ from tqdm import tqdm
 
 class ThreatDetector:
     def __init__(self, db_config: dict):
-        """
-        Initialize the Threat Detector with database configuration
-        
-        :param db_config: Dictionary containing database connection parameters
-        """
         try:
             self.mydb = mysql.connector.connect(**db_config)
             self.mycursor = self.mydb.cursor()
@@ -24,7 +19,6 @@ class ThreatDetector:
             raise
 
     def _create_logs_table(self):
-        """Create logs table if not exists"""
         try:
             self.mycursor.execute("""
                 CREATE TABLE IF NOT EXISTS logs (
@@ -44,13 +38,6 @@ class ThreatDetector:
 
     @staticmethod
     def load_payloads(filepath: str, desc: str) -> List[str]:
-        """
-        Load attack payloads from a file
-        
-        :param filepath: Path to payload file
-        :param desc: Description for progress bar
-        :return: List of escaped payloads
-        """
         try:
             with open(filepath, 'r', encoding='utf-8') as file:
                 return [re.escape(line.strip()) for line in tqdm(file, desc=desc)]
@@ -60,12 +47,6 @@ class ThreatDetector:
 
     def log_attack(self, attack_type: str, payload: str, ip_src: str, 
                    tcp_sport: int, ip_dst: str, tcp_dport: int):
-        """
-        Log detected attack to database
-        
-        :param attack_type: Type of attack detected
-        :param payload: Specific payload that triggered detection
-        """
         log_msg = f"{attack_type} Attack Detected! Payload: {payload}"
         try:
             sql = """
@@ -79,26 +60,13 @@ class ThreatDetector:
             logging.error(f"Database logging error: {err}")
 
     def detect_payload(self, input_payload: str, attack_payloads: List[str]) -> str:
-        """
-        Detect full payload matches with word boundaries
-        
-        :param input_payload: Packet payload to check
-        :param attack_payloads: List of known attack payloads
-        :return: Matched payload or None
-        """
         for payload in attack_payloads:
-            # Use regex with word boundaries to match full payload
             pattern = r'\b' + re.escape(payload) + r'\b'
             if re.search(pattern, input_payload, re.IGNORECASE):
                 return payload
         return None
     
-
-
     def analyze_packet(self, packet):
-        """
-        Enhanced packet analysis with improved payload detection
-        """
         if IP not in packet or TCP not in packet:
             return
 
@@ -129,7 +97,6 @@ class ThreatDetector:
             ('XML Injection', self.xml_payloads)
         ]
 
-        # Check for payload matches
         for attack_type, attack_payloads in payload_types:
             detected_payload = self.detect_payload(payload, attack_payloads)
             if detected_payload:
@@ -137,19 +104,16 @@ class ThreatDetector:
                 return
 
     def start_monitoring(self):
-        """Start network packet monitoring"""
         print("Server is running...")
         sniff(prn=self.analyze_packet)
 
 def main():
-    # Logging configuration
     logging.basicConfig(
         level=logging.INFO, 
         format='%(asctime)s - %(levelname)s: %(message)s',
         filename='threat_detector.log'
     )
 
-    # Database configuration
     db_config = {
         'host': 'localhost',
         'user': 'root',
@@ -157,19 +121,16 @@ def main():
         'database': 'ymp'
     }
 
-    # Banner
     f = Figlet()
     print(f.renderText("Threats_Detector"))
     print("~# Author: PT. Yuk Mari Proyek Indonesia")
     print("~# Copyright © 2025")
 
-    # Base directory for payload files
     base_dir = os.path.join(os.path.dirname(__file__), 'static', 'payload')
 
     try:
         detector = ThreatDetector(db_config)
         
-        # Dynamically load payload files
         detector.sqli_payloads = detector.load_payloads(os.path.join(base_dir, 'sqli_attack.txt'), "Loading SQLi Payload")
         detector.xss_payloads = detector.load_payloads(os.path.join(base_dir, 'xss_attack.txt'), "Loading XSS Payload")
         detector.crlf_payloads = detector.load_payloads(os.path.join(base_dir, 'crlf_attack.txt'), "Loading CRLF Payload")
