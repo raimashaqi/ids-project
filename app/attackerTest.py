@@ -16,4 +16,4 @@ packet = ip_layer / tcp_layer / payload
 
 if __name__ == "__main__":
     send(packet)
-    print(f"Sent XSS attack packet to {target_ip}:{target_port}")
+    print(f"Kirim paket serangan ke {target_ip}:{target_port}")
