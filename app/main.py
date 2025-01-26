@@ -1,152 +1,111 @@
-import re
-import logging
-import os
-from typing import List, Tuple
 from scapy.all import sniff, IP, TCP
 import mysql.connector
 from pyfiglet import Figlet
 from tqdm import tqdm
+import time
 
-class ThreatDetector:
-    def __init__(self, db_config: dict):
-        try:
-            self.mydb = mysql.connector.connect(**db_config)
-            self.mycursor = self.mydb.cursor()
-            self._create_logs_table()
-            print("Database connection established successfully!")
-        except mysql.connector.Error as err:
-            logging.error(f"Database connection error: {err}")
-            raise
+# define
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="",
+  database="ymp"
+)
 
-    def _create_logs_table(self):
-        try:
-            self.mycursor.execute("""
-                CREATE TABLE IF NOT EXISTS logs (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    log_message TEXT NOT NULL,
-                    log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    ip_src VARCHAR(45),
-                    tcp_sport INT,
-                    ip_dst VARCHAR(45),
-                    tcp_dport INT,
-                    severity VARCHAR(10)
-                )
-            """)
-            self.mydb.commit()
-        except mysql.connector.Error as err:
-            logging.error(f"Error creating logs table: {err}")
+mycursor = mydb.cursor()
 
-    @staticmethod
-    def load_payloads(filepath: str, desc: str) -> List[str]:
-        try:
-            with open(filepath, 'r', encoding='utf-8') as file:
-                return [re.escape(line.strip()) for line in tqdm(file, desc=desc)]
-        except FileNotFoundError:
-            logging.error(f"Payload file not found: {filepath}")
-            return []
+if mydb.is_connected():
+    print("CONNECT!")
 
-    def log_attack(self, attack_type: str, payload: str, ip_src: str, 
-                   tcp_sport: int, ip_dst: str, tcp_dport: int):
-        log_msg = f"{attack_type} Attack Detected! Payload: {payload}"
-        try:
-            sql = """
-            INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) 
-            VALUES (%s, %s, %s, %s, %s, %s)
-            """
-            self.mycursor.execute(sql, (log_msg, ip_src, tcp_sport, ip_dst, tcp_dport, 'HIGH'))
-            self.mydb.commit()
-            print(log_msg)
-        except mysql.connector.Error as err:
-            logging.error(f"Database logging error: {err}")
-
-    def detect_payload(self, input_payload: str, attack_payloads: List[str]) -> str:
-        for payload in attack_payloads:
-            pattern = r'\b' + re.escape(payload) + r'\b'
-            if re.search(pattern, input_payload, re.IGNORECASE):
-                return payload
-        return None
-    
-    def analyze_packet(self, packet):
-        if IP not in packet or TCP not in packet:
-            return
-
-        try:
-            payload = bytes(packet[TCP].payload).decode('utf-8', errors='ignore').strip()
-        except UnicodeDecodeError:
-            return
-
-        # Extract packet details
-        ip_src = packet[IP].src
-        ip_dst = packet[IP].dst
-        tcp_sport = packet[TCP].sport
-        tcp_dport = packet[TCP].dport
-
-        # Attack payload types
-        payload_types = [
-            ('CRLF Injection', self.crlf_payloads),
-            ('CSV Injection', self.csv_payloads),
-            ('Command Injection', self.command_injection_payloads),
-            ('Directory Traversal', self.directory_traversal_payloads),
-            ('File Inclusion', self.file_inclusion_payloads),
-            ('LDAP Injection', self.ldap_injection_payloads),
-            ('NoSQL Injection', self.nosql_injection_payloads),
-            ('SQL Injection', self.sqli_payloads),
-            ('SST Injection', self.ssti_payloads),
-            ('SSI Injection', self.ssii_payloads),
-            ('XSS Injection', self.xss_payloads),
-            ('XML Injection', self.xml_payloads)
-        ]
-
-        for attack_type, attack_payloads in payload_types:
-            detected_payload = self.detect_payload(payload, attack_payloads)
-            if detected_payload:
-                self.log_attack(attack_type, detected_payload, ip_src, tcp_sport, ip_dst, tcp_dport)
-                return
-
-    def start_monitoring(self):
-        print("Server is running...")
-        sniff(prn=self.analyze_packet)
-
-def main():
-    logging.basicConfig(
-        level=logging.INFO, 
-        format='%(asctime)s - %(levelname)s: %(message)s',
-        filename='threat_detector.log'
+    mycursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS logs (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            log_message TEXT NOT NULL,
+            log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            ip_src VARCHAR(45),
+            tcp_sport INT,
+            ip_dst VARCHAR(45),
+            tcp_dport INT,
+            severity VARCHAR(10)
+        );
+        """
     )
 
-    db_config = {
-        'host': 'localhost',
-        'user': 'root',
-        'password': '',
-        'database': 'ymp'
-    }
+# logging.basicConfig(filename='logs.txt', level=logging.INFO)
 
+def banner():
     f = Figlet()
     print(f.renderText("Threats_Detector"))
     print("~# Author: PT. Yuk Mari Proyek Indonesia")
     print("~# Copyright © 2025")
 
-    base_dir = os.path.join(os.path.dirname(__file__), 'static', 'payload')
+def load_payloads(filepath, desc):
+    with open(filepath, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        payloads = []
+        for line in tqdm(lines, desc=desc, total=len(lines)):
+            payloads.append(r"{}".format(line.strip()))
+            # time.sleep(0.001337)
+    return payloads
 
-    try:
-        detector = ThreatDetector(db_config)
-        
-        detector.sqli_payloads = detector.load_payloads(os.path.join(base_dir, 'sqli_attack.txt'), "Loading SQLi Payload")
-        detector.xss_payloads = detector.load_payloads(os.path.join(base_dir, 'xss_attack.txt'), "Loading XSS Payload")
-        detector.crlf_payloads = detector.load_payloads(os.path.join(base_dir, 'crlf_attack.txt'), "Loading CRLF Payload")
-        detector.csv_payloads = detector.load_payloads(os.path.join(base_dir, 'csv_attack.txt'), "Loading CSV Payload")
-        detector.command_injection_payloads = detector.load_payloads(os.path.join(base_dir, 'command_injection_attack.txt'), "Loading Command Injection Payload")
-        detector.directory_traversal_payloads = detector.load_payloads(os.path.join(base_dir, 'directory_traversal_attack.txt'), "Loading Directory Traversal Payload")
-        detector.file_inclusion_payloads = detector.load_payloads(os.path.join(base_dir, 'file_inclusion_attack.txt'), "Loading File Inclusion Payload")
-        detector.nosql_injection_payloads = detector.load_payloads(os.path.join(base_dir, 'nosql_attack.txt'), "Loading NoSQL Injection Payload")
-        detector.xml_payloads = detector.load_payloads(os.path.join(base_dir, 'xml_attack.txt'), "Loading XML Payload")
-        detector.ssii_payloads = detector.load_payloads(os.path.join(base_dir, 'ssii_attack.txt'), "Loading SSI Payload")
-        detector.ssti_payloads = detector.load_payloads(os.path.join(base_dir, 'ssti_attack.txt'), "Loading SSTI Payload")
+sqli_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/sqli_attack.txt', "Loading SQLi Payload")
+xss_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/xss_attack.txt', "Loading XSS Payload")
+csv_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/csv_attack.txt', "Loading CSV Payload")
+command_injection_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/command_injection_attack.txt', "Loading Command Injection Payload")
+directory_traversal_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/directory_traversal_attack.txt', "Loading Directory Traversal Payload")
+file_inclusion_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/file_inclusion_attack.txt', "Loading File Inclusion Payload")
+nosql_injection_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/nosql_attack.txt', "Loading NoSQL Injection Payload")
+xml_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/xml_attack.txt', "Loading XML Payload")
+ssii_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/ssii_attack.txt', "Loading SSI Payload")
+ssti_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/ssti_attack.txt', "Loading SSTI Payload")
 
-        detector.start_monitoring()
+def detect_payload(input_payload, attack_payloads):
+    
+    for payload in attack_payloads:
+        if payload in input_payload:
+            return payload
+    
+    return None
 
-    except Exception as e:
-        logging.error(f"Initialization error: {e}")
+payload_types = [
+    ('SQL Injection', sqli_payloads, 'CRITICAL'),
+    ('XSS Injection', xss_payloads, 'MEDIUM'),
+    ('XML Injection', xml_payloads, 'HIGH'),
+    ('NoSQL Injection', nosql_injection_payloads, 'CRITICAL'),
+    ('File Inclusion', file_inclusion_payloads, 'MEDIUM'),
+    ('CSV Injection', csv_payloads, 'MEDIUM'),
+    ('Directory Traversal', directory_traversal_payloads, 'MEDIUM'),
+    ('SST Injection', ssti_payloads, 'HIGH'),
+    ('SSI Injection', ssii_payloads, 'HIGH'),
+    ('Command Injection', command_injection_payloads, 'HIGH')
+        ]
+
+def analyze_packet(packet):
+    if IP in packet and TCP in packet:
+        ip_src = packet[IP].src
+        ip_dst = packet[IP].dst
+        tcp_sport = packet[TCP].sport
+        tcp_dport = packet[TCP].dport
+
+        try:
+            payload = bytes(packet[TCP].payload).decode('utf-8', errors='ignore')
+        except UnicodeDecodeError:
+            return
+
+        # Comprehensive payload match checking
+        for attack_type, attack_payloads, severity in payload_types:
+            detected_payload = detect_payload(payload, attack_payloads)
+            if detected_payload:
+                log_msg = f"{attack_type} Attack Detected! Payload: {detected_payload}"
+                print(log_msg)
+                
+                # Log attack details to database with specified severity
+                sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
+                mycursor.execute(sql, (log_msg, ip_src, tcp_sport, ip_dst, tcp_dport, severity))
+                mydb.commit()
 
 if __name__ == '__main__':
-    main()
+    banner()
+    print("Server is running...")
+    sniff(prn=analyze_packet)
