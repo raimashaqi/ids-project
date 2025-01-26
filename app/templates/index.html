@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMP IDS Project</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Attack Logs</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div class="table-container">
+        <!-- New form for testing inputs -->
+        <div class="test-input-container">
+            <h2>Test Input for Attack Detection</h2>
+            <form action="/test_input" method="post">
+                <label for="testInput">Enter Input:</label>
+                <input type="text" id="testInput" name="testInput" required>
+                <button type="submit">Test</button>
+            </form>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+        <div class="pagination-container">
+            <label for="rowsPerPage">Rows per page:</label>
+            <select id="rowsPerPage" class="rows-per-page">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+        <table id="attackLogsTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">Log Time</th>
+                    <th onclick="sortTable(2)">Log Message</th>
+                    <th onclick="sortTable(3)">Source IP</th>
+                    <th onclick="sortTable(4)">Source Port</th>
+                    <th onclick="sortTable(5)">Destination IP</th>
+                    <th onclick="sortTable(6)">Destination Port</th>
+                    <th onclick="sortTable(7)">Severity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log_time, log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, id in data %}
+                <tr>
+                    <td>{{ id }}</td>
+                    <td>{{ log_time }}</td>
+                    <td>{{ log_message }}</td>
+                    <td>{{ ip_src }}</td>
+                    <td>{{ tcp_sport }}</td>
+                    <td>{{ ip_dst }}</td>
+                    <td>{{ tcp_dport }}</td>
+                    <td>{{ severity }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_log', log_id=id) }}" method="POST">
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li><a href="#" class="prev">Previous</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#" class="next">Next</a></li>
+        </ul>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+
+</body>
+</html>
