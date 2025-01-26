@@ -3,8 +3,9 @@ import mysql.connector
 from pyfiglet import Figlet
 from tqdm import tqdm
 import time
+import logging
 
-# define
+# define db
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -12,11 +13,15 @@ mydb = mysql.connector.connect(
   database="ymp"
 )
 
+# aktifkan sql query MySQL
 mycursor = mydb.cursor()
 
+# cek jika db dah aktif
 if mydb.is_connected():
     print("CONNECT!")
 
+    # kemudian eksekusi untuk buat tabel
+    # dengan kolum id, log_message, log_time, ip_src, tcp_sport, ip_dst, tcp_dport, severity
     mycursor.execute(
         """
         CREATE TABLE IF NOT EXISTS logs (
@@ -32,23 +37,27 @@ if mydb.is_connected():
         """
     )
 
-# logging.basicConfig(filename='logs.txt', level=logging.INFO)
+# untuk mencatat semua log ke file dengan library logging
+logging.basicConfig(filename='logs.txt', level=logging.INFO)
 
+# banner
 def banner():
     f = Figlet()
     print(f.renderText("Threats_Detector"))
     print("~# Author: PT. Yuk Mari Proyek Indonesia")
     print("~# Copyright © 2025")
 
+# load payload dengan progress bar tqdm
 def load_payloads(filepath, desc):
     with open(filepath, 'r', encoding='utf-8') as file:
         lines = file.readlines()
         payloads = []
         for line in tqdm(lines, desc=desc, total=len(lines)):
             payloads.append(r"{}".format(line.strip()))
-            # time.sleep(0.001337)
+            time.sleep(0.001337)
     return payloads
 
+# define variabel payload untuk setiap kerentanan
 sqli_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/sqli_attack.txt', "Loading SQLi Payload")
 xss_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/xss_attack.txt', "Loading XSS Payload")
 csv_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/csv_attack.txt', "Loading CSV Payload")
@@ -60,14 +69,17 @@ xml_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/
 ssii_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/ssii_attack.txt', "Loading SSI Payload")
 ssti_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/IDS/magang-alfian/app/static/payload/ssti_attack.txt', "Loading SSTI Payload")
 
+# fungsi deteksi payload dari inputan eksternal
 def detect_payload(input_payload, attack_payloads):
     
+    # jika inputan ada di payload maka tampilkan
     for payload in attack_payloads:
         if payload in input_payload:
             return payload
     
     return None
 
+# define severity vulnerability dari payload yang terdeteksi
 payload_types = [
     ('SQL Injection', sqli_payloads, 'CRITICAL'),
     ('XSS Injection', xss_payloads, 'MEDIUM'),
@@ -81,6 +93,7 @@ payload_types = [
     ('Command Injection', command_injection_payloads, 'HIGH')
         ]
 
+# analisis paket serangan dengan library scapy
 def analyze_packet(packet):
     if IP in packet and TCP in packet:
         ip_src = packet[IP].src
@@ -93,14 +106,13 @@ def analyze_packet(packet):
         except UnicodeDecodeError:
             return
 
-        # Comprehensive payload match checking
         for attack_type, attack_payloads, severity in payload_types:
             detected_payload = detect_payload(payload, attack_payloads)
             if detected_payload:
                 log_msg = f"{attack_type} Attack Detected! Payload: {detected_payload}"
                 print(log_msg)
                 
-                # Log attack details to database with specified severity
+                # simpan logs ke MySQL database
                 sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
                 mycursor.execute(sql, (log_msg, ip_src, tcp_sport, ip_dst, tcp_dport, severity))
                 mydb.commit()
