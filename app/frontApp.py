@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
-from main import payload_types
+from app import payload_types
 
+# define flaks
 app = Flask(__name__)
 
-# Database connection
+# konek ke db
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -12,36 +13,45 @@ mydb = mysql.connector.connect(
     database="ymp"
 )
 
+# aktifkan sql query mysql
 mycursor = mydb.cursor()
 
+# fungsi ambil paket serangan
 def fetch_attack_data():
-    mycursor.execute("SELECT log_time, log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, id FROM logs")  # Tambahkan kolom id
+    mycursor.execute("SELECT log_time, log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, id FROM logs")
     data = mycursor.fetchall()
     return data
 
+# load paket serangan dan routing ke index
 @app.route('/')
 def index():
     data = fetch_attack_data()
     return render_template('index.html', data=data)
 
+# routing test serangan via input dengan method POST
 @app.route('/test_input', methods=['POST'])
 def test_input():
     test_input = request.form['testInput']
     print(f"Received test input: {test_input}")
 
+    # default severity
     severity = 'INFORMATIVE'
 
-    for attack_type, attack_payloads, attack_severity in payload_types:
+    # jika ada serangan terdeteksi sesuaikan dengan payload
+    for attack_payloads, attack_severity in payload_types:
         if any(payload in test_input for payload in attack_payloads):
             severity = attack_severity
             break
     
+    # simpan ke db
     sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
     mycursor.execute(sql, (test_input, '127.0.0.1', 80, '127.0.0.1', 80, severity))
     mydb.commit()
 
+    # kembalikan hasil di index
     return redirect(url_for('index'))
 
+# routing untuk hapus log
 @app.route('/delete_log/<int:log_id>', methods=['POST'])
 def delete_log(log_id):
     sql = "DELETE FROM logs WHERE id = %s"
