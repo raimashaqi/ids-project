@@ -1,5 +1,3 @@
-![Thread Detector](https://imgur.com/a/HkQOTxf)
-
 ## Content
 
 - [Introduction](#Introduction)
