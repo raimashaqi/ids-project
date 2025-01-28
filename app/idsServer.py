@@ -79,7 +79,7 @@ def detect_payload(input_payload, attack_payloads):
     
     return None
 
-# define severity vulnerability dari payload yang terdeteksi
+# define tingkat keparahan (severity) vulnerabilities
 payload_types = [
     ('SQL Injection', sqli_payloads, 'CRITICAL'),
     ('XSS Injection', xss_payloads, 'MEDIUM'),
@@ -90,8 +90,8 @@ payload_types = [
     ('Directory Traversal', directory_traversal_payloads, 'MEDIUM'),
     ('SST Injection', ssti_payloads, 'HIGH'),
     ('SSI Injection', ssii_payloads, 'HIGH'),
-    ('Command Injection', command_injection_payloads, 'HIGH')
-        ]
+    ('Command Injection', command_injection_payloads, 'CRITICAL')
+]
 
 # analisis paket serangan dengan library scapy
 def analyze_packet(packet):

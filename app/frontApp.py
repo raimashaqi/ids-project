@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 from app import payload_types
+from flask import Flask, render_template, request, redirect, url_for
 
-# define flaks
 app = Flask(__name__)
 
 # konek ke db
