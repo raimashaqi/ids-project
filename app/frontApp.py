@@ -1,25 +1,31 @@
 import mysql.connector
-from app import payload_types
+from idsServer import payload_types
 from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# konek ke db
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="ymp"
-)
+app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:@localhost/ymp'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# aktifkan sql query mysql
-mycursor = mydb.cursor()
+# Initialize the SQLAlchemy object
+db = SQLAlchemy(app)
+
+# Define the Log model
+class Log(db.Model):
+    __tablename__ = 'logs'
+    id = db.Column(db.Integer, primary_key=True)
+    log_message = db.Column(db.Text, nullable=False)
+    log_time = db.Column(db.DateTime, server_default=db.func.current_timestamp())
+    ip_src = db.Column(db.String(45))
+    tcp_sport = db.Column(db.Integer)
+    ip_dst = db.Column(db.String(45))
+    tcp_dport = db.Column(db.Integer)
+    severity = db.Column(db.String(10))
 
 # fungsi ambil paket serangan
 def fetch_attack_data():
-    mycursor.execute("SELECT log_time, log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, id FROM logs")
-    data = mycursor.fetchall()
-    return data
+    return Log.query.all()
 
 # load paket serangan dan routing ke index
 @app.route('/')
@@ -37,15 +43,23 @@ def test_input():
     severity = 'INFORMATIVE'
 
     # jika ada serangan terdeteksi sesuaikan dengan payload
-    for attack_payloads, attack_severity in payload_types:
+    for attack_name, attack_payloads, attack_severity in payload_types:
         if any(payload in test_input for payload in attack_payloads):
             severity = attack_severity
             break
     
     # simpan ke db
-    sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
-    mycursor.execute(sql, (test_input, '127.0.0.1', 80, '127.0.0.1', 80, severity))
-    mydb.commit()
+    new_log = Log(
+        log_message=test_input,
+        ip_src='127.0.0.1',
+        tcp_sport=80,
+        ip_dst='127.0.0.1',
+        tcp_dport=80,
+        severity=severity
+    )
+
+    db.session.add(new_log)
+    db.session.commit()
 
     # kembalikan hasil di index
     return redirect(url_for('index'))
@@ -53,9 +67,10 @@ def test_input():
 # routing untuk hapus log
 @app.route('/delete_log/<int:log_id>', methods=['POST'])
 def delete_log(log_id):
-    sql = "DELETE FROM logs WHERE id = %s"
-    mycursor.execute(sql, (log_id,))
-    mydb.commit()
+    log_to_delete = Log.query.get(log_id)
+    if log_to_delete:
+        db.session.delete(log_to_delete)
+        db.session.commit()
 
     return redirect(url_for('index'))
 
