@@ -4,7 +4,7 @@
 
 - [Introduction](#Introduction)
 - [Installation](#Quickstart)
-- [How to Run](#How%20To%20Run)
+- [How to Run](#How-To-Run)
 - [Technology](#Techonology)
 
 ## Introduction 
