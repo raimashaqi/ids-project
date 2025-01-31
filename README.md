@@ -16,7 +16,7 @@
 1. Ensure you have installed Python programming language version 3.x [here](https://www.python.org/downloads/). If haven't, please install it first.
 2. Install requirement python libraries. Type the following command: `pip install -r requirements`
 3. To avoid error, please install and use virtual environment. Type the following command: python -m venv venv. See the documentation [here](https://docs.python.org/3/library/venv.html)
-4. Install XAMPP here[https://www.apachefriends.org/] to run application's web server in Localhost.
+4. Install XAMPP [here](https://www.apachefriends.org/) to run application's web server in Localhost.
 
 ## How to Run
 
