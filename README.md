@@ -31,6 +31,8 @@
 6. Access the application here: http://localhost:5000
 7. To stop the app and server, just hit `Ctrl + C`
 
+Notes: after install a new library, please do `pip freeze > requirements.txt` to store all libraries
+
 ## Technology
 
 1. Flask
