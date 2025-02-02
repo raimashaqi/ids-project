@@ -4,13 +4,14 @@ from pyfiglet import Figlet
 from tqdm import tqdm
 import time
 import logging
+import os
 
 # define db
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="ymp"
+  database="yuk_mari"
 )
 
 # aktifkan sql query MySQL
@@ -47,7 +48,10 @@ def banner():
     print("~# Author: PT. Yuk Mari Proyek Indonesia")
     print("~# Copyright © 2025")
 
-# load payload dengan progress bar tqdm
+def get_payload_path(filename):
+    base_dir = os.path.join(os.getcwd(), 'static', 'payload')
+    return os.path.join(base_dir, filename)
+
 def load_payloads(filepath, desc):
     with open(filepath, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -58,25 +62,22 @@ def load_payloads(filepath, desc):
     return payloads
 
 # define variabel payload untuk setiap kerentanan
-sqli_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/sqli_attack.txt', "Loading SQLi Payload")
-xss_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/xss_attack.txt', "Loading XSS Payload")
-csv_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/csv_attack.txt', "Loading CSV Payload")
-command_injection_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/command_injection_attack.txt', "Loading Command Injection Payload")
-directory_traversal_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/directory_traversal_attack.txt', "Loading Directory Traversal Payload")
-file_inclusion_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/file_inclusion_attack.txt', "Loading File Inclusion Payload")
-nosql_injection_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/nosql_attack.txt', "Loading NoSQL Injection Payload")
-xml_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/xml_attack.txt', "Loading XML Payload")
-ssii_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/ssii_attack.txt', "Loading SSI Payload")
-ssti_payloads = load_payloads('C:/Users/alfiy/OneDrive/Desktop/magang-alfian/app/static/payload/ssti_attack.txt', "Loading SSTI Payload")
+sqli_payloads = load_payloads(get_payload_path('sqli_attack.txt'), "Loading SQLi Payload")
+xss_payloads = load_payloads(get_payload_path('xss_attack.txt'), "Loading XSS Payload")
+csv_payloads = load_payloads(get_payload_path('csv_attack.txt'), "Loading CSV Payload")
+command_injection_payloads = load_payloads(get_payload_path('command_injection_attack.txt'), "Loading Command Injection Payload")
+directory_traversal_payloads = load_payloads(get_payload_path('directory_traversal_attack.txt'), "Loading Directory Traversal Payload")
+file_inclusion_payloads = load_payloads(get_payload_path('file_inclusion_attack.txt'), "Loading File Inclusion Payload")
+nosql_injection_payloads = load_payloads(get_payload_path('nosql_attack.txt'), "Loading NoSQL Injection Payload")
+xml_payloads = load_payloads(get_payload_path('xml_attack.txt'), "Loading XML Payload")
+ssii_payloads = load_payloads(get_payload_path('ssii_attack.txt'), "Loading SSI Payload")
+ssti_payloads = load_payloads(get_payload_path('ssti_attack.txt'), "Loading SSTI Payload")
 
 # fungsi deteksi payload dari inputan eksternal
 def detect_payload(input_payload, attack_payloads):
-    
-    # jika inputan ada di payload maka tampilkan
     for payload in attack_payloads:
         if payload in input_payload:
             return payload
-    
     return None
 
 # define tingkat keparahan (severity) vulnerabilities

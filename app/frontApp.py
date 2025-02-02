@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:@localhost/ymp'
+app.config['SQLALCHEMY_DATABASE_URI'] ='mysql://root:@localhost/yuk_mari'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the SQLAlchemy object

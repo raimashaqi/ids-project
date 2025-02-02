@@ -17,21 +17,22 @@
 ## Installation
 
 1. Ensure you have installed Python programming language version 3.x [here](https://www.python.org/downloads/). If haven't, please install it first.
-2. Install requirement python libraries. Type the following command: `pip install -r requirements`
-3. To avoid error, please install and use virtual environment. Type the following command: python -m venv venv. See the documentation [here](https://docs.python.org/3/library/venv.html)
+2. To avoid from the different python version and its libraries or, please use virtual environment. Type the following command: `python -m venv your_name_environment`. See the documentation [here](https://docs.python.org/3/library/venv.html)
+3. Install the python libraries. Type the following command: `pip install -r requirements`
 4. Install XAMPP [here](https://www.apachefriends.org/) to run application's web server in Localhost.
 
 ## How to Run
 
 1. Open XAMPP Control Panel and start the server (Apache, MySQL)
 2. By default, the code has been set to call the database. So, create a new database in phpMyAdmin called `ymp`
-4. Open the source code in your code editor. Then, activate the virtual environment `source <your_env>/Scripts/Activate`.
+4. Open the source code in your code editor. Then, activate the virtual environment `source your_name_environment/Scripts/Activate` or `./your_name_environment/Scripts/Activate`.
 5. Navigate to the app directory and type the following command `python idsServer.py` in the terminal 1 and `python frontApp.py` in the terminal 2
 6. Access the application here: http://localhost:5000
+7. To stop the app and server, just hit `Ctrl + C`
 
 ## Technology
 
 1. Flask
 2. Python
 3. SQLAlchemy
-4. 
+4. MySQL
