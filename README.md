@@ -7,6 +7,7 @@
 - [Installation](#Installation)
 - [How to Run](#How-To-Run)
 - [Technology](#Techonology)
+- [Folder Structure](#Folder-Structure)
 
 ## Introduction 
 
@@ -36,3 +37,20 @@
 2. Python
 3. SQLAlchemy
 4. MySQL
+
+## Folder Structure
+
+app/
+│── static/
+│   │── css/ (maintenance)
+│   │── js/ (maintenance)
+│   │── payload/
+│── templates/
+│   │── index.html (maintenance)
+│── attackerTest.py (maintenance)
+│── frontApp.py (maintenance)
+│── idsServer.py (maintenance)
+│── logs.txt
+env/
+README.md
+requirements.txt
