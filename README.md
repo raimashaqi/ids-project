@@ -41,7 +41,7 @@ Notes: after install a new library, please do `pip freeze > requirements.txt` to
 4. MySQL
 
 ## Folder Structure
-
+```
 app/
 │── static/
 │   │── css/ (maintenance)
@@ -56,3 +56,4 @@ app/
 env/
 README.md
 requirements.txt
+```
