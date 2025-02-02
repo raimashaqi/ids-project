@@ -25,7 +25,7 @@
 ## How to Run
 
 1. Open XAMPP Control Panel and start the server (Apache, MySQL)
-2. By default, the code has been set to call the database. So, create a new database in phpMyAdmin called `yuk_mari`
+2. By default, the code has been set to call the database. So, create a new database in phpMyAdmin called `yuk_mari` (you can change it in line 8 /app/frontApp.py and in line 14 /app/idsServer.py)
 4. Open the source code in your code editor. Then, activate the virtual environment `source your_name_environment/Scripts/Activate` or `./your_name_environment/Scripts/Activate`.
 5. Navigate to the app directory and type the following command `python idsServer.py` in the terminal 1 and `python frontApp.py` in the terminal 2
 6. Access the application here: http://localhost:5000
@@ -39,12 +39,13 @@ Notes: after install a new library, please do `pip freeze > requirements.txt` to
 2. Python
 3. SQLAlchemy
 4. MySQL
+5. 
 
 ## Folder Structure
 ```
 app/
-│── static/
-│   │── css/ (maintenance)
+│── static/                         
+│   │── css/ (maintenance)          
 │   │── js/ (maintenance)
 │   │── payload/
 │── templates/
