@@ -2,7 +2,9 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from app.utils.decorators import login_required
 from app.models.log import Log
 
-main_bp = Blueprint('main', __name__)
+main_bp = Blueprint('main', __name__,
+                   static_folder='../static',
+                   static_url_path='/static')
 
 @main_bp.route('/')
 def index():

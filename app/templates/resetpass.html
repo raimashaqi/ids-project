@@ -22,7 +22,7 @@
               Get a new password by entering your existing email address
             </p>
 
-            <form method="POST" action="{{ url_for('reset_password') }}">
+            <form method="POST" action="{{ url_for('auth.reset_password') }}">
               <input type="email" name="email" placeholder="Enter your email" class="form-control input-email"
                 required />
               <button type="submit" class="btn btn-primary btn-block reset-button">
