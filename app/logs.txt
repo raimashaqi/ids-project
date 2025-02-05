@@ -1,0 +1,375 @@
+<<<<<<< Updated upstream
+=======
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:03] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:08] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+[2025-02-06 02:36:10.266467] MEDIUM - XSS Injection Attack Detected! Payload: <script>
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:10] "POST /test_payload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:10] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:12] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:12] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:17] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:22] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:27] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:32] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:32] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:33] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:37] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:43] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:45] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:46] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:46] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:36:46] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:32] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:32] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:33] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:33] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:33] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:33] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:38] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:38] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:39] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:39] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:39] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:39] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:42] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:42] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:46] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:54] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:37:56] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:39:51] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:39:51] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:39:55] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:39:59] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:01] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:02] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:02] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:03] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:03] "GET /static/img/wa.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:03] "GET /static/img/logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:03] "GET /static/img/kunci.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:03] "GET /static/js/script.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[32mGET /export HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:05] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:10] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:10] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:13] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:14] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:14] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:14] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:14] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:15] "GET /reset_password HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:15] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:15] "GET /static/css/resetpass.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:15] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:15] "GET /static/img/background.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:19] "GET /reset_password HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:19] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:19] "[36mGET /static/css/resetpass.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:19] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:23] "[32mPOST /reset_password HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:24] "GET /reset_password HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:24] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:24] "[36mGET /static/css/resetpass.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:40:24] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:18] "POST /reset_password HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:18] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:18] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:18] "[36mGET /static/css/resetpass.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:18] "[36mGET /static/img/background.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:40] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:41:46] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:04] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:04] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:05] "GET /static/css/dashboard.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:05] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:05] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:06] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:07] "GET /static/css/export.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:07] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:07] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:42:08] "[33mGET /import HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:44:37] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:44:37] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:44:37] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:44:37] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:03] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:08] "GET /get_logs HTTP/1.1" 200 -
+[2025-02-06 02:47:09.968637] CRITICAL - SQL Injection Attack Detected! Payload: '
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:09] "POST /test_payload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:10] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:12] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:12] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:12] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:12] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:14] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:19] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:24] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:29] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:34] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:39] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:44] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:49] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:54] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:47:59] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:04] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:09] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:21] "GET /get_logs HTTP/1.1" 200 -
+[2025-02-06 02:48:23.702215] CRITICAL - SQL Injection Attack Detected! Payload: '
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:23] "POST /test_payload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:23] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:24] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:28] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:30] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:31] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:31] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:31] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+[2025-02-06 02:48:33.905891] LOG DELETED - ID: 33
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:33] "DELETE /delete_log/33 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:34] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:34] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:35] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:35] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:35] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:39] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:44] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:48] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:54] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:48:58] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:04] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:08] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:14] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:18] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:24] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\idsServer.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:28] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:28] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:34] "GET /get_logs HTTP/1.1" 200 -
+[2025-02-06 02:49:34.746171] HIGH - SQL Injection Attack Detected! Payload: '
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:34] "POST /test_payload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:35] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:37] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:38] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:38] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:38] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:38] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:44] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:49] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:54] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:49:59] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:04] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:09] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:14] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:19] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:24] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:29] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:34] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:39] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:50:51] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[32mGET /export HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:24] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:32] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:32] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:32] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:33] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:33] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:51:51] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:52:51] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:53:51] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:14] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:15] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:15] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:15] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:16] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:17] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:17] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:22] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:27] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\idsServer.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:32] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:37] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:42] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:47] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:52] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:54:57] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:01] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:01] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:05] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:05] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:05] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:05] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:08] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:09] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:09] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:09] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:55:17] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:43] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:52] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:53] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:53] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:53] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:58:59] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:04] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:05] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:05] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:05] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:05] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:06] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:06] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:06] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 02:59:06] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:20] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:20] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:20] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:20] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:01:21] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:56] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:57] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:57] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:57] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:04:57] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:05:03] "[33mGET /loginuser HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\alfiy\\OneDrive\\Desktop\\magang-alfian\\app\\frontApp.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 822-031-140
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:06] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:10] "GET /login_user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:10] "[33mGET /include/Logo%20YMP.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:55] "GET /login_user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:55] "GET /static/css/loginuser.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:06:55] "[33mGET /include/Logo%20YMP.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:09:34] "GET /login_user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:09:34] "[33mGET /include/Logo%20YMP.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:37] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:42] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:42] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:42] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:42] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:42] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:43] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:44] "GET /static/css/export.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:44] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:13:44] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:17] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:17] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:18] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:18] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:35] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:35] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:35] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:47] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:47] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:47] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:47] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:48] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:48] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:48] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:48] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:50] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:50] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:50] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:50] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:51] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:51] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:51] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Feb/2025 03:18:51] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+>>>>>>> Stashed changes

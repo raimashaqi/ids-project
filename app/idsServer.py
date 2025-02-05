@@ -5,6 +5,9 @@ from tqdm import tqdm
 import time
 import logging
 import os
+import signal
+import sys
+from datetime import datetime
 
 # define db
 mydb = mysql.connector.connect(
@@ -48,10 +51,27 @@ def banner():
     print("~# Author: PT. Yuk Mari Proyek Indonesia")
     print("~# Copyright © 2025")
 
-def get_payload_path(filename):
-    base_dir = os.path.join(os.getcwd(), 'static', 'payload')
-    return os.path.join(base_dir, filename)
+# Define variabel payload untuk setiap kerentanan secara dinamis
+payload_files = {
+    'SQL Injection': ('sqli_attack.txt', 'CRITICAL'),
+    'XSS Injection': ('xss_attack.txt', 'MEDIUM'),
+    'XML Injection': ('xml_attack.txt', 'HIGH'),
+    'NoSQL Injection': ('nosql_attack.txt', 'CRITICAL'),
+    'File Inclusion': ('file_inclusion_attack.txt', 'MEDIUM'),
+    'CSV Injection': ('csv_attack.txt', 'MEDIUM'),
+    'Directory Traversal': ('directory_traversal_attack.txt', 'MEDIUM'),
+    'SST Injection': ('ssti_attack.txt', 'HIGH'),
+    'SSI Injection': ('ssii_attack.txt', 'HIGH'),
+    'Command Injection': ('command_injection_attack.txt', 'CRITICAL')
+}
 
+# Fungsi untuk mendapatkan path payload
+def get_payload_path(filename):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    payload_dir = os.path.join(current_dir, 'static', 'payload')
+    return os.path.join(payload_dir, filename)
+
+<<<<<<< Updated upstream
 def load_payloads(filepath, desc):
     with open(filepath, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -60,42 +80,92 @@ def load_payloads(filepath, desc):
             payloads.append(r"{}".format(line.strip()))
             time.sleep(0.001337)
     return payloads
+=======
+# Fungsi untuk load payloads
+def load_payloads(filepath, desc=None):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            payloads = []
+            if desc:
+                for line in tqdm(lines, desc=desc, total=len(lines)):
+                    payloads.append(r"{}".format(line.strip()))
+            else:
+                payloads = [line.strip() for line in lines]
+            return payloads
+    except FileNotFoundError:
+        print(f"Warning: Payload file not found: {filepath}")
+        return []
+>>>>>>> Stashed changes
 
-# define variabel payload untuk setiap kerentanan
-sqli_payloads = load_payloads(get_payload_path('sqli_attack.txt'), "Loading SQLi Payload")
-xss_payloads = load_payloads(get_payload_path('xss_attack.txt'), "Loading XSS Payload")
-csv_payloads = load_payloads(get_payload_path('csv_attack.txt'), "Loading CSV Payload")
-command_injection_payloads = load_payloads(get_payload_path('command_injection_attack.txt'), "Loading Command Injection Payload")
-directory_traversal_payloads = load_payloads(get_payload_path('directory_traversal_attack.txt'), "Loading Directory Traversal Payload")
-file_inclusion_payloads = load_payloads(get_payload_path('file_inclusion_attack.txt'), "Loading File Inclusion Payload")
-nosql_injection_payloads = load_payloads(get_payload_path('nosql_attack.txt'), "Loading NoSQL Injection Payload")
-xml_payloads = load_payloads(get_payload_path('xml_attack.txt'), "Loading XML Payload")
-ssii_payloads = load_payloads(get_payload_path('ssii_attack.txt'), "Loading SSI Payload")
-ssti_payloads = load_payloads(get_payload_path('ssti_attack.txt'), "Loading SSTI Payload")
+# Fungsi untuk deteksi payload
+def detect_attack(input_payload):
+    for attack_type, (filename, severity) in payload_files.items():
+        filepath = get_payload_path(filename)
+        attack_payloads = load_payloads(filepath)
+        
+        for payload in attack_payloads:
+            if payload.lower() in input_payload.lower():
+                return attack_type, severity, payload
+    
+    return None, None, None
 
-# fungsi deteksi payload dari inputan eksternal
-def detect_payload(input_payload, attack_payloads):
-    for payload in attack_payloads:
-        if payload in input_payload:
-            return payload
-    return None
+# Fungsi untuk mencatat log
+def log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity):
+    # Dapatkan koneksi database
+    mydb, mycursor = get_db_connection()
+    
+    # Log ke file
+    with open('logs.txt', 'a') as f:
+        log_entry = f"[{datetime.now()}] {severity} - {log_message}\n"
+        f.write(log_entry)
+    
+    # Simpan ke database
+    sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
+    mycursor.execute(sql, (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity))
+    mydb.commit()
 
-# define tingkat keparahan (severity) vulnerabilities
-payload_types = [
-    ('SQL Injection', sqli_payloads, 'CRITICAL'),
-    ('XSS Injection', xss_payloads, 'MEDIUM'),
-    ('XML Injection',    xml_payloads, 'HIGH'),
-    ('NoSQL Injection', nosql_injection_payloads, 'CRITICAL'),
-    ('File Inclusion', file_inclusion_payloads, 'MEDIUM'),
-    ('CSV Injection', csv_payloads, 'MEDIUM'),
-    ('Directory Traversal', directory_traversal_payloads, 'MEDIUM'),
-    ('SST Injection', ssti_payloads, 'HIGH'),
-    ('SSI Injection', ssii_payloads, 'HIGH'),
-    ('Command Injection', command_injection_payloads, 'CRITICAL')
-]
+# Tambahkan variabel global untuk mengontrol sniffing
+running = True
+
+# Fungsi untuk menangani signal interrupt (Ctrl+C)
+def signal_handler(sig, frame):
+    global running, mydb, mycursor
+    print("\nMenghentikan server...")
+    running = False
+    
+    try:
+        # Tutup koneksi database dengan aman
+        if mydb and mydb.is_connected():
+            mycursor.close()
+            mydb.close()
+            print("Koneksi database ditutup.")
+    except Exception as e:
+        print(f"Error saat menutup koneksi: {e}")
+    
+    print("Server berhenti.")
+    sys.exit(0)
+
+# Fungsi untuk test payload manual
+def test_payload(payload, ip_src="127.0.0.1", tcp_sport=0, ip_dst="127.0.0.1", tcp_dport=0):
+    attack_type, severity, detected_payload = detect_attack(payload)
+    
+    if not attack_type:
+        attack_type = "Unknown"
+        severity = "LOW"
+        detected_payload = payload
+    
+    log_message = f"{attack_type} Attack Detected! Payload: {detected_payload}"
+    log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity)
+    
+    return attack_type, severity
 
 # analisis paket serangan dengan library scapy
 def analyze_packet(packet):
+    global running
+    if not running:
+        return True  # Return True akan menghentikan sniffing
+    
     if IP in packet and TCP in packet:
         ip_src = packet[IP].src
         ip_dst = packet[IP].dst
@@ -104,21 +174,49 @@ def analyze_packet(packet):
 
         try:
             payload = bytes(packet[TCP].payload).decode('utf-8', errors='ignore')
+            if payload:
+                attack_type, severity = test_payload(payload, ip_src, tcp_sport, ip_dst, tcp_dport)
+                print(f"Detected {attack_type} attack with {severity} severity")
         except UnicodeDecodeError:
             return
 
-        for attack_type, attack_payloads, severity in payload_types:
-            detected_payload = detect_payload(payload, attack_payloads)
-            if detected_payload:
-                log_msg = f"{attack_type} Attack Detected! Payload: {detected_payload}"
-                print(log_msg)
-                
-                # simpan logs ke MySQL database
-                sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
-                mycursor.execute(sql, (log_msg, ip_src, tcp_sport, ip_dst, tcp_dport, severity))
-                mydb.commit()
+# Di bagian atas file, setelah import
+# Pastikan koneksi database dibuat saat fungsi dipanggil
+def get_db_connection():
+    global mydb, mycursor
+    if 'mydb' not in globals() or not mydb.is_connected():
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="yuk_mari"
+        )
+        mycursor = mydb.cursor()
+    return mydb, mycursor
 
 if __name__ == '__main__':
-    banner()
-    print("Server is running...")
-    sniff(prn=analyze_packet)
+    mydb, mycursor = get_db_connection()
+    try:
+        banner()
+        # Load semua payload secara dinamis dengan progress bar
+        print("\nLoading payload databases...")
+        for attack_type, (filename, severity) in payload_files.items():
+            filepath = get_payload_path(filename)
+            _ = load_payloads(filepath, f"Loading {attack_type} Payload")
+        
+        # Daftarkan signal handler
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+        print("\nServer is running... (Tekan Ctrl+C untuk menghentikan)")
+        
+        # Modifikasi sniff untuk berhenti ketika running = False
+        while running:
+            # Sniff dengan timeout untuk mengecek status running secara berkala
+            sniff(prn=analyze_packet, store=0, timeout=1, 
+                  stop_filter=lambda _: not running)
+            
+    except KeyboardInterrupt:
+        signal_handler(signal.SIGINT, None)
+    except Exception as e:
+        print(f"Error: {e}")
+        signal_handler(signal.SIGINT, None)

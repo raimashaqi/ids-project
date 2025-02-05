@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Logs - YukMari Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="wrapper d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Yukmari Logo" class="img-fluid">
+                    <button class="menu-toggle hamburger d-md border-0">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <nav>
+                <div class="nav flex-column">
+                    <a href="#" class="nav-item active" id="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ url_for('main.export') }}" class="nav-item" id="export">
+                        <i class="fas fa-file-export"></i>
+                        <span>Export logs</span>
+                    </a>
+                    <a href="/import" class="nav-item" id="import">
+                        <i class="fas fa-file-import"></i>
+                        <span>Import payload</span>
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-item logout" id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content flex-grow-1">
+            <div class="container-fluid px-4">
+                <div class="top-bar row align-items-center mb-4">
+                    <div class="col">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" class="form-control" placeholder="Search your detection">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="notification">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="badge">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <!-- Content goes here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/dashboard.js"></script>
+   
+</body>
+</html>

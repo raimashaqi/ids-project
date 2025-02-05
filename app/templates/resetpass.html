@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/resetpass.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-5">
+        <div class="card">
+          <div class="card-body">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo YukMarii" class="img-fluid" />
+            <p class="subtitle">
+              Get a new password by entering your existing email address
+            </p>
+
+            <form method="POST" action="{{ url_for('reset_password') }}">
+              <input type="email" name="email" placeholder="Enter your email" class="form-control input-email"
+                required />
+              <button type="submit" class="btn btn-primary btn-block reset-button">
+                Reset Password
+              </button>
+            </form>
+
+            {% if otp_code %}
+            <div class="alert alert-info mt-3">
+              Kode OTP Anda: {{ otp_code }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <p class="copyright">&copy; 2025 PT. Yuk Mari Projek Indonesia</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
