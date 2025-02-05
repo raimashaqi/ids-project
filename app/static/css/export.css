@@ -587,6 +587,10 @@ nav {
     font-weight: 500;
 }
 
+.severity-badge.critical {
+    background-color: #dc3545;  
+}
+
 .severity-badge.high {
     background-color: #ffe5e5;
     color: #ff4444;
@@ -600,6 +604,11 @@ nav {
 .severity-badge.low {
     background-color: #e8f5e9;
     color: #4caf50;
+}
+
+.severity-badge.informative {
+    background-color: #3197f0;  
+    color: white;
 }
 
 /* Search Container Styles */

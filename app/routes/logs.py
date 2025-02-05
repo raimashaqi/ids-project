@@ -3,6 +3,7 @@ from app.models.log import Log
 from app import db
 from app.utils.decorators import login_required
 from datetime import datetime
+from app.idsServer import detect_attack, log_attack, payload_files, get_payload_path, load_payloads
 
 logs_bp = Blueprint('logs', __name__)
 
@@ -45,6 +46,45 @@ def delete_log(id):
 
         return jsonify({'success': True})
     except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@logs_bp.route('/test_input', methods=['POST'])
+def test_input():
+    try:
+        test_input = request.form['testInput']
+        print(f"Received test input: {test_input}")
+
+        # default severity
+        severity = 'INFORMATIVE'
+
+        # jika ada serangan terdeteksi sesuaikan dengan payload
+        for attack_name, (filename, attack_severity) in payload_files.items():
+            filepath = get_payload_path(filename)
+            attack_payloads = load_payloads(filepath)
+            if any(payload in test_input for payload in attack_payloads):
+                severity = attack_severity
+                break
+        
+        # simpan ke db
+        new_log = Log(
+            log_message=test_input,
+            ip_src='127.0.0.1',
+            tcp_sport=80,
+            ip_dst='127.0.0.1',
+            tcp_dport=80,
+            severity=severity
+        )
+
+        db.session.add(new_log)
+        db.session.commit()
+
+        return jsonify({
+            'success': True,
+            'message': 'Log berhasil disimpan',
+            'severity': severity
+        })
+    except Exception as e:
+        print(f"Error in test_input: {str(e)}")
         return jsonify({'success': False, 'message': str(e)}), 500
 
 @logs_bp.route('/test_payload', methods=['POST'])

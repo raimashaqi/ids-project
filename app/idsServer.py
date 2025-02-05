@@ -71,38 +71,24 @@ def get_payload_path(filename):
     payload_dir = os.path.join(current_dir, 'static', 'payload')
     return os.path.join(payload_dir, filename)
 
-<<<<<<< Updated upstream
-def load_payloads(filepath, desc):
-    with open(filepath, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-        payloads = []
-        for line in tqdm(lines, desc=desc, total=len(lines)):
-            payloads.append(r"{}".format(line.strip()))
-            time.sleep(0.001337)
-    return payloads
-=======
 # Fungsi untuk load payloads
-def load_payloads(filepath, desc=None):
+def load_payloads(filepath, desc='Loading payloads'):
     try:
         with open(filepath, 'r', encoding='utf-8') as file:
             lines = file.readlines()
             payloads = []
-            if desc:
-                for line in tqdm(lines, desc=desc, total=len(lines)):
-                    payloads.append(r"{}".format(line.strip()))
-            else:
-                payloads = [line.strip() for line in lines]
+            for line in tqdm(lines, desc=desc, total=len(lines)):
+                payloads.append(r"{}".format(line.strip()))
             return payloads
     except FileNotFoundError:
         print(f"Warning: Payload file not found: {filepath}")
         return []
->>>>>>> Stashed changes
 
 # Fungsi untuk deteksi payload
 def detect_attack(input_payload):
     for attack_type, (filename, severity) in payload_files.items():
         filepath = get_payload_path(filename)
-        attack_payloads = load_payloads(filepath)
+        attack_payloads = load_payloads(filepath, f"Loading {attack_type} payloads")
         
         for payload in attack_payloads:
             if payload.lower() in input_payload.lower():
