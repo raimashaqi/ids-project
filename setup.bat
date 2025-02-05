@@ -16,20 +16,13 @@ if not exist "venv" (
     python -m venv venv
 )
 
-REM Activate virtual environment
-.\venv\Scripts\Activate
-
-REM Install requirements
-echo Installing requirements...
-pip install -r requirements.txt
-
-REM Create database
-echo Creating database...
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS yuk_mari;"
-
-REM Initialize the application
-echo Initializing application...
-python run.py
-
-echo Setup complete! You can now run the application using 'run.bat'
-pause 
+REM Activate dan install requirements
+cmd /k ".\venv\Scripts\activate.bat && (
+    echo Installing requirements... &&
+    pip install -r requirements.txt &&
+    echo Creating database... &&
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS yuk_mari;" &&
+    echo Setup complete! You can now run the application using 'run.bat' &&
+    pause &&
+    exit
+)" 
