@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 git pull test
+=======
+testing
+>>>>>>> c964e9e446fca0d9187e394912afabf43a51c622
