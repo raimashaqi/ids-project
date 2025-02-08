@@ -1,34 +1,34 @@
-document.querySelector('.hamburger').addEventListener('click', function() {
+document.querySelector('.hamburger').addEventListener('click', function () {
   const sidebar = document.getElementById('sidebar');
   const mainContent = document.querySelector('.main-content');
-  
+
   sidebar.classList.toggle('collapsed');
   mainContent.classList.toggle('expanded');
-  
+
   // Mengubah ikon hamburger
   const icon = this.querySelector('i');
   if (sidebar.classList.contains('collapsed')) {
-      icon.classList.remove('fa-bars');
-      icon.classList.add('fa-times');
+    icon.classList.remove('fa-bars');
+    icon.classList.add('fa-times');
   } else {
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
   }
 });
 
 // Menutup sidebar ketika mengklik di luar sidebar
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
   const sidebar = document.getElementById('sidebar');
   const hamburger = document.querySelector('.hamburger');
-  
+
   if (!sidebar.contains(event.target) && !hamburger.contains(event.target) && sidebar.classList.contains('collapsed')) {
-      sidebar.classList.remove('collapsed');
-      document.querySelector('.main-content').classList.remove('expanded');
-      
-      // Reset ikon
-      const icon = hamburger.querySelector('i');
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
+    sidebar.classList.remove('collapsed');
+    document.querySelector('.main-content').classList.remove('expanded');
+
+    // Reset ikon
+    const icon = hamburger.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
   }
 });
 
@@ -38,26 +38,26 @@ function exportToExcel() {
   var table = document.getElementById('attackLogsTable');
   var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
 
-  
+
   var ws = wb.Sheets["Sheet1"];
   var cols = [];
   var range = XLSX.utils.decode_range(ws['!ref']);
 
   for (var C = range.s.c; C <= range.e.c; ++C) {
-    var maxWidth = 10;  
+    var maxWidth = 10;
     for (var R = range.s.r; R <= range.e.r; ++R) {
       var cell_address = { c: C, r: R };
       var cell_ref = XLSX.utils.encode_cell(cell_address);
       var cell = ws[cell_ref];
 
       if (cell && cell.v) {
-        maxWidth = Math.max(maxWidth, cell.v.toString().length + 5);  
+        maxWidth = Math.max(maxWidth, cell.v.toString().length + 5);
       }
     }
     cols.push({ wch: maxWidth });
   }
 
-  ws['!cols'] = cols;  
+  ws['!cols'] = cols;
 
   XLSX.writeFile(wb, 'data_tabel.xlsx');
 }
@@ -69,20 +69,20 @@ function exportToCSV() {
   var rows = table.querySelectorAll('tr');
   var csvContent = '';
 
-  rows.forEach(function(row) {
+  rows.forEach(function (row) {
     var cols = row.querySelectorAll('td, th');
     var rowData = [];
-    cols.forEach(function(col) {
+    cols.forEach(function (col) {
       rowData.push(col.innerText);
     });
-    csvContent += rowData.join(',') + '\n'; 
+    csvContent += rowData.join(',') + '\n';
   });
 
-  
+
   var blob = new Blob([csvContent], { type: 'text/csv' });
   var url = window.URL.createObjectURL(blob);
 
-  
+
   var a = document.createElement('a');
   a.href = url;
   a.download = 'data_tabel.csv';
@@ -96,13 +96,13 @@ function exportToTXT() {
   var rows = table.querySelectorAll('tr');
   var txtContent = '';
 
-  rows.forEach(function(row) {
+  rows.forEach(function (row) {
     var cols = row.querySelectorAll('td, th');
     var rowData = [];
-    cols.forEach(function(col) {
+    cols.forEach(function (col) {
       rowData.push(col.innerText);
     });
-    txtContent += rowData.join('\t') + '\n'; 
+    txtContent += rowData.join('\t') + '\n';
   });
 
   //  file blob TXT
@@ -117,33 +117,33 @@ function exportToTXT() {
 }
 
 // Add this new code for checkbox functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const selectAllCheckbox = document.getElementById('select');
-  
+
   if (selectAllCheckbox) {
-      selectAllCheckbox.addEventListener('change', function() {
-          const checkboxes = document.querySelectorAll('table tbody input[type="checkbox"]');
-          checkboxes.forEach(checkbox => {
-              checkbox.checked = selectAllCheckbox.checked;
-          });
+    selectAllCheckbox.addEventListener('change', function () {
+      const checkboxes = document.querySelectorAll('table tbody input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
       });
+    });
   }
 
   // Add event listeners for export buttons
   const exportButtons = document.querySelectorAll('.export-option');
   exportButtons.forEach(button => {
-      button.addEventListener('click', function() {
-          const buttonText = this.textContent.trim();
-          if (buttonText.includes('Excel')) {
-              exportToExcel();
-          } else if (buttonText.includes('CSV')) {
-              exportToCSV();
-          } else if (buttonText.includes('TXT')) {
-              exportToTXT();
-          }
-          // Close modal after export
-          document.getElementById('downloadModal').classList.remove('show');
-      });
+    button.addEventListener('click', function () {
+      const buttonText = this.textContent.trim();
+      if (buttonText.includes('Excel')) {
+        exportToExcel();
+      } else if (buttonText.includes('CSV')) {
+        exportToCSV();
+      } else if (buttonText.includes('TXT')) {
+        exportToTXT();
+      }
+      // Close modal after export
+      document.getElementById('downloadModal').classList.remove('show');
+    });
   });
 
   // Add sorting functionality
@@ -151,47 +151,47 @@ document.addEventListener('DOMContentLoaded', function() {
   let isAscending = true;
 
   if (sortableHeader) {
-      sortableHeader.addEventListener('click', function() {
-          const table = document.getElementById('attackLogsTable');
-          const tbody = table.querySelector('tbody');
-          const rows = Array.from(tbody.querySelectorAll('tr'));
+    sortableHeader.addEventListener('click', function () {
+      const table = document.getElementById('attackLogsTable');
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
 
-          // Toggle sort direction
-          isAscending = !isAscending;
-          
-          // Update icon
-          this.classList.toggle('asc', isAscending);
+      // Toggle sort direction
+      isAscending = !isAscending;
 
-          // Sort rows
-          rows.sort((a, b) => {
-              const severityA = a.querySelector('[data-label="Severity"] span').textContent;
-              const severityB = b.querySelector('[data-label="Severity"] span').textContent;
-              
-              const severityOrder = {
-                  'High': 3,
-                  'Medium': 2,
-                  'Low': 1
-              };
+      // Update icon
+      this.classList.toggle('asc', isAscending);
 
-              const comparison = severityOrder[severityA] - severityOrder[severityB];
-              return isAscending ? comparison : -comparison;
-          });
+      // Sort rows
+      rows.sort((a, b) => {
+        const severityA = a.querySelector('[data-label="Severity"] span').textContent;
+        const severityB = b.querySelector('[data-label="Severity"] span').textContent;
 
-          // Reorder rows in DOM
-          rows.forEach(row => tbody.appendChild(row));
+        const severityOrder = {
+          'High': 3,
+          'Medium': 2,
+          'Low': 1
+        };
+
+        const comparison = severityOrder[severityA] - severityOrder[severityB];
+        return isAscending ? comparison : -comparison;
       });
+
+      // Reorder rows in DOM
+      rows.forEach(row => tbody.appendChild(row));
+    });
   }
 
   // Tambahkan event listener untuk tombol delete
   const deleteButtons = document.querySelectorAll('.fa-trash-alt');
   deleteButtons.forEach(button => {
-      button.addEventListener('click', function() {
-          if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-              // Hapus baris tabel
-              const row = this.closest('tr');
-              row.remove();
-          }
-      });
+    button.addEventListener('click', function () {
+      if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        // Hapus baris tabel
+        const row = this.closest('tr');
+        row.remove();
+      }
+    });
   });
 });
 
@@ -205,7 +205,7 @@ const fileInput = document.getElementById('fileInput');
   document.body.addEventListener(eventName, preventDefaults, false);
 });
 
-function preventDefaults (e) {
+function preventDefaults(e) {
   e.preventDefault();
   e.stopPropagation();
 }
@@ -237,66 +237,82 @@ function handleDrop(e) {
 }
 
 // Handle file input change
-fileInput.addEventListener('change', function(e) {
+fileInput.addEventListener('change', function (e) {
   handleFiles(this.files);
 });
 
 function handleFiles(files) {
-  const file = files[0];
-  const validTypes = [
-      'text/plain',                 
-      'text/csv',                   
-      'application/vnd.ms-excel',   
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
-  ];
-  
-  if (!validTypes.includes(file.type)) {
-      alert('Please upload only .txt, .csv, or Excel files');
-      return;
+  // Pastikan ada file yang dipilih
+  if (!files || files.length === 0) {
+    console.error("No files selected.");
+    return;
   }
 
-  // Here you can add code to handle the valid file
-  console.log('Valid file uploaded:', file.name);
-  // You might want to send this file to your server
+  const file = files[0];
+  const validTypes = [
+    'text/plain',
+    'text/csv',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  ];
+
+  // Validasi tipe file
+  if (!validTypes.includes(file.type)) {
+    alert('Please upload only .txt, .csv, or Excel files');
+    return;
+  }
+
+  // Menggunakan FormData untuk mengirim file
+  const formData = new FormData();
+  formData.append('file', file);
+
+  // Mengirim file ke server
+  fetch('/upload-endpoint', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      // Pastikan respons OK, jika tidak lempar error
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        console.log('File uploaded successfully:', data);
+        // Jika fungsi updateTable ada, panggil untuk memperbarui tabel
+        if (typeof updateTable === 'function' && data.payload) {
+          updateTable(data.payload);
+        }
+      } else {
+        alert('Upload failed: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error uploading file:', error);
+      alert('An error occurred while uploading the file.');
+    });
 }
 
-// Add this to handle date range buttons
-document.addEventListener('DOMContentLoaded', function() {
-  const rangeButtons = document.querySelectorAll('.custom-range button');
-  const fromDate = document.querySelector('input[name="from"]');
-  const toDate = document.querySelector('input[name="to"]');
-
-  rangeButtons.forEach(button => {
-      button.addEventListener('click', function() {
-          // Remove active class from all buttons
-          rangeButtons.forEach(btn => btn.classList.remove('active'));
-          // Add active class to clicked button
-          this.classList.add('active');
-
-          const today = new Date();
-          let startDate = new Date();
-
-          // Set date range based on button clicked
-          switch(this.textContent) {
-              case 'Last 24 hours':
-                  startDate.setDate(today.getDate() - 1);
-                  break;
-              case 'Last 7 days':
-                  startDate.setDate(today.getDate() - 7);
-                  break;
-              case 'Last 30 days':
-                  startDate.setDate(today.getDate() - 30);
-                  break;
-              case 'Custom Range':
-                  // Enable manual date input
-                  fromDate.disabled = false;
-                  toDate.disabled = false;
-                  return;
-          }
-
-          // Format dates for input fields
-          fromDate.value = startDate.toISOString().split('T')[0];
-          toDate.value = today.toISOString().split('T')[0];
-      });
-  });
-});
+function deletePayload(id) {
+  // Panggil endpoint untuk menghapus payload dari database
+  fetch(`/delete-payload/${id}`, {
+    method: 'DELETE'
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Hapus baris dari tabel
+        const row = document.querySelector(`#payloadTable tbody tr[data-id="${id}"]`);
+        if (row) {
+          row.remove();
+        }
+      } else {
+        alert('Failed to delete payload: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error deleting payload:', error);
+    });
+}
