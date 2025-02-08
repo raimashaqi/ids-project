@@ -4,6 +4,7 @@ from app import db
 from app.utils.decorators import login_required
 from datetime import datetime
 from app.idsServer import detect_attack, log_attack, payload_files, get_payload_path, load_payloads
+import mysql.connector
 
 logs_bp = Blueprint('logs', __name__)
 
@@ -37,15 +38,35 @@ def delete_log(id):
         if log is None:
             return jsonify({'success': False, 'message': 'Log not found'}), 404
 
+        # Hapus dari database
         db.session.delete(log)
         db.session.commit()
 
+        # Hapus dari tabel logs di MySQL jika masih ada
+        try:
+            sql = "DELETE FROM logs WHERE id = %s"
+            mydb = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="yuk_mari"
+            )
+            mycursor = mydb.cursor()
+            mycursor.execute(sql, (id,))
+            mydb.commit()
+            mycursor.close()
+            mydb.close()
+        except Exception as e:
+            print(f"Error deleting from MySQL: {e}")
+
+        # Log aktivitas penghapusan
         with open('logs.txt', 'a') as f:
             log_entry = f"[{datetime.now()}] LOG DELETED - ID: {id}\n"
             f.write(log_entry)
 
         return jsonify({'success': True})
     except Exception as e:
+        print(f"Error in delete_log: {e}")
         return jsonify({'success': False, 'message': str(e)}), 500
 
 @logs_bp.route('/test_input', methods=['POST'])
