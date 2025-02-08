@@ -1,58 +1,100 @@
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(rgba(237, 167, 14, 0.9), rgba(240, 117, 8, 0.9)),
-      url("../img/background.jpg");
-    background-size: cover;
-    color: white;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  .card {
-    background-color: rgba(50, 50, 50, 0.5); /* Warna abu-abu gelap transparan */
-    color: white; /* Teks berwarna putih agar kontras */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .card-body {
-    background-color: transparent; /* Hilangkan background putih pada card-body */
-  }
-  
-  .card img {
-    width: 400px; /* Ukuran logo */
-    margin-top: -130px;
-    margin-bottom: -25px;
-  }
-  
-  .subtitle {
-    margin-bottom: 40px;
-  }
-  
-  .input-email {
-    margin-bottom: 15px;
-    box-shadow: 1px 1.5px rgba(0, 0, 0, 0.405);
-  }
-  
-  .reset-button {
-    background: linear-gradient(to right, #ffc700, #ff9100); /* Gradient button */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%; /* Tombol memenuhi lebar card */
-    font-weight: bold; /* Tulisan tombol bold */
-    box-shadow: 1px 3px rgba(0, 0, 0, 0.405);
-  }
-  
-  .copyright {
-    font-size: 1.2em;
-    margin-top: 40px;
-    text-align: center;
-  }
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(rgba(237, 167, 14, 0.9), rgba(240, 117, 8, 0.9)),
+    url("../img/background.jpg");
+  background-size: cover;
+  color: white;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: rgba(50, 50, 50, 0.5); /* Warna abu-abu gelap transparan */
+  color: white; /* Teks berwarna putih agar kontras */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card-body {
+  background-color: transparent; /* Hilangkan background putih pada card-body */
+}
+
+.card img {
+  width: 300px; /* Ukuran logo */
+  margin-top: 0px;
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+}
+
+.input-email {
+  margin-bottom: 15px;
+  box-shadow: 1px 1.5px rgba(0, 0, 0, 0.405);
+}
+
+.input-email:hover {
+  box-shadow: 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.input-email:focus {
+  outline: none;
+  border-bottom: 3px solid orange;
+}
+
+.reset-button {
+  background: linear-gradient(to right, #ffc700, #ff9100); /* Gradient button */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Tombol memenuhi lebar card */
+  font-weight: bold; /* Tulisan tombol bold */
+  box-shadow: 1px 3px rgba(0, 0, 0, 0.405);
+  transition: all 0.5 linear;
+}
+
+.reset-button:hover {
+  box-shadow: 2px 5px rgba(0, 0, 0, 0.5); /* Bayangan yang lebih besar */
+  background: linear-gradient(to right, #ffb300, #ff7800);
+}
+
+.reset-button:active {
+  outline: 3px solid orange; /* Warna outline oranye */
+  outline-offset: 3px; /* Offset outline untuk efek "glow" */
+}
+
+.back-link {
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+  transition: color 0.1s linear;
+  margin-top: 6px;
+}
+
+.back-link i {
+  position: relative;
+  margin-right: 1px;
+  transition: left 0.9s ease-in-out; /* Jarak antara ikon dan teks */
+}
+
+.back-link:hover i {
+  margin-right: 3px;
+}
+
+.back-link:hover {
+  color: orange;
+}
+
+.copyright {
+  font-size: 1.2em;
+  margin-top: 40px;
+  text-align: center;
+}
