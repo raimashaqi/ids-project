@@ -35,7 +35,7 @@ def importt():
     payloads = Payload.query.all()
     return render_template('importt.html', payloads=payloads)
 
-@main_bp.route('/delete-endpoint/<int:id>', methods=['DELETE'])
+@main_bp.route('/delete-payload/<int:id>', methods=['DELETE'])
 def delete_payload(id):
     payload = Payload.query.get(id)
     if payload:
