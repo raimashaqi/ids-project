@@ -1,5 +1,6 @@
 .env
 bebas/
-__pycache__/
+__pycache__
 *.pyc
 bebas/
+logs.txt
