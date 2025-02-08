@@ -101,3 +101,7 @@ def upload_file():
         return jsonify(success=True, payload={'nama_payload': nama_payload, 'jumlah_baris': jumlah_baris})  # Kembalikan data yang diperlukan
     except Exception as e:
         return jsonify(success=False, message=str(e))
+
+@main_bp.route('/loginuser')
+def loginuser():
+    return render_template('loginuser.html')
