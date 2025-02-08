@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reset Password</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../static/css/account_settings.css" />
+  </head>
+  <body>
+    <!-- Logo di luar card -->
+    <div class="logo-container">
+      <img
+        src="{{ url_for('static', filename='img/logo.png') }}"
+        alt="Logo YukMarii"
+        class="logo" />
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <!-- Judul -->
+              <h3 class="title">Pengaturan Akun</h3>
+
+              <!-- Informasi Email -->
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <p>
+                    Hallo,
+                    <span id="userEmail" class="fw-bold"
+                      >akunkamu@gmail.com</span
+                    >
+                  </p>
+                </div>
+                <div class="col-md-6 text-end">
+                  <span
+                    id="changeEmail"
+                    class="change-email"
+                    data-bs-toggle="modal"
+                    data-bs-target="#emailModal"
+                    >Change</span
+                  >
+                </div>
+              </div>
+
+              <!-- Form Ganti Password -->
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="newPassword">Password Baru:</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    class="form-control input-password" />
+                </div>
+                <div class="col-md-6">
+                  <label for="currentPassword">Password Lama:</label>
+                  <input
+                    type="password"
+                    id="currentPassword"
+                    class="form-control input-password" />
+                </div>
+              </div>
+
+              <span id="passwordError" class="error"></span>
+              <button
+                type="submit"
+                class="btn btn-primary btn-block reset-button mt-3">
+                Simpan Perubahan
+              </button>
+
+              <div class="d-flex justify-content-end mt-2">
+                <a href="{{ url_for('auth.login') }}" class="back-link">
+                  <i class="fa-solid fa-chevron-left"></i> Back
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p class="copyright text-center mt-3">
+            &copy; 2025 PT. Yuk Mari Projek Indonesia
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Ganti Email -->
+    <div
+      class="modal fade"
+      id="emailModal"
+      tabindex="-1"
+      aria-labelledby="emailModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Ganti Email</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="newEmail" class="form-label">Email Baru:</label>
+            <input type="email" id="newEmail" class="form-control" />
+            <small id="newEmailError" class="text-danger"></small>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              Batal
+            </button>
+            <button type="button" id="saveEmail" class="btn btn-primary">
+              Simpan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi -->
+    <div
+      class="modal fade"
+      id="confirmModal"
+      tabindex="-1"
+      aria-labelledby="confirmModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+          <div class="modal-header">
+            <h5 class="modal-title">Konfirmasi</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Apakah Anda yakin ingin menyimpan perubahan?</p>
+            <div class="d-flex justify-content-center">
+              <button
+                type="button"
+                id="confirmChange"
+                class="btn btn-success me-3">
+                ✅
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal">
+                ❌
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Set email display
+        $("#emailDisplay").text($("#userEmail").text());
+
+        // Show modal on "Change" click
+        $("#changeEmail").click(function () {
+          $("#newEmail").val($("#userEmail").text()); // Set current email in modal input
+          $("#newEmailError").text(""); // Clear error message
+        });
+
+        // Save email on modal save click
+        $("#saveEmail").click(function () {
+          const newEmail = $("#newEmail").val();
+
+          if (newEmail === "" || !isValidEmail(newEmail)) {
+            $("#newEmailError").text("Email tidak valid");
+          } else {
+            // Tampilkan modal konfirmasi sebelum mengubah email
+            $("#confirmModal").modal("show");
+
+            // Jika dikonfirmasi
+            $("#confirmChange")
+              .off("click")
+              .on("click", function () {
+                $("#userEmail").text(newEmail); // Update displayed email
+                $("#emailDisplay").text(newEmail); // Update displayed email below
+                $("#emailModal").modal("hide"); // Tutup modal email
+                $("#confirmModal").modal("hide"); // Tutup modal konfirmasi
+              });
+          }
+        });
+
+        // Fungsi validasi email
+        function isValidEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Tampilkan modal konfirmasi saat klik "Simpan Perubahan"
+        $(".reset-button").click(function (e) {
+          e.preventDefault(); // Mencegah submit langsung
+          $("#confirmModal").modal("show");
+        });
+
+        // Jika tombol ✅ di modal konfirmasi diklik
+        $("#confirmChange")
+          .off("click")
+          .on("click", function () {
+            alert("Perubahan berhasil disimpan!"); // Ganti dengan AJAX atau submit jika perlu
+            $("#confirmModal").modal("hide");
+          });
+
+        // Jika tombol ❌ diklik, hanya menutup modal tanpa melakukan apa pun
+        $(".btn-danger").click(function () {
+          $("#confirmModal").modal("hide");
+        });
+      });
+    </script>
+  </body>
+</html>
