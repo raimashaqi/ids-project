@@ -194,3 +194,109 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
+// Add this to your existing JavaScript
+const uploadArea = document.querySelector('.upload-area');
+const fileInput = document.getElementById('fileInput');
+
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, preventDefaults, false);
+  document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults (e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+// Handle drag and drop visual feedback
+['dragenter', 'dragover'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, unhighlight, false);
+});
+
+function highlight(e) {
+  uploadArea.classList.add('highlight');
+}
+
+function unhighlight(e) {
+  uploadArea.classList.remove('highlight');
+}
+
+// Handle dropped files
+uploadArea.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+  const dt = e.dataTransfer;
+  const files = dt.files;
+  handleFiles(files);
+}
+
+// Handle file input change
+fileInput.addEventListener('change', function(e) {
+  handleFiles(this.files);
+});
+
+function handleFiles(files) {
+  const file = files[0];
+  const validTypes = [
+      'text/plain',                 
+      'text/csv',                   
+      'application/vnd.ms-excel',   
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
+  ];
+  
+  if (!validTypes.includes(file.type)) {
+      alert('Please upload only .txt, .csv, or Excel files');
+      return;
+  }
+
+  // Here you can add code to handle the valid file
+  console.log('Valid file uploaded:', file.name);
+  // You might want to send this file to your server
+}
+
+// Add this to handle date range buttons
+document.addEventListener('DOMContentLoaded', function() {
+  const rangeButtons = document.querySelectorAll('.custom-range button');
+  const fromDate = document.querySelector('input[name="from"]');
+  const toDate = document.querySelector('input[name="to"]');
+
+  rangeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          rangeButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+
+          const today = new Date();
+          let startDate = new Date();
+
+          // Set date range based on button clicked
+          switch(this.textContent) {
+              case 'Last 24 hours':
+                  startDate.setDate(today.getDate() - 1);
+                  break;
+              case 'Last 7 days':
+                  startDate.setDate(today.getDate() - 7);
+                  break;
+              case 'Last 30 days':
+                  startDate.setDate(today.getDate() - 30);
+                  break;
+              case 'Custom Range':
+                  // Enable manual date input
+                  fromDate.disabled = false;
+                  toDate.disabled = false;
+                  return;
+          }
+
+          // Format dates for input fields
+          fromDate.value = startDate.toISOString().split('T')[0];
+          toDate.value = today.toISOString().split('T')[0];
+      });
+  });
+});
