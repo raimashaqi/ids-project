@@ -1,6 +1,5 @@
 .env
-venv/
+bebas/
 __pycache__/
-app/__pycache__
 *.pyc
 bebas/
