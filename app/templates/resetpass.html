@@ -35,6 +35,12 @@
               Kode OTP Anda: {{ otp_code }}
             </div>
             {% endif %}
+
+            <div class="d-flex justify-content-end mt-2 back-link">
+              <a href="/login" class="back-link">
+                <i class="fa-solid fa-chevron-left"></i>Back</a
+              >
+            </div>
           </div>
         </div>
         <p class="copyright">&copy; 2025 PT. Yuk Mari Projek Indonesia</p>
@@ -42,9 +48,55 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const alertPlaceholder = $("#alertPlaceholder");
 
+        function appendAlert(message, type) {
+          const alertHtml = `
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+              ${message}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+          alertPlaceholder.html(alertHtml);
+        }
+
+        $("#resetButton").click(function (event) {
+          event.preventDefault();
+
+          const email = $(".input-email").val().trim();
+
+          // AJAX untuk cek email di database
+          $.ajax({
+            url: "/cek-email", // Ganti dengan endpoint backend Laravel/Flask
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ email: email }),
+            success: function (response) {
+              if (response.status === "not_found") {
+                appendAlert(
+                  "Email tidak ditemukan! Silakan cek kembali.",
+                  "danger"
+                );
+              } else if (response.status === "found") {
+                appendAlert(
+                  "Instruksi reset password telah dikirim ke email!",
+                  "success"
+                );
+              }
+            },
+            error: function () {
+              appendAlert(
+                "Terjadi kesalahan saat memeriksa email. Coba lagi nanti!",
+                "warning"
+              );
+            },
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
