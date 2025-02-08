@@ -102,6 +102,17 @@
                                         <td data-label="Jumlah Baris">20</td>
                                         <td><i class="fas fa-trash-alt text-danger"></i></td>
                                     </tr>
+                                    {% for payload in payloads %}
+                                    <tr>
+                                        <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+                                        <td class="id-column">{{ payload.id }}</td>
+                                        <td data-label="Nama Payload">{{ payload.nama_payload }}</td>
+                                        <td data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
+                                        <td>
+                                            <i class="fas fa-trash-alt text-danger" onclick="deletePayload('{{ payload.id }}')"></i>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
