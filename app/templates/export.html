@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/export.css') }}">
+    <link rel="stylesheet" href="../static/css/export.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </head>
 <body>
@@ -33,11 +33,15 @@
                         <i class="fas fa-file-export"></i>
                         <span>Export logs</span>
                     </a>
-                    <a href="/import" class="nav-item" id="import">
+                    <a href="{{ url_for('main.importt') }}" class="nav-item" id="import">
                         <i class="fas fa-file-import"></i>
                         <span>Import payload</span>
                     </a>
-                    <a href="{{ url_for('auth.logout') }}" class="nav-item logout" id="logout">
+                    <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Setting</span>
+                    </a>
+                    <a href="#" class="nav-item logout" id="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>
@@ -65,15 +69,13 @@
                     <!-- Content goes here -->
                     <div class="content-area">
                         <div class="search-container">
-                            <div class="pagination-container">
-                                <label for="rows">Tampilkan:</label>
-                                <select class="rows-per-page" id="rows">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
+                            <div class="pagination-container d-flex date">
+                                <i class="text-white"> Range Date</i>
+                                <i class="fa-solid fa-calendar-days"></i>
                             </div>
+                            
+                            <button class="download">Download File </button>
+                            
                         </div>
                         
                         <div class="table-responsive" >
@@ -93,9 +95,23 @@
                                             <i class="fas fa-sort"></i>
                                         </th>
                                         <th>Delete</th>
+                                        <th>View More</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+                                        <td class="id-column">1</td>
+                                        <td data-label="Log Time">2024-01-20 08:30:15</td>
+                                        <td data-label="Log Message">Suspicious activity detected</td>
+                                        <td data-label="Source IP">192.168.1.100</td>
+                                        <td data-label="Source Port">8080</td>
+                                        <td data-label="Destination IP">10.0.0.5</td>
+                                        <td data-label="Destination Port">443</td>
+                                        <td data-label="Severity"><span class="severity-badge critical">Critical</span></td>
+                                        <td><i class="fas fa-trash-alt text-danger"></i></td>
+                                        <td><button class="view">More</button></td>
+                                    </tr>
                                     {% for log in logs %}
                                     <tr>
                                         <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
@@ -107,12 +123,10 @@
                                         <td data-label="Destination IP">{{ log.ip_dst }}</td>
                                         <td data-label="Destination Port">{{ log.tcp_dport }}</td>
                                         <td data-label="Severity">
-                                            <span class="severity-badge {{ log.severity.lower() }}">
-                                                {{ log.severity }}
-                                            </span>
+                                        <span class="severity-badge critical" >{{ log.severity }}</span>
                                         </td>
                                         <td>
-                                            <i class="fas fa-trash-alt text-danger" onclick="deleteLog({{ log.id }})"></i>
+                                            <i class="fas fa-trash-alt text-danger" onclick="deleteLog('{{ log.id }}')"></i>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -129,32 +143,51 @@
                             <li><a href="#">10</a></li>
                             <li><a href="#" class="pagination-arrow">&raquo;</a></li>
                         </ul>
-                        <button class="download">Download File </button>
                  </div>
-                 <div class="modal" id="downloadModal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Export Options</h2>
-                            <span class="close-modal">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                        <div class="modal-body">
-                            <button class="export-option">
-                                <i class="fas fa-file-excel"></i>
-                                Export to Excel
-                            </button>
-                            <button class="export-option">
-                                <i class="fas fa-file-alt"></i>
-                                Export to TXT
-                            </button>
-                            <button class="export-option">
-                                <i class="fas fa-file-csv"></i>
-                                Export to CSV
-                            </button>
+                    <div class="modal" id="downloadModal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Export Options</h2>
+                                <span class="close-modal">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </div>
+                            <div class="modal-body">
+                                <button class="export-option">
+                                    <i class="fas fa-file-excel"></i>
+                                    Export to Excel
+                                </button>
+                                <button class="export-option">
+                                    <i class="fas fa-file-alt"></i>
+                                    Export to TXT
+                                </button>
+                                <button class="export-option">
+                                    <i class="fas fa-file-csv"></i>
+                                    Export to CSV
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div>
+                        <div class="modal" id="rangeModal">
+                            <div class="modal-content d-flex">
+                                <div class="modal-header">
+                                    <h2>Choose Range</h2>
+                                </div>
+                                <div class="d-flex">
+                                    <div>
+                                        <h6>From</h6>
+                                        <input type="date" class="boxDate">
+                                    </div>
+                                    <div>
+                                        <h6>To</h6>
+                                        <input type="date" class="boxDate">
+                                    </div>
+                                </div>
+                                <button class="apply"> Apply</button>
+                            </div>
+                        </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,7 +197,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/dashboard.js"></script>
     <script>
-          const downloadBtn = document.querySelector('.download');
+        const downloadBtn = document.querySelector('.download');
+        const dateBtn = document.querySelector('.date');
+        const modalR = document.getElementById('rangeModal')
         const modal = document.getElementById('downloadModal');
         const closeModal = document.querySelector('.close-modal');
     
@@ -182,50 +217,21 @@
                 modal.classList.remove('show');
             }
         });
+        
+        //date
 
-        async function deleteLog(id) {
-            if (confirm('Are you sure you want to delete this log?')) {
-                try {
-                    const response = await fetch(`/delete_log/${id}`, {
-                        method: 'DELETE'
-                    });
-                    
-                    const result = await response.json();
-                    if (result.success) {
-                        // Refresh halaman setelah menghapus
-                        window.location.reload();
-                    } else {
-                        alert('Error deleting log: ' + result.message);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error deleting log');
-                }
+        dateBtn.addEventListener('click', () => {
+            modalR.classList.add('show');
+        });
+    
+        closeModal.addEventListener('click', () => {
+            modalR.classList.remove('show');
+        });
+        
+        modalR.addEventListener('click', (e) => {
+            if (e.target === modalR) {
+                modalR.classList.remove('show');
             }
-        }
-
-        // Fungsi untuk mengatur warna severity badge
-        document.addEventListener('DOMContentLoaded', function() {
-            const severityBadges = document.querySelectorAll('.severity-badge');
-            severityBadges.forEach(badge => {
-                const severity = badge.textContent.trim().toLowerCase();
-                switch(severity) {
-                    case 'critical':
-                        badge.classList.add('critical');
-                        break;
-                    case 'high':
-                        badge.classList.add('high');
-                        break;
-                    case 'medium':
-                        badge.classList.add('medium');
-                        break;
-                    case 'low':
-                        badge.classList.add('low');
-                        break;
-                    default:
-                        badge.classList.add('informative');
-                }
-            });
         });
     </script>
    
