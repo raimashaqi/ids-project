@@ -69,7 +69,7 @@ def delete_log(id):
         print(f"Error in delete_log: {e}")
         return jsonify({'success': False, 'message': str(e)}), 500
 
-@logs_bp.route('/test_input', methods=['POST'])
+@logs_bp.route('/test_input', methods=['GET','POST'])
 def test_input():
     try:
         test_input = request.form['testInput']

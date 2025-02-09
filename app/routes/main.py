@@ -12,7 +12,12 @@ main_bp = Blueprint('main', __name__,
 
 @main_bp.route('/testing')
 def index():
-    return render_template('testing.html')
+    try:
+        logs = Log.query.order_by(Log.log_time.desc()).all()
+        return render_template('testing.html', logs=logs)
+    except Exception as e:
+        flash('Error mengambil data logs', 'danger')
+        return redirect(url_for('auth.login')) 
 
 @main_bp.route('/dashboard')
 @login_required
