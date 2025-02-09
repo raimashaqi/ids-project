@@ -10,9 +10,9 @@ main_bp = Blueprint('main', __name__,
                    static_folder='../static',
                    static_url_path='/static')
 
-@main_bp.route('/')
+@main_bp.route('/testing')
 def index():
-    return render_template('index.html')
+    return render_template('testing.html')
 
 @main_bp.route('/dashboard')
 @login_required
