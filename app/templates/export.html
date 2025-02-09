@@ -108,7 +108,7 @@
                                         <td data-label="Source Port">8080</td>
                                         <td data-label="Destination IP">10.0.0.5</td>
                                         <td data-label="Destination Port">443</td>
-                                        <td data-label="Severity"><span class="severity-badge critical">Critical</span></td>
+                                        <td data-label="Severity"><span class="severity-badge">Critical</span></td>
                                         <td><i class="fas fa-trash-alt text-danger"></i></td>
                                         <td><button class="view">More</button></td>
                                     </tr>
@@ -123,7 +123,9 @@
                                         <td data-label="Destination IP">{{ log.ip_dst }}</td>
                                         <td data-label="Destination Port">{{ log.tcp_dport }}</td>
                                         <td data-label="Severity">
-                                        <span class="severity-badge critical" >{{ log.severity }}</span>
+                                            <span class="severity-badge {{ log.severity|lower }}">
+                                                {{ log.severity }}
+                                            </span>
                                         </td>
                                         <td>
                                             <i class="fas fa-trash-alt text-danger" onclick="deleteLog('{{ log.id }}')"></i>
