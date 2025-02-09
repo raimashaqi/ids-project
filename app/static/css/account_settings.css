@@ -23,6 +23,28 @@ body {
   width: 150px;
 }
 
+/* Logo responsif */
+@media (max-width: 768px) {
+  .logo-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    width: 120px;
+    /* Ukuran lebih kecil saat layar mengecil */
+  }
+
+  .container {
+    margin-top: 50px;
+    /* Memberi ruang agar tidak terlalu mepet */
+  }
+}
+
 /* Card */
 .card {
   background-color: rgba(50, 50, 50, 0.5);
