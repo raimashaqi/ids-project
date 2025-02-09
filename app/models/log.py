@@ -1,5 +1,4 @@
 from app import db
-from datetime import datetime
 
 class Log(db.Model):
     __tablename__ = 'logs'
