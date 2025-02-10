@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/loginuser.css') }}">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo" />
+    <div class="content">
+      <div class="welcome-section">
+        <h1>Welcome!</h1>
+        <div class="welcome-line"></div>
+        <p>
+          IDS adalah perusahaan teknologi yang menyediakan solusi inovatif
+          untuk kebutuhan bisnis Anda. Kami menawarkan berbagai layanan, mulai
+          dari pengembangan perangkat lunak hingga konsultasi TI.
+        </p>
+        <button class="btn btn-gradient" id="learnMoreBtn">Learn More</button>
+      </div>
+      <div class="card">
+        <h2>Sign In</h2>
+        <form id="testPayloadForm" class="testPayloadForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="username" required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="• • • • •" required />
+          </div>
+          <button type="submit" class="btn btn-gradient w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+    <footer>&copy; 2025 PT Yuk Mari Indonesia. All rights reserved.</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('testPayloadForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const payloadResult = document.getElementById('payloadResult');
+  
+      try {
+        // Test for attack first
+        const payloadResponse = await fetch('/test_payload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ payload: username + " " + password })
+        });
+  
+        const payloadData = await payloadResponse.json();
+        if (payloadData.success && payloadData.attack_type !== "Unknown") {
+          payloadResult.className = 'alert alert-danger';
+          payloadResult.innerHTML = `<strong>Attack Detected:</strong> ${payloadData.attack_type}<br>Severity: ${payloadData.severity}`;
+          payloadResult.style.display = 'block';
+          return; // Stop login if an attack is detected
+        }
+  
+        // Proceed with login if no attack detected
+        const loginResponse = await fetch('/client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: username, password: password })
+        });
+  
+        const loginData = await loginResponse.json();
+        if (loginData.success) {
+          window.location.href = loginData.redirect; // Redirect on success
+        } else {
+          payloadResult.className = 'alert alert-warning';
+          payloadResult.textContent = loginData.message || 'Login failed!';
+          payloadResult.style.display = 'block';
+        }
+      } catch (error) {
+        payloadResult.className = 'alert alert-danger';
+        payloadResult.textContent = 'Error processing request.';
+        payloadResult.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+
+</html>
