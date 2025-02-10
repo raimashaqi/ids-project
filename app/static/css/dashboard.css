@@ -14,7 +14,14 @@
     display: flex;
     flex-direction: column;
 }
-
+.nav-item.setting {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    margin: 0 0px;
+    width: auto;
+}
 .sidebar.collapsed {
     width: 100px;
     min-height: 100vh;
@@ -183,7 +190,7 @@ nav {
     bottom: 20px;
     left: 0;
     right: 0;
-    margin: 0 15px;
+    margin: 0 0px;
     width: auto;
 }
 .nav-item.active {
@@ -407,4 +414,141 @@ nav {
 /* Media query untuk mobile tetap seperti sebelumnya */
 @media (max-width: 768px) {
     /* ... existing mobile styles ... */
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.shadow {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Hapus atau komentar definisi gradien yang lama */
+/*
+.bg-danger {
+    background: linear-gradient(45deg, #dc3545, #ff6b6b);
+}
+
+.bg-warning {
+    background: linear-gradient(45deg, #fd7e14, #ffa502);
+}
+
+.bg-info {
+    background: linear-gradient(45deg, #17a2b8, #48dbfb);
+}
+
+.bg-success {
+    background: linear-gradient(45deg, #28a745, #6ab04c);
+}
+*/
+
+.card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+canvas {
+    max-height: 300px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+/* Add these styles for severity badges */
+.severity-badges {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+
+.severity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.severity-count {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.severity-badge {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Pastikan definisi warna badge yang baru tidak tertimpa */
+.severity-badge.bg-info {
+    background-color: #afc8fd !important;
+    color: #2655CD !important;
+}
+
+.severity-badge.bg-success {
+    background-color: #D4FFD9 !important;
+    color: #00FF26 !important;
+}
+
+.severity-badge.bg-warning {
+    background-color: #FFE3CF !important;
+    color: #FF6E00 !important;
+}
+
+.severity-badge.bg-orange {
+    background-color: #FEB1B1 !important;
+    color: #FF0C03 !important;
+}
+
+.severity-badge.bg-danger {
+    background-color: #F2ADAD !important;
+    color: #D80000 !important;
+}
+
+/* Update card styles */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.display-1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Add specific height for the cards row */
+.row.g-3 {
+    min-height: 150px;
+}
+
+/* Add for the text-muted subtitle */
+.text-muted {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
