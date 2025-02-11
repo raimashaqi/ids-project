@@ -182,17 +182,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Tambahkan event listener untuk tombol delete
-  const deleteButtons = document.querySelectorAll('.fa-trash-alt');
+  // Replace the existing delete button event listeners
+  const deleteButtons = document.querySelectorAll('.fa-trash');
   deleteButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-        // Hapus baris tabel
-        const row = this.closest('tr');
-        row.remove();
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const row = this.closest('tr');
+      const logId = row.getAttribute('data-id');
+      if (logId) {
+        delete_log(logId);
       }
     });
   });
+  initializeSearch();
+  
 });
 
 // Add this to your existing JavaScript
@@ -295,24 +298,146 @@ function handleFiles(files) {
     });
 }
 
-function deletePayload(id) {
-  // Panggil endpoint untuk menghapus payload dari database
-  fetch(`/delete-payload/${id}`, {
-    method: 'DELETE'
-  })
+// Update the delete functionality
+function delete_log(id) {
+  if (confirm('Are you sure you want to delete this log?')) {
+    fetch(`/delete_log/${id}`, {
+      method: 'DELETE'
+    })
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        // Hapus baris dari tabel
-        const row = document.querySelector(`#payloadTable tbody tr[data-id="${id}"]`);
+        // Remove the row from the table only after successful deletion
+        const row = document.querySelector(`tr[data-id="${id}"]`);
         if (row) {
           row.remove();
         }
       } else {
-        alert('Failed to delete payload: ' + data.message);
+        alert('Failed to delete log: ' + (data.message || 'Unknown error'));
       }
     })
     .catch(error => {
-      console.error('Error deleting payload:', error);
+      console.error('Error deleting log:', error);
+      alert('An error occurred while deleting the log');
     });
+  }
 }
+
+function initializeSearch() {
+  const searchInput = document.querySelector('.search-box input');
+  const table = document.getElementById('attackLogsTable');
+  const rows = table.getElementsByTagName('tr');
+
+  searchInput.addEventListener('keyup', function() {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      
+      for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const cells = row.getElementsByTagName('td');
+          let found = false;
+
+          if (searchTerm === "") {
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                // Hapus highlight pada setiap cell
+                for (let j = 0; j < cells.length; j++) {
+                    const cell = cells[j];
+                    const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
+                    cell.innerHTML = cell.innerHTML.replace(regex, '$1'); // Remove highlight
+                }
+                row.style.display = ''; // Tampilkan semua baris
+            }
+            return; // Stop further execution when no search term is entered
+        }
+
+          for (let j = 0; j < cells.length; j++) {
+              const cell = cells[j];
+              const cellText = cell.textContent || cell.innerText;
+
+              // hapus highlight kalo ada
+              const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
+              cell.innerHTML = cell.innerHTML.replace(regex, '$1'); // hapus highlight sebelumnya
+
+              
+              if (cellText.toLowerCase().indexOf(searchTerm) > -1 && searchTerm !== "") {
+                  found = true;
+                  const highlightedText = cellText.replace(new RegExp(searchTerm, 'gi'), match => `<mark>${match}</mark>`);
+                  cell.innerHTML = highlightedText; //hithlihtg text
+              }
+          }
+
+          row.style.display = found ? '' : 'none';
+      }
+  });
+}
+//chart
+document.addEventListener('DOMContentLoaded', function() {
+  const ctx = document.getElementById('logThreatsChart').getContext('2d');
+  new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: ['Informative', 'Low', 'Medium', 'High', 'Critical'],
+          datasets: [{
+              data: [35, 25, 20, 15, 5],
+              backgroundColor: [
+                  '#2655CD', // Informative 
+                  '#00FF26', // Low 
+                  '#FF6E00', // Medium 
+                  '#FF0C03', // High 
+                  '#D80000'  // Critical
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: {
+                  position: 'right',
+                  labels: {
+                      usePointStyle: true,
+                      pointStyle: 'circle',
+                      padding: 20,
+                      font: {
+                          size: 12
+                      }
+                  }
+              }
+          }
+      }
+  });
+});
+
+// Add this after your existing code
+function viewItem(element) {
+    const row = element.closest('tr');
+    
+    // Get values from the row
+    const logTime = row.querySelector('[data-label="Log Time"]').textContent;
+    const logMessage = row.querySelector('[data-label="Log Message"]').textContent;
+    const payload = row.querySelector('[data-label="Payload"]').textContent;
+    const severity = row.querySelector('[data-label="Severity"] span').textContent;
+    
+    // Set values in the modal
+    document.getElementById('viewLogTime').textContent = logTime;
+    document.getElementById('viewLogMessage').textContent = logMessage;
+    document.getElementById('viewPayload').textContent = payload;
+    document.getElementById('viewSeverity').textContent = severity;
+    
+    // Show the modal
+    document.getElementById('viewModal').classList.add('show');
+}
+
+function closeViewModal() {
+    document.getElementById('viewModal').classList.remove('show');
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    const viewModal = document.getElementById('viewModal');
+    if (e.target === viewModal) {
+        closeViewModal();
+    }
+});
