@@ -1,0 +1,45 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 661-963-344
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:51] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:51] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:51] "GET /static/img/kunci.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:52] "GET /static/img/wa.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:52] "GET /static/img/logo.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:52] "GET /static/js/script.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:01:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:09] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:09] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:09] "GET /static/css/dashboard.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:09] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:09] "GET /static/js/dashboard.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:13] "GET /export HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:13] "GET /static/css/export.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:13] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:13] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:13] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:22] "GET /importt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:22] "[36mGET /static/css/export.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:23] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:23] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:31] "GET /account_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:31] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:31] "GET /static/css/account_settings.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:31] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:31] "GET /static/img/background.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:37] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:37] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:37] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:37] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:39] "GET /account_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:39] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:39] "[36mGET /static/css/account_settings.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:39] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 10:07:39] "[36mGET /static/img/background.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS\\magang-alfian\\app\\routes\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 661-963-344
