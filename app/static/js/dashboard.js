@@ -460,6 +460,12 @@ function initializeSearch() {
             matchingRows.forEach((row, index) => {
                 if (index < rowsPerPage) {
                     row.style.display = '';
+                    // Restore severity badge
+                    const severityCell = row.querySelector('[data-label="Severity"] span');
+                    if (severityCell) {
+                        const severity = severityCell.textContent.trim().toLowerCase();
+                        severityCell.className = `severity-badge ${severity}`;
+                    }
                 }
             });
 
@@ -480,10 +486,16 @@ function initializeSearch() {
                         currentPage = parseInt(link.textContent);
                     }
 
-                    // Update visible rows
+                    // Update visible rows and maintain severity badges
                     matchingRows.forEach((row, index) => {
                         if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
                             row.style.display = '';
+                            // Restore severity badge
+                            const severityCell = row.querySelector('[data-label="Severity"] span');
+                            if (severityCell) {
+                                const severity = severityCell.textContent.trim().toLowerCase();
+                                severityCell.className = `severity-badge ${severity}`;
+                            }
                         } else {
                             row.style.display = 'none';
                         }
@@ -516,6 +528,10 @@ function initializeSearch() {
             const cells = row.getElementsByTagName('td');
             let rowMatch = false;
 
+            // Store severity badge class before removing highlights
+            const severityCell = row.querySelector('[data-label="Severity"] span');
+            const severityClass = severityCell ? severityCell.className : '';
+
             // Remove existing highlights
             Array.from(cells).forEach(cell => {
                 const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
@@ -536,6 +552,11 @@ function initializeSearch() {
                     }
                 }
             });
+
+            // Restore severity badge class
+            if (severityCell) {
+                severityCell.className = severityClass;
+            }
 
             if (rowMatch) {
                 matchingRows.push(row);
