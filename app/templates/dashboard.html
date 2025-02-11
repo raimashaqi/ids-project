@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Export Logs - YukMari Project</title>
+    <title>Dashboard - YukMari Project</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
+
 <body>
     <div class="wrapper d-flex">
         <!-- Sidebar -->
@@ -36,10 +39,10 @@
                     <a href="{{ url_for('main.importt') }}" class="nav-item" id="import">
                         <i class="fas fa-file-import"></i>
                         <span>Import payload</span>
-                    <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Setting</span>
-                    </a>
+                        <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
+                            <i class="fas fa-gear"></i>
+                            <span>Setting</span>
+                        </a>
                     </a>
                     <a href="{{ url_for('auth.logout') }}" class="nav-item logout" id="logout">
                         <i class="fas fa-sign-out-alt"></i>
@@ -52,31 +55,146 @@
         <!-- Main Content -->
         <div class="main-content flex-grow-1">
             <div class="container-fluid px-4">
-                <div class="top-bar row align-items-center mb-4">
-                    <div class="col">
-                        <div class="search-box">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" class="form-control" placeholder="Search your detection">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="notification">
-                            <i class="fa-regular fa-bell"></i>
-                            <span class="badge">1</span>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="content-area">
-                    <!-- Content goes here -->
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <!-- Pie Chart Card -->
+                        <div class="col-md-5">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Log Threats</h5>
+                                    <canvas id="logThreatsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="row g-3">
+                            <!-- Total Logs Card -->
+                            <div class="col-md-4">
+                                <div class="card shadow h-85">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Total Logs Threats</h5>
+                                        <h1 class="display-1 fw-bold" id="totalLogsThreats">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Severity Distribution Card -->
+                            <div class="col-md-8">
+                                <div class="card shadow h-85">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">Log Threats </h5>
+                                        <p class="text-muted text-center">by Severity</p>
+                                        <div class="severity-badges">
+                                            <!-- <div class="severity-item">
+                                                <div class="severity-count" id="totalInformative">0</div>
+                                                <span class="severity-badge bg-info">Informative</span>
+                                            </div> -->
+                                            <div class="severity-item">
+                                                <div class="severity-count" id="totalLow">0</div>
+                                                <span class="severity-badge bg-success">Low</span>
+                                            </div>
+                                            <div class="severity-item">
+                                                <div class="severity-count" id="totalMedium">0</div>
+                                                <span class="severity-badge bg-warning">Medium</span>
+                                            </div>
+                                            <div class="severity-item">
+                                                <div class="severity-count" id="totalHigh">0</div>
+                                                <span class="severity-badge bg-orange">High</span>
+                                            </div>
+                                            <div class="severity-item">
+                                                <div class="severity-count" id="totalCriticals">0</div>
+                                                <span class="severity-badge bg-danger">Critical</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Ambil data log dari endpoint /get_logs dan update chart serta jumlah severity
+        fetch('/get_logs')
+            .then(response => response.json())
+            .then(data => {
+                // Update total log threats dengan jumlah keseluruhan data
+                document.getElementById('totalLogsThreats').textContent = data.length;
+    
+                // Inisialisasi objek untuk menghitung jumlah tiap severity
+                const severityCount = {
+                    'Informative': 0,
+                    'Low': 0,
+                    'Medium': 0,
+                    'High': 0,
+                    'Critical': 0
+                };
+    
+                // Iterasi setiap log dan hitung berdasarkan nilai severity yang tersimpan
+                data.forEach(log => {
+                    // Normalisasi nilai severity
+                    const normalizedSeverity = log.severity.charAt(0).toUpperCase() + log.severity.slice(1).toLowerCase();
+                    if (normalizedSeverity in severityCount) {
+                        severityCount[normalizedSeverity]++;
+                    }
+                });
+    
+                // Buat pie chart menggunakan Chart.js
+                const ctx = document.getElementById('logThreatsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(severityCount),
+                        datasets: [{
+                            data: Object.values(severityCount),
+                            backgroundColor: [
+                                '#2655CD', // Informative 
+                                '#00FF26', // Low 
+                                '#FF6E00', // Medium 
+                                '#FF0C03', // High 
+                                '#D80000'  // Critical
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    usePointStyle: true,
+                                    pointStyle: 'circle',
+                                    padding: 20,
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+    
+                // Update jumlah severity di dashboard
+                // Pastikan element untuk 'Informative' tersedia jika ingin menampilkan, 
+                // saat ini bagian tersebut di HTML dikomentari
+                document.getElementById('totalLow').textContent = severityCount['Low'];
+                document.getElementById('totalMedium').textContent = severityCount['Medium'];
+                document.getElementById('totalHigh').textContent = severityCount['High'];
+                document.getElementById('totalCriticals').textContent = severityCount['Critical'];
+            })
+            .catch(error => console.error('Error fetching log data:', error));
+    </script>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/dashboard.js"></script>
-   
+
 </body>
+
 </html>
