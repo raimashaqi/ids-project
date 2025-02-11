@@ -34,11 +34,11 @@
                     </a>
                     <a href="{{ url_for('main.export') }}" class="nav-item" id="export">
                         <i class="fas fa-file-export"></i>
-                        <span>Export logs</span>
+                        <span>Logs</span>
                     </a>
                     <a href="{{ url_for('main.importt') }}" class="nav-item" id="import">
                         <i class="fas fa-file-import"></i>
-                        <span>Import payload</span>
+                        <span>Payload</span>
                         <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
                             <i class="fas fa-gear"></i>
                             <span>Setting</span>
@@ -128,7 +128,7 @@
     
                 // Inisialisasi objek untuk menghitung jumlah tiap severity
                 const severityCount = {
-                    'Informative': 0,
+                    // 'Informative': 0,
                     'Low': 0,
                     'Medium': 0,
                     'High': 0,
@@ -153,7 +153,7 @@
                         datasets: [{
                             data: Object.values(severityCount),
                             backgroundColor: [
-                                '#2655CD', // Informative 
+                                // '#2655CD', // Informative 
                                 '#00FF26', // Low 
                                 '#FF6E00', // Medium 
                                 '#FF0C03', // High 

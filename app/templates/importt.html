@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
     <title>Payload - YukMari Project</title>
+=======
+    <title>Import Logs - YukMari Project</title>
+>>>>>>> Stashed changes
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -11,6 +16,7 @@
     <link rel="stylesheet" href="../static/css/export.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </head>
+
 <body>
     <div class="wrapper d-flex">
         <!-- Sidebar -->
@@ -31,7 +37,7 @@
                     </a>
                     <a href="{{ url_for('main.export') }}" class="nav-item " id="export">
                         <i class="fas fa-file-export"></i>
-                        <span>Export logs</span>
+                        <span>Logs</span>
                     </a>
                     <a href="#" class="nav-item active" id="import">
                         <i class="fas fa-file-import"></i>
@@ -66,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                     <!-- Content goes here -->
                     <div class="content-area">
                         <div class="search-container">
@@ -80,101 +87,140 @@
                                     </select>
                                 </div>
                                 <button class="import">Import Payload</button>
+=======
+                <!-- Content goes here -->
+                <div class="content-area">
+                    <div class="search-container">
+                        <div class="pagination-container d-flex justify-content-between align-items-center">
+                            <div class="rows-section">
+                                <label for="rows">Tampilkan:</label>
+                                <select class="rows-per-page" id="rows">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+>>>>>>> Stashed changes
                             </div>
+                            <button class="import">Import Payload</button>
                         </div>
-                        
-                        <div class="table-responsive" >
-                            <table class="table custom-table" id="attackLogsTable">
-                                <thead>
-                                    <tr>
-                                        <th class="checkbox-column"><input type="checkbox" id="select" class="form-check-input"></th>
-                                        <th class="id-column">ID</th>
-                                        <th>Nama Payload</th>
-                                        <th>Jumlah Baris</th>
-                                        <th>Hapus</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                                        <td class="id-column">1</td>
-                                        <td data-label="Nama Payload">12345678</td>
-                                        <td data-label="Jumlah Baris">20</td>
-                                        <td><i class="fas fa-trash-alt text-danger"></i></td>
-                                    </tr>
-                                    {% for payload in payloads %}
-                                    <tr>
-                                        <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                                        <td class="id-column">{{ payload.id }}</td>
-                                        <td data-label="Nama Payload">{{ payload.nama_payload }}</td>
-                                        <td data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
-                                        <td>
-                                            <i class="fas fa-trash-alt text-danger" onclick="deletePayload('{{ payload.id }}')"></i>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                    </div>
 
-                        <ul class="pagination">
-                            <li><a href="#" class="pagination-arrow">&laquo;</a></li>
-                            <li><a href="#" class="active">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#" class="pagination-dots">...</a></li>
-                            <li><a href="#">10</a></li>
-                            <li><a href="#" class="pagination-arrow">&raquo;</a></li>
-                        </ul>
-                        
-                 </div>
-                 <div class="modal" id="importModal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Unggah File</h2>
-                            <span class="close-modal">
-                                <i class="fas fa-times"></i>
-                            </span>
-                        </div>
-                        <div class="modal-body">
-                            <div class="upload-area">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Choose a file or drag & drop it here</p>
-                                <p class="file-types">Accepted formats: .txt, .xlsx, .csv</p>
-                                <input type="file" id="fileInput" accept=".txt,.csv,.xlsx,.xls" style="display: none;">
-                                <button class="browse-btn" onclick="document.getElementById('fileInput').click()">Browse File</button>
+                    <div class="table-responsive">
+                        <table class="table custom-table" id="attackLogsTable">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column"><input type="checkbox" id="select"
+                                            class="form-check-input"></th>
+                                    <th class="id-column">ID</th>
+                                    <th>Nama Payload</th>
+                                    <th>Jumlah Baris</th>
+                                    <th>Hapus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+                                    <td class="id-column">1</td>
+                                    <td data-label="Nama Payload">12345678</td>
+                                    <td data-label="Jumlah Baris">20</td>
+                                    <td><i class="fas fa-trash-alt text-danger"></i></td>
+                                </tr>
+                                {% for payload in payloads %}
+                                <tr data-payload-id="{{ payload.id }}">
+                                    <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+                                    <td class="id-column">{{ payload.id }}</td>
+                                    <td data-label="Nama Payload">{{ payload.nama_payload }}</td>
+                                    <td data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
+                                    <td>
+                                        <i class="fas fa-trash-alt text-danger" onclick="deletePayload('{{ payload.id }}')"></i>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <ul class="pagination">
+                        <li><a href="#" class="pagination-arrow">&laquo;</a></li>
+                        <li><a href="#" class="active">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#" class="pagination-dots">...</a></li>
+                        <li><a href="#">10</a></li>
+                        <li><a href="#" class="pagination-arrow">&raquo;</a></li>
+                    </ul>
+
+                </div>
+                <div class="modal" id="importModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
+                            <div class="modal-header d-flex justify-content-between align-items-center">
+                                <h2 class="modal-title">Unggah File</h2>
+                                <button type="button" class="close close-modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="uploadForm">
+                                    <div class="mb-3">
+                                        <label for="nama-payload" class="form-label">Nama Payload</label>
+                                        <input type="text" id="nama-payload" class="form-control" placeholder="Masukkan Nama Payload">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="severity" class="form-label">Severity</label>
+                                        <select id="severity" class="form-select">
+                                            <option value="low">Low</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="high">High</option>
+                                        </select>
+                                    </div>
+                                    <div class="upload-area border-2 border-dashed border-gray-300 p-4 text-center rounded-lg mb-4">
+                                        <div class="mb-3" id="uploadIconContainer">
+                                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-500" id="uploadIcon"></i>
+                                        </div>
+                                        <p class="text-gray-600 mb-2">Choose a file or drag & drop it here</p>
+                                        <p class="file-types text-gray-400 text-sm mb-4">Accepted formats: .txt, .csv</p>
+                                        <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;">
+                                        <button type="button" class="browse-btn btn btn-warning" onclick="document.getElementById('fileInput').click()">Browse File</button>
+                                        <p id="fileName" class="mt-2 text-gray-700"></p> <!-- Menampilkan nama file yang dipilih -->
+                                    </div>
+                                    <button type="button" id="submitUpload" class="btn btn-warning w-100">Submit Upload</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
-        </div> 
+        </div>
+    </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/importt.js"></script>
     <script>
         const importBtn = document.querySelector('.import');
         const modal = document.getElementById('importModal');
         const closeModal = document.querySelector('.close-modal');
-    
+
         importBtn.addEventListener('click', () => {
             modal.classList.add('show');
         });
-    
+
         closeModal.addEventListener('click', () => {
             modal.classList.remove('show');
         });
-    
+
         // Close modal when clicking outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('show');
-            }   
+            }
         });
     </script>
-   
+
 </body>
+
 </html>

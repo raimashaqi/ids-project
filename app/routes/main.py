@@ -72,7 +72,8 @@ def upload_file():
     if file_extension not in allowed_extensions:
         return jsonify(success=False, message='Invalid file type. Please upload .txt, .csv, or .xlsx files.')
 
-    nama_payload = os.path.basename(file.filename)  # Mengambil nama file
+    nama_payload = request.form.get('nama_payload')  # Ambil nama payload dari form
+    severity = request.form.get('severity')  # Ambil severity dari form
 
     # Proses file sesuai kebutuhan
     try:
@@ -95,7 +96,6 @@ def upload_file():
         
         elif file_extension == 'xlsx':
             df = pd.read_excel(file)
-            
             # Simpan data ke database menggunakan model Payload
             for index, row in df.iterrows():
                 log_entry = Payload(nama_payload=row['nama_payload'], jumlah_baris=row['jumlah_baris'])

@@ -259,7 +259,67 @@ function handleDrop(e) {
 
 // Handle file input change
 fileInput.addEventListener('change', function (e) {
-  handleFiles(this.files);
+  const file = this.files[0];
+  if (file) {
+      document.getElementById('fileName').textContent = `Selected file: ${file.name}`; // Menampilkan nama file yang dipilih
+      document.getElementById('uploadIcon').style.display = 'none'; // Menghilangkan ikon setelah file dipilih
+      document.getElementById('uploadIconContainer').style.display = 'none'; // Menghilangkan kontainer ikon
+      document.getElementById('nama-payload').value = file.name.replace(/\.[^/.]+$/, ""); // Mengatur nama payload menjadi nama file tanpa ekstensi
+  } else {
+      document.getElementById('fileName').textContent = ''; // Menghapus nama file jika tidak ada
+      document.getElementById('uploadIcon').style.display = 'block'; // Menampilkan ikon jika tidak ada file
+  }
+});
+
+
+// Handle the submit upload button click
+document.getElementById('submitUpload').addEventListener('click', function() {
+    const file = fileInput.files[0];
+    const namaPayload = document.getElementById('nama-payload').value; // Ambil nama payload dari input
+    const severity = document.getElementById('severity').value;
+
+    // Validasi input
+    if (!file) {
+        alert('Please select a file to upload.');
+        return;
+    }
+    if (!namaPayload) {
+        alert('Please enter a name for the payload.');
+        return;
+    }
+
+    // Menggunakan FormData untuk mengirim file
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('nama_payload', namaPayload); // Pastikan ini dikirim
+    formData.append('severity', severity);
+
+    // Mengirim file ke server
+    fetch('/upload-endpoint', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            console.log('File uploaded successfully:', data);
+            // Menampilkan nama payload setelah upload
+            document.getElementById('fileName').textContent = `Uploaded: ${data.payload.nama_payload} with ${data.payload.jumlah_baris} lines`;
+            // Tutup modal setelah upload berhasil
+            document.getElementById('importModal').classList.remove('show'); // Uncomment if you want to close the modal
+        } else {
+            alert('Upload failed: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error uploading file:', error);
+        alert('An error occurred while uploading the file.');
+    });
 });
 
 function handleFiles(files) {
