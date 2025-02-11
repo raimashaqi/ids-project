@@ -85,8 +85,6 @@ def load_payloads(filepath, desc='Loading payloads'):
         return []
 
 # Fungsi untuk deteksi payload
-# Fungsi untuk deteksi payload
-# Fungsi untuk deteksi payload
 def detect_attack(input_payload):
     # Normalisasi input untuk menghindari false positive
     normalized_input = input_payload.lower().strip()

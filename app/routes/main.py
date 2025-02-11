@@ -107,6 +107,22 @@ def upload_file():
     except Exception as e:
         return jsonify(success=False, message=str(e))
 
-@main_bp.route('/loginuser')
-def loginuser():
-    return render_template('loginuser.html')
+@main_bp.route('/get_log_data', methods=['GET'])
+@login_required
+def get_log_data():
+    try:
+        logs = Log.query.all()
+        severity_count = {
+            'Informative': 0,
+            'Low': 0,
+            'Medium': 0,
+            'High': 0,
+            'Critical': 0
+        }
+
+        for log in logs:
+            severity_count[log.severity] += 1
+
+        return jsonify(severity_count)
+    except Exception as e:
+        return jsonify(success=False, message=str(e)), 500
