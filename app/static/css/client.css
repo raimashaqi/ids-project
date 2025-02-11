@@ -1,0 +1,82 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url("../img/bg.png");            
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+.card h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #333;
+}
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ff7f50, #ff4500);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-submit:hover {
+    opacity: 0.9;
+}
+.alert {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.alert-danger {
+    background-color: #ff4d4d;
+    color: white;
+}
+.alert-warning {
+    background-color: #ffcc00;
+    color: black;
+}
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+    .card h2 {
+        font-size: 1.5rem;
+    }
+}
