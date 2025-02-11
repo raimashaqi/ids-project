@@ -2763,3 +2763,50 @@ INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 15:56:42] "[36mGET /static/img/kunci.p
 INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 15:56:42] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 15:56:42] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 15:56:42] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 661-963-344
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:31:57] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:09] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:09] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:10] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:10] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:10] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:10] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:11] "GET /account_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:11] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:11] "[36mGET /static/css/account_settings.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:11] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:12] "[36mGET /static/img/background.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "[32mPOST /account_settings HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "GET /account_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "[33mGET /style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "[36mGET /static/css/account_settings.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:23] "[36mGET /static/img/background.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:24] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:25] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:25] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:25] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:25] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[36mGET /static/img/kunci.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[36mGET /static/img/wa.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:26] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "GET /get_logs HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 16:32:35] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
