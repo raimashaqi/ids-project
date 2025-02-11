@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const severityOrder = {
           'High': 3,
           'Medium': 2,
-          'Low': 1
+          'Low': 1,
+          'Critical' : 4
         };
 
         const comparison = severityOrder[severityA] - severityOrder[severityB];
@@ -182,20 +183,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Replace the existing delete button event listeners
+  // Update delete button event listeners
   const deleteButtons = document.querySelectorAll('.fa-trash');
   deleteButtons.forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
-      const row = this.closest('tr');
-      const logId = row.getAttribute('data-id');
-      if (logId) {
-        delete_log(logId);
+      const selectedCheckboxes = document.querySelectorAll('table tbody input[type="checkbox"]:checked');
+      
+      if (selectedCheckboxes.length > 0) {
+        // Multiple deletion
+        if (confirm(`Are you sure you want to delete ${selectedCheckboxes.length} selected logs?`)) {
+          // Remove selected rows from the table
+          selectedCheckboxes.forEach(checkbox => {
+            const row = checkbox.closest('tr');
+            if (row) {
+              row.remove();
+            }
+          });
+          // Uncheck the select all checkbox
+          document.getElementById('select').checked = false;
+        }
+      } else {
+        // Single deletion
+        const row = this.closest('tr');
+        if (confirm('Are you sure you want to delete this log?')) {
+          row.remove();
+        }
       }
     });
   });
   initializeSearch();
-  
+  initializePagination();
 });
 
 // Add this to your existing JavaScript
@@ -323,55 +341,239 @@ function delete_log(id) {
   }
 }
 
-function initializeSearch() {
-  const searchInput = document.querySelector('.search-box input');
-  const table = document.getElementById('attackLogsTable');
-  const rows = table.getElementsByTagName('tr');
+// Add this function to handle pagination
+function initializePagination() {
+    const table = document.getElementById('attackLogsTable');
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr');
+    const rowsPerPage = 10;
+    const pageCount = Math.ceil(rows.length / rowsPerPage);
+    let currentPage = 1;
 
-  searchInput.addEventListener('keyup', function() {
-      const searchTerm = searchInput.value.toLowerCase();
+    // Create pagination controls
+    function updatePagination() {
+        const paginationContainer = document.querySelector('.pagination');
+        paginationContainer.innerHTML = `
+            <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
+        `;
 
-      
-      for (let i = 1; i < rows.length; i++) {
-          const row = rows[i];
-          const cells = row.getElementsByTagName('td');
-          let found = false;
-
-          if (searchTerm === "") {
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                const cells = row.getElementsByTagName('td');
-                // Hapus highlight pada setiap cell
-                for (let j = 0; j < cells.length; j++) {
-                    const cell = cells[j];
-                    const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
-                    cell.innerHTML = cell.innerHTML.replace(regex, '$1'); // Remove highlight
-                }
-                row.style.display = ''; // Tampilkan semua baris
+        // Add page numbers
+        for (let i = 1; i <= pageCount; i++) {
+            if (i === 1 || i === pageCount || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                paginationContainer.innerHTML += `
+                    <li><a href="#" class="${i === currentPage ? 'active' : ''}" onclick="return false">${i}</a></li>
+                `;
+            } else if (i === currentPage - 2 || i === currentPage + 2) {
+                paginationContainer.innerHTML += `
+                    <li><a href="#" class="pagination-dots" onclick="return false">...</a></li>
+                `;
             }
-            return; // Stop further execution when no search term is entered
         }
 
-          for (let j = 0; j < cells.length; j++) {
-              const cell = cells[j];
-              const cellText = cell.textContent || cell.innerText;
+        paginationContainer.innerHTML += `
+            <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}" onclick="return false">&raquo;</a></li>
+        `;
 
-              // hapus highlight kalo ada
-              const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
-              cell.innerHTML = cell.innerHTML.replace(regex, '$1'); // hapus highlight sebelumnya
+        // Add click events to pagination controls
+        const paginationLinks = paginationContainer.querySelectorAll('a');
+        paginationLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (link.classList.contains('disabled')) return;
 
-              
-              if (cellText.toLowerCase().indexOf(searchTerm) > -1 && searchTerm !== "") {
-                  found = true;
-                  const highlightedText = cellText.replace(new RegExp(searchTerm, 'gi'), match => `<mark>${match}</mark>`);
-                  cell.innerHTML = highlightedText; //hithlihtg text
-              }
-          }
+                if (link.classList.contains('pagination-arrow')) {
+                    if (link.textContent === '«') {
+                        if (currentPage > 1) currentPage--;
+                    } else {
+                        if (currentPage < pageCount) currentPage++;
+                    }
+                } else if (!link.classList.contains('pagination-dots')) {
+                    currentPage = parseInt(link.textContent);
+                }
+                updatePage();
+            });
+        });
+        
+    }
 
-          row.style.display = found ? '' : 'none';
-      }
-  });
+    // Show current page
+    function updatePage() {
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+
+        updatePagination();
+    }
+
+    // Initialize first page
+    updatePage();
 }
+
+// Update search function to work with pagination
+function initializeSearch() {
+    const searchInput = document.querySelector('.search-box input');
+    const table = document.getElementById('attackLogsTable');
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.getElementsByTagName('tr');
+    const rowsPerPage = 10;
+    let currentPage = 1;
+    const noResultsRow = document.createElement('tr');
+    
+    // Create "No results found" message row
+    noResultsRow.innerHTML = `
+        <td colspan="10" style="text-align: center; padding: 20px;">
+            No results found
+        </td>
+    `;
+
+    function updatePaginationForSearch(matchingRows) {
+        const pageCount = Math.ceil(matchingRows.length / rowsPerPage);
+        currentPage = 1; // Reset to first page when searching
+
+        // Hide all rows initially
+        Array.from(rows).forEach(row => {
+            row.style.display = 'none';
+        });
+
+        const paginationContainer = document.querySelector('.pagination');
+        
+        if (matchingRows.length > 0) {
+            paginationContainer.style.display = 'flex';
+            paginationContainer.innerHTML = `
+                <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
+            `;
+
+            for (let i = 1; i <= pageCount; i++) {
+                paginationContainer.innerHTML += `
+                    <li><a href="#" class="${i === currentPage ? 'active' : ''}" onclick="return false">${i}</a></li>
+                `;
+            }
+
+            paginationContainer.innerHTML += `
+                <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}" onclick="return false">&raquo;</a></li>
+            `;
+
+            // Show first page of results
+            matchingRows.forEach((row, index) => {
+                if (index < rowsPerPage) {
+                    row.style.display = '';
+                    // Restore severity badge
+                    const severityCell = row.querySelector('[data-label="Severity"] span');
+                    if (severityCell) {
+                        const severity = severityCell.textContent.trim().toLowerCase();
+                        severityCell.className = `severity-badge ${severity}`;
+                    }
+                }
+            });
+
+            // Add click events to pagination
+            const paginationLinks = paginationContainer.querySelectorAll('a');
+            paginationLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (link.classList.contains('disabled')) return;
+
+                    if (link.classList.contains('pagination-arrow')) {
+                        if (link.textContent === '«') {
+                            if (currentPage > 1) currentPage--;
+                        } else {
+                            if (currentPage < pageCount) currentPage++;
+                        }
+                    } else {
+                        currentPage = parseInt(link.textContent);
+                    }
+
+                    // Update visible rows and maintain severity badges
+                    matchingRows.forEach((row, index) => {
+                        if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
+                            row.style.display = '';
+                            // Restore severity badge
+                            const severityCell = row.querySelector('[data-label="Severity"] span');
+                            if (severityCell) {
+                                const severity = severityCell.textContent.trim().toLowerCase();
+                                severityCell.className = `severity-badge ${severity}`;
+                            }
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+
+                    // Update active state
+                    paginationLinks.forEach(link => link.classList.remove('active'));
+                    if (!link.classList.contains('pagination-arrow')) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        } else {
+            paginationContainer.style.display = 'none';
+        }
+    }
+
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let matchingRows = [];
+
+        // Remove existing "No results" row if it exists
+        const existingNoResults = tbody.querySelector('tr[data-no-results]');
+        if (existingNoResults) {
+            existingNoResults.remove();
+        }
+
+        // Search in each row
+        Array.from(rows).forEach(row => {
+            const cells = row.getElementsByTagName('td');
+            let rowMatch = false;
+
+            // Store severity badge class before removing highlights
+            const severityCell = row.querySelector('[data-label="Severity"] span');
+            const severityClass = severityCell ? severityCell.className : '';
+
+            // Remove existing highlights
+            Array.from(cells).forEach(cell => {
+                const regex = new RegExp(`<mark>(.*?)</mark>`, 'gi');
+                cell.innerHTML = cell.innerHTML.replace(regex, '$1');
+            });
+
+            // Search in each cell
+            Array.from(cells).forEach(cell => {
+                const cellText = cell.textContent || cell.innerText;
+                if (cellText.toLowerCase().includes(searchTerm)) {
+                    rowMatch = true;
+                    if (searchTerm !== '') {
+                        const highlightedText = cellText.replace(
+                            new RegExp(searchTerm, 'gi'),
+                            match => `<mark>${match}</mark>`
+                        );
+                        cell.innerHTML = highlightedText;
+                    }
+                }
+            });
+
+            // Restore severity badge class
+            if (severityCell) {
+                severityCell.className = severityClass;
+            }
+
+            if (rowMatch) {
+                matchingRows.push(row);
+            }
+        });
+
+        // Show "No results" message if no matches found and there's a search term
+        if (matchingRows.length === 0 && searchTerm !== '') {
+            noResultsRow.setAttribute('data-no-results', 'true');
+            tbody.appendChild(noResultsRow);
+        }
+
+        // Update pagination with matching rows
+        updatePaginationForSearch(matchingRows);
+    });
+}
+
 //chart
 document.addEventListener('DOMContentLoaded', function() {
   const ctx = document.getElementById('logThreatsChart').getContext('2d');
@@ -434,10 +636,176 @@ function closeViewModal() {
     document.getElementById('viewModal').classList.remove('show');
 }
 
-// Close modal when clicking outside
+
 document.addEventListener('click', function(e) {
     const viewModal = document.getElementById('viewModal');
     if (e.target === viewModal) {
         closeViewModal();
     }
+});
+
+
+function closeRangeModal() {
+    document.getElementById('rangeModal').classList.remove('show');
+}
+
+// Fungsi untuk reset filter date dan menampilkan semua data
+function resetDateFilter() {
+    // Reset input dates
+    document.getElementById('startDate').value = '';
+    document.getElementById('endDate').value = '';
+    
+    // Show all rows
+    const rows = document.querySelectorAll('#attackLogsTable tbody tr');
+    rows.forEach(row => {
+        row.style.display = '';
+    });
+    
+    
+    closeRangeModal();
+    
+  initializePagination();
+}
+
+//counter tanggal
+function applyDateFilter() {
+  const startDate = document.getElementById('startDate').value;
+  const endDate = document.getElementById('endDate').value;
+  const rowsPerPage = 10;
+  let currentPage = 1;
+  
+  if (!startDate || !endDate) {
+      alert('Please select both start and end dates');
+      return;
+  }
+
+  // Convert dates to comparable format
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  end.setHours(23, 59, 59); 
+
+  if (start > end) {
+      alert('Start date cannot be later than end date');
+      return;
+  }
+
+  const rows = document.querySelectorAll('#attackLogsTable tbody tr');
+  let matchingRows = [];
+  
+  rows.forEach(row => {
+      const dateCell = row.querySelector('[data-label="Log Time"]');
+      const rowDate = new Date(dateCell.textContent.trim());
+      
+      if (rowDate >= start && rowDate <= end) {
+          matchingRows.push(row);
+      }
+      row.style.display = 'none'; // Hide all rows initially
+  });
+
+  // Update pagination
+  const pageCount = Math.ceil(matchingRows.length / rowsPerPage);
+  const paginationContainer = document.querySelector('.pagination');
+
+  if (matchingRows.length > 0) {
+      // Show pagination if there are matching rows
+      paginationContainer.style.display = 'flex';
+      paginationContainer.innerHTML = `
+          <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
+      `;
+
+      paginationContainer.innerHTML += `
+          <li><a href="#" class="${currentPage === 1 ? 'active' : ''}" onclick="return false">1</a></li>
+      `;
+
+      paginationContainer.innerHTML += `
+          <li><a href="#" class="${currentPage === pageCount ? 'active' : ''}" onclick="return false">${pageCount}</a></li>
+      `;
+
+      // Show first page of results
+      matchingRows.forEach((row, index) => {
+          if (index < rowsPerPage) {
+              row.style.display = '';
+          }
+      });
+
+      // Add click events to pagination
+      const paginationLinks = paginationContainer.querySelectorAll('a');
+      paginationLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+              e.preventDefault();
+              if (link.classList.contains('disabled')) return;
+
+              if (link.classList.contains('pagination-arrow')) {
+                  if (link.textContent === '«') {
+                      if (currentPage > 1) currentPage--;
+                  } else {
+                      if (currentPage < pageCount) currentPage++;
+                  }
+              } else {
+                  currentPage = parseInt(link.textContent);
+              }
+
+              // Update visible rows
+              matchingRows.forEach((row, index) => {
+                  if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
+                      row.style.display = '';
+                  } else {
+                      row.style.display = 'none';
+                  }
+              });
+
+              // Update active state
+              paginationLinks.forEach(link => link.classList.remove('active'));
+              if (!link.classList.contains('pagination-arrow')) {
+                  link.classList.add('active');
+              }
+          });
+      });
+  } else {
+      // Hide pagination if no results
+      paginationContainer.style.display = 'none';
+      
+      // Show "No results" message
+      const tbody = document.querySelector('#attackLogsTable tbody');
+      const noResultsRow = document.createElement('tr');
+      noResultsRow.innerHTML = `
+          <td colspan="10" style="text-align: center; padding: 20px;">
+              No results found for the selected date range
+          </td>
+      `;
+      tbody.appendChild(noResultsRow);
+  }
+
+  // Close the modal after applying filter
+  closeRangeModal();
+}
+
+// Set default date values when opening the range modal
+document.querySelector('.date').addEventListener('click', () => {
+    const today = new Date();
+    const sebulan = new Date();
+    sebulan.setDate(today.getDate() - 30);
+    
+    // Format dates for input fields (YYYY-MM-DD)
+    document.getElementById('startDate').value = sebulan.toISOString().split('T')[0];
+    document.getElementById('endDate').value = today.toISOString().split('T')[0];
+    
+    document.getElementById('rangeModal').classList.add('show');
+});
+
+// Close modal when clicking outside
+document.getElementById('rangeModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('rangeModal')) {
+        closeRangeModal();
+    }
+});
+
+// Reset date filter when search is used
+document.querySelector('.search-box input').addEventListener('keyup', function() {
+    const rows = document.querySelectorAll('#attackLogsTable tbody tr');
+    rows.forEach(row => {
+        if (this.value === '') {
+            row.style.display = '';
+        }
+    });
 });
