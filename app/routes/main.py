@@ -29,16 +29,53 @@ def dashboard():
 def export():
     try:
         logs = Log.query.order_by(Log.log_time.desc()).all()
-        return render_template('export.html', logs=logs)
+        # Convert logs to a pandas DataFrame
+        data = []
+        for log in logs:
+            data.append({
+                'log_time': log.log_time,
+                'severity': log.severity,
+                'message': log.message,
+                # Add other fields as necessary
+            })
+        df = pd.DataFrame(data)
+
+        # Remove 'delete' and 'view more' columns if they exist
+        columns_to_remove = ['delete', 'view more']
+        df = df.drop(columns=[col for col in columns_to_remove if col in df.columns], errors='ignore')
+
+        # Export to Excel
+        export_path = os.path.join('exports', 'logs.xlsx')
+        os.makedirs(os.path.dirname(export_path), exist_ok=True)
+        df.to_excel(export_path, index=False)
+
+        return jsonify(success=True, message='Logs exported successfully.', file_path=export_path)
     except Exception as e:
-        flash('Error mengambil data logs', 'danger')
-        return redirect(url_for('main.dashboard')) 
+        flash('Error exporting data logs', 'danger')
+        return redirect(url_for('main.dashboard'))
 
 @main_bp.route('/importt')
 @login_required
 def importt():
     payloads = Payload.query.all()
     return render_template('importt.html', payloads=payloads)
+
+@main_bp.route('/view-payloads', methods=['GET'])
+@login_required
+def view_payloads():
+    """
+    Fetches all payload data from the database and displays it in a table.
+    """
+    try:
+        # Query all payload data from the database
+        payloads = Payload.query.all()
+
+        # Pass the data to the template for rendering
+        return render_template('view_payloads.html', payloads=payloads)
+    except Exception as e:
+        flash('Error fetching payload data', 'danger')
+        return redirect(url_for('main.dashboard'))
+
 
 @main_bp.route('/delete-payload/<int:id>', methods=['DELETE'])
 def delete_payload(id):
@@ -124,5 +161,27 @@ def get_log_data():
             severity_count[log.severity] += 1
 
         return jsonify(severity_count)
+    except Exception as e:
+        return jsonify(success=False, message=str(e)), 500
+    
+@main_bp.route('/delete-log/<int:id>', methods=['POST', 'DELETE'])
+@login_required
+def delete_log(id):
+    """
+    Deletes a log entry from the database based on its ID.
+    """
+    try:
+        # Query the log entry by ID
+        log_entry = Log.query.get(id)
+        
+        # Check if the log entry exists
+        if not log_entry:
+            return jsonify(success=False, message='Log entry not found'), 404
+        
+        # Delete the log entry
+        db.session.delete(log_entry)
+        db.session.commit()
+
+        return jsonify(success=True, message='Log entry deleted successfully')
     except Exception as e:
         return jsonify(success=False, message=str(e)), 500
