@@ -89,33 +89,6 @@ function exportToCSV() {
   a.click();
 }
 
-//export txt
-
-function exportToTXT() {
-  var table = document.getElementById('attackLogsTable');
-  var rows = table.querySelectorAll('tr');
-  var txtContent = '';
-
-  rows.forEach(function (row) {
-    var cols = row.querySelectorAll('td, th');
-    var rowData = [];
-    cols.forEach(function (col) {
-      rowData.push(col.innerText);
-    });
-    txtContent += rowData.join('\t') + '\n';
-  });
-
-  //  file blob TXT
-  var blob = new Blob([txtContent], { type: 'text/plain' });
-  var url = window.URL.createObjectURL(blob);
-
-  //  link download
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'data_tabel.txt';
-  a.click();
-}
-
 // Add this new code for checkbox functionality
 document.addEventListener('DOMContentLoaded', function () {
   const selectAllCheckbox = document.getElementById('select');
@@ -214,6 +187,35 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   initializeSearch();
   initializePagination();
+
+  // Notification functionality
+  const notificationBtn = document.querySelector('.notification');
+  const notificationDropdown = document.querySelector('.notification-dropdown');
+  const badge = document.querySelector('.notification .badge');
+  
+  // Set initial notification count
+  badge.style.display = 'flex';
+  badge.textContent = '3';
+
+  notificationBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    notificationDropdown.style.display = notificationDropdown.style.display === 'none' ? 'block' : 'none';
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
+      notificationDropdown.style.display = 'none';
+    }
+  });
+
+  // Handle "Read all notifications"
+  const readAllBtn = document.querySelector('.read-all-notifications');
+  readAllBtn.addEventListener('click', function() {
+    badge.style.display = 'none';
+    badge.textContent = '0';
+    notificationDropdown.style.display = 'none';
+  });
 });
 
 // Add this to your existing JavaScript
@@ -673,19 +675,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add this after your existing code
-function viewItem(element) {
-    const row = element.closest('tr');
+function viewItem(button) {
+    const row = button.closest('tr');
     
     // Get values from the row
     const logTime = row.querySelector('[data-label="Log Time"]').textContent;
     const logMessage = row.querySelector('[data-label="Log Message"]').textContent;
-    const payload = row.querySelector('[data-label="Payload"]').textContent;
     const severity = row.querySelector('[data-label="Severity"] span').textContent;
     
     // Set values in the modal
     document.getElementById('viewLogTime').textContent = logTime;
     document.getElementById('viewLogMessage').textContent = logMessage;
-    document.getElementById('viewPayload').textContent = payload;
     document.getElementById('viewSeverity').textContent = severity;
     
     // Show the modal
@@ -696,14 +696,13 @@ function closeViewModal() {
     document.getElementById('viewModal').classList.remove('show');
 }
 
-
+// Close modal when clicking outside
 document.addEventListener('click', function(e) {
     const viewModal = document.getElementById('viewModal');
     if (e.target === viewModal) {
         closeViewModal();
     }
 });
-
 
 function closeRangeModal() {
     document.getElementById('rangeModal').classList.remove('show');
@@ -869,3 +868,56 @@ document.querySelector('.search-box input').addEventListener('keyup', function()
         }
     });
 });
+
+
+//export single row
+function exportSingleRow(button) {
+    const row = button.closest('tr');
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.id = 'singleExportModal';
+    
+    document.body.appendChild(modal);
+    modal.classList.add('show');
+    
+    // Close when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+function exportSingleRowToExcel(rowId) {
+    const row = document.querySelector(`tr[data-id="${rowId}"]`);
+    const data = getRowData(row);
+    
+    const ws = XLSX.utils.json_to_sheet([data]);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Log");
+    
+    // Auto-size columns
+    const cols = [];
+    for (let key in data) {
+        cols.push({ wch: Math.max(key.length, String(data[key]).length + 5) });
+    }
+    ws['!cols'] = cols;
+    
+    XLSX.writeFile(wb, `log_${rowId}.xlsx`);
+    document.getElementById('singleExportModal').remove();
+}
+
+function getRowData(row) {
+    return {
+        ID: row.querySelector('.id-column').textContent,
+        LogTime: row.querySelector('[data-label="Log Time"]').textContent,
+        LogMessage: row.querySelector('[data-label="Log Message"]').textContent,
+        SourceIP: row.querySelector('[data-label="Source IP"]').textContent,
+        SourcePort: row.querySelector('[data-label="Source Port"]').textContent,
+        DestinationIP: row.querySelector('[data-label="Destination IP"]').textContent,
+        DestinationPort: row.querySelector('[data-label="Destination Port"]').textContent,
+        Location: row.querySelector('[data-label="Location"]').textContent,
+        Severity: row.querySelector('[data-label="Severity"] span').textContent
+    };
+}
+

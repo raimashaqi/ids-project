@@ -268,9 +268,14 @@ nav {
     margin-left: 20px;
     padding: 10px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.notification:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notification i {
@@ -294,18 +299,35 @@ nav {
     justify-content: center;
 }
 
-.download  {
-    background-color: #A89C29;  /* Warna hijau */
-    padding: 10px 20px;
+.download {
+    background-color: #FFB800;
+    color: white;
+    padding: 12px 24px;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.download:hover {
+    background-color: #FF6600;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.download:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.download i {
+    font-size: 16px;
 }
 
 .import {
@@ -508,21 +530,6 @@ nav {
     padding: 25px;
     min-height: calc(100vh - 120px);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.download  {
-    background-color: #FFB800;  /* Warna hijau */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .download .import i  {
@@ -1206,4 +1213,181 @@ mark {
     opacity: 0.5;
     pointer-events: none;
     cursor: not-allowed;
+}
+
+/* Notification styles */
+.notification-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.notification-item:not(.read) {
+    background: #f8f9fa;
+}
+
+.notification-item:hover {
+    background: #f1f1f1;
+}
+
+.notification-item[data-type="upload"]::before {
+    content: '\f093';
+    font-family: 'Font Awesome 5 Free';
+    position: absolute;
+    left: 10px;
+    color: #FFB800;
+}
+
+.notification-item[data-type="delete"]::before {
+    content: '\f2ed';
+    font-family: 'Font Awesome 5 Free';
+    position: absolute;
+    left: 10px;
+    color: #dc3545;
+}
+
+.notification-item[data-type="export"]::before {
+    content: '\f56e';
+    font-family: 'Font Awesome 5 Free';
+    position: absolute;
+    left: 10px;
+    color: #28a745;
+}
+
+.notification-content {
+    margin-left: 30px;
+}
+
+.notification-content p {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.notification-content small {
+    color: #666;
+    font-size: 12px;
+}
+
+.no-notifications {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+
+/* Bell animation */
+.fa-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+/* Notification badge animation */
+.badge {
+    animation: badge-pop 0.3s ease-out;
+}
+
+@keyframes badge-pop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Update modal styles untuk notification */
+#notificationModal .modal-content {
+    width: 400px;
+    max-width: 90%;
+}
+
+#notificationModal .modal-body {
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Add these styles at the end of the file */
+
+.notification-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 350px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    margin-top: 10px;
+}
+
+.notification-items {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+    background-color: #fffd88;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.notification-text {
+    margin: 0 0 4px 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.notification-time {
+    margin: 0;
+    color: #999;
+    font-size: 12px;
+}
+
+.read-all-notifications {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background: none;
+    border: none;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.read-all-notifications:hover {
+    background-color: #f5f5f5;
+}
+
+.col-auto {
+    position: relative;
 }
