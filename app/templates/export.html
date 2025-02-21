@@ -56,7 +56,7 @@
                     <div class="col">
                         <div class="search-box">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" class="form-control" placeholder="Search your log">
+                            <input type="text" class="form-control" placeholder="Cari log">
                         </div>
                     </div>
                     <div class="col-auto">
@@ -69,27 +69,27 @@
                             <div class="notification-items">
                                 <div class="notification-item">
                                     <div class="notification-content">
-                                        <p class="notification-title">Threat Detected</p>
-                                        <p class="notification-text">A threat has been detected in your system. Severity: High</p>
-                                        <p class="notification-time">2 days ago</p>
+                                        <p class="notification-title">Risiko terdeteksi</p>
+                                        <p class="notification-text">Risiko baru telah terdeteksi di sistem Anda. Keparahan: Tinggi</p>
+                                        <p class="notification-time">2 hari yang lalu</p>
                                     </div>
                                 </div>
                                 <div class="notification-item">
                                     <div class="notification-content">
-                                        <p class="notification-title">Deleted Data</p>
-                                        <p class="notification-text">2 data has been deleted</p>
-                                        <p class="notification-time">1 week ago</p>
+                                        <p class="notification-title">Data dihapus</p>
+                                        <p class="notification-text">2 data telah dihapus</p>
+                                        <p class="notification-time">1 minggu yang lalu</p>
                                     </div>
                                 </div>
                                 <div class="notification-item">
                                     <div class="notification-content">
-                                        <p class="notification-title">Data has been exported</p>
-                                        <p class="notification-text">2 data has been exported as txt</p>
-                                        <p class="notification-time">3 days ago</p>
+                                        <p class="notification-title">Data diekspor</p>
+                                        <p class="notification-text">2 data telah diekspor sebagai txt</p>
+                                        <p class="notification-time">3 hari yang lalu</p>
                                     </div>
                                 </div>
                             </div>
-                            <button class="read-all-notifications">Read all notifications</button>
+                            <button class="read-all-notifications">Tandai semua sebagai telah dibaca</button>
                         </div>
                     </div>
                 </div>
@@ -97,11 +97,11 @@
                     <div class="content-area">
                         <div class="search-container">
                             <button class="date">
-                                <span>Range Date</span>
+                                <span>Rentang Tanggal</span>
                                 <i class="fa-solid fa-calendar-days"></i>
                             </button>
                             <button class="download" onclick="exportToExcel()">
-                                <span>Export to Excel</span>
+                                <span>Ekspor ke Excel</span>
                                 <i class="fa-solid fa-file-excel"></i>
                             </button>
                         </div>
@@ -112,18 +112,18 @@
                                     <tr>
                                         <th class="checkbox-column"><input type="checkbox" id="select" class="form-check-input"></th>
                                         <th class="id-column">ID</th>
-                                        <th>Log Time</th>
-                                        <th>Log Message</th>
-                                        <th>Source IP</th>
-                                        <th>Source Port</th>
-                                        <th>Destination IP</th>
-                                        <th>Destination Port</th>
-                                        <th>Location</th>
+                                        <th>Waktu Log</th>
+                                        <th>Pesan Log</th>
+                                        <th>IP Sumber</th>
+                                        <th>Port Sumber</th>
+                                        <th>IP Tujuan</th>
+                                        <th>Port Tujuan</th>
+                                        <th>Lokasi</th>
                                         <th class="sortable" id="sortableSeverity">
-                                            Severity
+                                            Keparahan
                                             <i class="fas fa-sort"></i>
                                         </th>
-                                        <th>Action </th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -174,24 +174,24 @@
                         <div class="modal" id="rangeModal">
                             <div class="modal-content d-flex">
                                 <div class="modal-header">
-                                    <h2>Choose Range</h2>
+                                    <h2>Pilih Rentang</h2>
                                     <span class="close-modal" onclick="closeRangeModal()">
                                         <i class="fas fa-times"></i>
                                     </span>
                                 </div>
                                 <div class="d-flex gap-3 p-3">
                                     <div>
-                                        <h6>From</h6>
+                                        <h6>Dari</h6>
                                         <input type="date" class="boxDate" id="startDate">
                                     </div>
                                     <div>
-                                        <h6>To</h6>
+                                        <h6>Sampai</h6>
                                         <input type="date" class="boxDate" id="endDate">
                                     </div>
                                 </div>
                                 <div class="button-group">
-                                    <button class="reset" onclick="resetDateFilter()">Reset</button>
-                                    <button class="apply" onclick="applyDateFilter()">Apply</button>
+                                    <button class="reset" onclick="resetDateFilter()">Atur ulang</button>
+                                    <button class="apply" onclick="applyDateFilter()">Terapkan</button>
                                 </div>
                             </div>
                         </div>    
@@ -247,17 +247,17 @@
     <div class="modal" id="viewModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Log Details</h2>
+                <h2>Detail Log</h2>
                 <span class="close-modal" onclick="closeViewModal()">
                     <i class="fas fa-times"></i>
                 </span>
             </div>
             <div class="modal-body">
                 <div class="log-detail">
-                    <p><strong>Log Time:</strong> <span id="viewLogTime"></span></p>
-                    <p><strong>Log Message:</strong> <span id="viewLogMessage"></span></p>
+                    <p><strong>Waktu Log:</strong> <span id="viewLogTime"></span></p>
+                    <p><strong>Pesan Log:</strong> <span id="viewLogMessage"></span></p>
                     <p><strong>Payload:</strong> <span id="viewPayload"></span></p>
-                    <p><strong>Severity:</strong> <span id="viewSeverity"></span></p>
+                    <p><strong>Keparahan:</strong> <span id="viewSeverity"></span></p>
                 </div>
             </div>
         </div>

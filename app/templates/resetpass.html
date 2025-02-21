@@ -19,14 +19,14 @@
           <div class="card-body">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo YukMarii" class="img-fluid" />
             <p class="subtitle">
-              Get a new password by entering your existing email address
+              Dapatkan kata sandi baru dengan memasukan email
             </p>
 
             <form method="POST" action="{{ url_for('auth.reset_password') }}">
-              <input type="email" name="email" placeholder="Enter your email" class="form-control input-email"
+              <input type="email" name="email" placeholder="Masukan email" class="form-control input-email"
                 required />
               <button type="submit" class="btn btn-primary btn-block reset-button">
-                Reset Password
+                Reset Kata Sandi
               </button>
             </form>
 
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <p class="copyright">&copy; 2025 PT. Yuk Mari Projek Indonesia</p>
+        <p class="copyright">&copy; 2025 PT. Yuk Mari Project Indonesia</p>
       </div>
     </div>
   </div>

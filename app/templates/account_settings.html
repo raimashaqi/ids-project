@@ -31,7 +31,7 @@
                     <p>Hallo, <span id="userEmail" class="fw-bold">{{ user_email }}</span></p>
                   </div>
                   <div class="col-md-6 text-end">
-                    <span id="changeEmail" class="change-email" data-bs-toggle="modal" data-bs-target="#emailModal">Change</span>
+                    <span id="changeEmail" class="change-email" data-bs-toggle="modal" data-bs-target="#emailModal">Ubah Email</span>
                   </div>
                 </div>
 
@@ -41,12 +41,12 @@
                 <!-- Form Ganti Password -->
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="newPassword">Password Baru:</label>
+                    <label for="newPassword">Kata Sandi Baru:</label>
                     <input type="password" name="newPassword" id="newPassword" class="form-control input-password" required />
                     <div id="newPasswordError" class="text-danger mt-1"></div>
                   </div>
                   <div class="col-md-6">
-                    <label for="currentPassword">Password Lama:</label>
+                    <label for="currentPassword">Kata Sandi Lama:</label>
                     <input type="password" name="currentPassword" id="currentPassword" class="form-control input-password" required />
                     <div id="passwordError" class="text-danger mt-1"></div>
                   </div>
@@ -57,14 +57,14 @@
 
               <div class="d-flex justify-content-end mt-2">
                 <a href="{{ url_for('main.dashboard') }}" class="back-link">
-                  <i class="fa-solid fa-chevron-left"></i> Back
+                  <i class="fa-solid fa-chevron-left"></i> Kembali
                 </a>
               </div>
             </div>
           </div>
 
           <p class="copyright text-center mt-3">
-            &copy; 2025 PT. Yuk Mari Projek Indonesia
+            &copy; 2025 PT. Yuk Mari Proje Indonesia
           </p>
         </div>
       </div>

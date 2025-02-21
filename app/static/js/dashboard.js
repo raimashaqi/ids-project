@@ -36,58 +36,69 @@ document.addEventListener('click', function (event) {
 
 function exportToExcel() {
   var table = document.getElementById('attackLogsTable');
-  var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
-
-
+  
+  // Buat clone dari tabel untuk modifikasi
+  var tableClone = table.cloneNode(true);
+  
+  // Hapus kolom aksi dari clone
+  var rows = tableClone.rows;
+  for (var i = 0; i < rows.length; i++) {
+      // Hapus kolom terakhir (kolom aksi)
+      rows[i].deleteCell(-1);
+  }
+  
+  var wb = XLSX.utils.table_to_book(tableClone, { sheet: "Sheet1" });
   var ws = wb.Sheets["Sheet1"];
+  
+  // Auto-size columns
   var cols = [];
   var range = XLSX.utils.decode_range(ws['!ref']);
-
+  
   for (var C = range.s.c; C <= range.e.c; ++C) {
-    var maxWidth = 10;
-    for (var R = range.s.r; R <= range.e.r; ++R) {
-      var cell_address = { c: C, r: R };
-      var cell_ref = XLSX.utils.encode_cell(cell_address);
-      var cell = ws[cell_ref];
-
-      if (cell && cell.v) {
-        maxWidth = Math.max(maxWidth, cell.v.toString().length + 5);
+      var maxWidth = 10;
+      for (var R = range.s.r; R <= range.e.r; ++R) {
+          var cell_address = { c: C, r: R };
+          var cell_ref = XLSX.utils.encode_cell(cell_address);
+          var cell = ws[cell_ref];
+          
+          if (cell && cell.v) {
+              maxWidth = Math.max(maxWidth, cell.v.toString().length + 5);
+          }
       }
-    }
-    cols.push({ wch: maxWidth });
+      cols.push({ wch: maxWidth });
   }
-
+  
   ws['!cols'] = cols;
 
   XLSX.writeFile(wb, 'data_tabel.xlsx');
 }
 
 
-//export csv
-function exportToCSV() {
-  var table = document.getElementById('attackLogsTable');
-  var rows = table.querySelectorAll('tr');
-  var csvContent = '';
+// //export csv
+// function exportToCSV() {
+//   var table = document.getElementById('attackLogsTable');
+//   var rows = table.querySelectorAll('tr');
+//   var csvContent = '';
 
-  rows.forEach(function (row) {
-    var cols = row.querySelectorAll('td, th');
-    var rowData = [];
-    cols.forEach(function (col) {
-      rowData.push(col.innerText);
-    });
-    csvContent += rowData.join(',') + '\n';
-  });
-
-
-  var blob = new Blob([csvContent], { type: 'text/csv' });
-  var url = window.URL.createObjectURL(blob);
+//   rows.forEach(function (row) {
+//     var cols = row.querySelectorAll('td, th');
+//     var rowData = [];
+//     cols.forEach(function (col) {
+//       rowData.push(col.innerText);
+//     });
+//     csvContent += rowData.join(',') + '\n';
+//   });
 
 
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'data_tabel.csv';
-  a.click();
-}
+//   var blob = new Blob([csvContent], { type: 'text/csv' });
+//   var url = window.URL.createObjectURL(blob);
+
+
+//   var a = document.createElement('a');
+//   a.href = url;
+//   a.download = 'data_tabel.csv';
+//   a.click();
+// }
 
 // Add this new code for checkbox functionality
 document.addEventListener('DOMContentLoaded', function () {
@@ -102,22 +113,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Add event listeners for export buttons
-  const exportButtons = document.querySelectorAll('.export-option');
-  exportButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      const buttonText = this.textContent.trim();
-      if (buttonText.includes('Excel')) {
-        exportToExcel();
-      } else if (buttonText.includes('CSV')) {
-        exportToCSV();
-      } else if (buttonText.includes('TXT')) {
-        exportToTXT();
-      }
-      // Close modal after export
-      document.getElementById('downloadModal').classList.remove('show');
-    });
-  });
+  // // Add event listeners for export buttons
+  // const exportButtons = document.querySelectorAll('.export-option');
+  // exportButtons.forEach(button => {
+  //   button.addEventListener('click', function () {
+  //     const buttonText = this.textContent.trim();
+  //     if (buttonText.includes('Excel')) {
+  //       exportToExcel();
+  //     } else if (buttonText.includes('CSV')) {
+  //       exportToCSV();
+  //     } else if (buttonText.includes('TXT')) {
+  //       exportToTXT();
+  //     }
+  //     // Close modal after export
+  //     document.getElementById('downloadModal').classList.remove('show');
+  //   });
+  // });
 
   // Add sorting functionality
   const sortableHeader = document.querySelector('.sortable');
@@ -890,7 +901,17 @@ function exportSingleRow(button) {
 
 function exportSingleRowToExcel(rowId) {
     const row = document.querySelector(`tr[data-id="${rowId}"]`);
-    const data = getRowData(row);
+    const data = {
+        ID: row.querySelector('.id-column').textContent,
+        LogTime: row.querySelector('[data-label="Log Time"]').textContent,
+        LogMessage: row.querySelector('[data-label="Log Message"]').textContent,
+        SourceIP: row.querySelector('[data-label="Source IP"]').textContent,
+        SourcePort: row.querySelector('[data-label="Source Port"]').textContent,
+        DestinationIP: row.querySelector('[data-label="Destination IP"]').textContent,
+        DestinationPort: row.querySelector('[data-label="Destination Port"]').textContent,
+        Location: row.querySelector('[data-label="Location"]').textContent,
+        Severity: row.querySelector('[data-label="Severity"] span').textContent
+    };
     
     const ws = XLSX.utils.json_to_sheet([data]);
     const wb = XLSX.utils.book_new();
@@ -902,22 +923,7 @@ function exportSingleRowToExcel(rowId) {
         cols.push({ wch: Math.max(key.length, String(data[key]).length + 5) });
     }
     ws['!cols'] = cols;
-    
+  
     XLSX.writeFile(wb, `log_${rowId}.xlsx`);
-    document.getElementById('singleExportModal').remove();
-}
-
-function getRowData(row) {
-    return {
-        ID: row.querySelector('.id-column').textContent,
-        LogTime: row.querySelector('[data-label="Log Time"]').textContent,
-        LogMessage: row.querySelector('[data-label="Log Message"]').textContent,
-        SourceIP: row.querySelector('[data-label="Source IP"]').textContent,
-        SourcePort: row.querySelector('[data-label="Source Port"]').textContent,
-        DestinationIP: row.querySelector('[data-label="Destination IP"]').textContent,
-        DestinationPort: row.querySelector('[data-label="Destination Port"]').textContent,
-        Location: row.querySelector('[data-label="Location"]').textContent,
-        Severity: row.querySelector('[data-label="Severity"] span').textContent
-    };
 }
 

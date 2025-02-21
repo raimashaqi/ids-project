@@ -59,7 +59,7 @@
                     <div class="col">
                         <div class="search-box">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" class="form-control" placeholder="Search your detection">
+                            <input type="text" class="form-control" placeholder="Cari deteksi">
                         </div>
                     </div>
                     <div class="col-auto">
@@ -72,13 +72,13 @@
                         <div class="notification-items">
                             <div class="notification-item">
                                 <div class="notification-content">
-                                    <p class="notification-title">Payload uploaded</p>
-                                    <p class="notification-text">A payload has been uploaded with 256 rows</p>
-                                    <p class="notification-time">4 days ago</p>
+                                    <p class="notification-title">Payload diunggah</p>
+                                    <p class="notification-text">Payload baru telah diunggah dengan 256 baris</p>
+                                    <p class="notification-time">4 hari yang lalu</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="read-all-notifications">Read all notifications</button>
+                        <button class="read-all-notifications">Tandai semua sebagai telah dibaca</button>
                     </div>
                 </div>
 
@@ -159,19 +159,19 @@
                                     <input type="text" id="nama-payload" class="form-control" placeholder="Masukkan Nama Payload">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="severity" class="form-label">Severity</label>
+                                    <label for="severity" class="form-label">Keparahan</label>
                                     <select id="severity" class="form-select">
-                                        <option value="low">Low</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="high">High</option>
+                                        <option value="low">Rendah</option>
+                                        <option value="medium">Sedang</option>
+                                        <option value="high">Tinggi</option>
                                     </select>
                                 </div>
                                 <div class="upload-area border-2 border-dashed border-gray-300 p-4 text-center rounded-lg mb-4">
                                     <div class="mb-3" id="uploadIconContainer">
                                         <i class="fas fa-cloud-upload-alt text-4xl text-gray-500" id="uploadIcon"></i>
                                     </div>
-                                    <p class="text-gray-600 mb-2">Choose a file or drag & drop it here</p>
-                                    <p class="file-types text-gray-400 text-sm mb-4">Accepted formats: .txt, .csv</p>
+                                    <p class="text-gray-600 mb-2">Pilih file atau tarik & lepas di sini</p>
+                                    <p class="file-types text-gray-400 text-sm mb-4">Format yang diterima: .txt, .csv</p>
                                     <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;">
                                     <button type="button" class="browse-btn btn btn-warning" onclick="document.getElementById('fileInput').click()">Browse File</button>
                                     <p id="fileName" class="mt-2 text-gray-700"></p> <!-- Menampilkan nama file yang dipilih -->
