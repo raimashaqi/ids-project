@@ -10,4 +10,5 @@ class Log(db.Model):
     tcp_sport = db.Column(db.Integer)
     ip_dst = db.Column(db.String(45))
     tcp_dport = db.Column(db.Integer)
-    severity = db.Column(db.String(10)) 
+    severity = db.Column(db.String(10))
+    location = db.Column(db.String(100)) 

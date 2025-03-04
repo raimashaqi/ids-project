@@ -6,11 +6,15 @@ from app import db
 import pandas as pd
 import os
 
+SITE_KEY = '6Lco2OgqAAAAALLuA_ZLP9YeHfy-X9Bs56mP_Whh'
+SECRET_KEY = '6Lco2OgqAAAAAIJxtkMNe2-snqqtsvE2Apcl5Ier'
+
 main_bp = Blueprint('main', __name__,
                    static_folder='../static',
-                   static_url_path='/static')
+                   static_url_path='/static' )
 
 @main_bp.route('/testing')
+@login_required
 def index():
     try:
         logs = Log.query.order_by(Log.log_time.desc()).all()
@@ -28,30 +32,14 @@ def dashboard():
 @login_required
 def export():
     try:
+        print("Accessing export page...")  # Debug print
+        print(f"Current user: {session.get('user')}")  # Debug print
         logs = Log.query.order_by(Log.log_time.desc()).all()
-        # Convert logs to a pandas DataFrame
-        data = []
-        for log in logs:
-            data.append({
-                'log_time': log.log_time,
-                'severity': log.severity,
-                'message': log.message,
-                # Add other fields as necessary
-            })
-        df = pd.DataFrame(data)
-
-        # Remove 'delete' and 'view more' columns if they exist
-        columns_to_remove = ['delete', 'view more']
-        df = df.drop(columns=[col for col in columns_to_remove if col in df.columns], errors='ignore')
-
-        # Export to Excel
-        export_path = os.path.join('exports', 'logs.xlsx')
-        os.makedirs(os.path.dirname(export_path), exist_ok=True)
-        df.to_excel(export_path, index=False)
-
-        return jsonify(success=True, message='Logs exported successfully.', file_path=export_path)
+        print(f"Found {len(logs)} logs")  # Debug print
+        return render_template('export.html', logs=logs)
     except Exception as e:
-        flash('Error exporting data logs', 'danger')
+        print(f"Error in export route: {str(e)}")  # Debug print
+        flash('Error mengakses halaman export', 'danger')
         return redirect(url_for('main.dashboard'))
 
 @main_bp.route('/importt')
@@ -78,6 +66,7 @@ def view_payloads():
 
 
 @main_bp.route('/delete-payload/<int:id>', methods=['DELETE'])
+@login_required
 def delete_payload(id):
     payload = Payload.query.get(id)
     if payload:
@@ -90,6 +79,11 @@ def delete_payload(id):
 @login_required
 def account_settings():
     return render_template('account_settings.html')
+
+@main_bp.route('/buy')
+@login_required
+def buy():
+    return render_template('buy.html')
 
 @main_bp.route('/upload-endpoint', methods=['POST'])
 @login_required

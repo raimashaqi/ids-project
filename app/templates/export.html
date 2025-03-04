@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +35,10 @@
                     <a href="{{ url_for('main.importt') }}" class="nav-item" id="import">
                         <i class="fas fa-file-import"></i>
                         <span>Payload</span>
+                    </a>
+                    <a href="{{ url_for('main.buy') }}" class="nav-item" id="buy">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span>Buy</span>
                     </a>
                     <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
                         <i class="fas fa-gear"></i>
@@ -144,7 +147,7 @@
                                             </span>
                                         </td>
                                         <td class="d-flex justify-content-start gap-2">
-                                            <button class="btn text-danger btn-link"> 
+                                            <button class="btn text-danger btn-link" onclick="deleteItem(this.closest('tr').dataset.id)"> 
                                                 <i class="fas fa-trash"></i> 
                                             </button>
                                             <button class="btn text-info btn-link" onclick="viewItem(this)"> 
@@ -201,49 +204,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/dashboard.js"></script>
-    <script>
-        const downloadBtn = document.querySelector('.download');
-        const dateBtn = document.querySelector('.date');
-        const modalR = document.getElementById('rangeModal')
-        const modal = document.getElementById('downloadModal');
-        const closeModal = document.querySelector('.close-modal');
-    
-        downloadBtn.addEventListener('click', () => {
-            modal.classList.add('show');
-        });
-    
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('show');
-        });
-    
-        // Close modal when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
-        
-        //date
-
-        dateBtn.addEventListener('click', () => {
-            modalR.classList.add('show');
-        });
-    
-        closeModal.addEventListener('click', () => {
-            modalR.classList.remove('show');
-        });
-        
-        modalR.addEventListener('click', (e) => {
-            if (e.target === modalR) {
-                modalR.classList.remove('show');
-            }
-        });
-    </script>
-   
-    
     <div class="modal" id="viewModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -262,5 +222,107 @@
             </div>
         </div>
     </div>
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/dashboard.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const downloadBtn = document.querySelector('.download');
+    const dateBtn = document.querySelector('.date');
+    const modalR = document.getElementById('rangeModal');
+    const modal = document.getElementById('downloadModal');
+    const closeModal = document.querySelector('.close-modal');
+    const closeModalR = document.querySelector('.close-modal-range'); // Tambahkan untuk modal range
+
+    // Pastikan elemen ada sebelum menambahkan event listener
+    if (downloadBtn && modal) {
+        downloadBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        // Tutup modal ketika tombol close diklik
+        if (closeModal) {
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+        }
+
+        // Tutup modal ketika klik di luar modal
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    }
+
+    // Pastikan elemen ada sebelum menambahkan event listener untuk range modal
+    if (dateBtn && modalR) {
+        dateBtn.addEventListener('click', () => {
+            modalR.classList.add('show');
+        });
+
+        // Tutup modal range ketika tombol close diklik
+        if (closeModalR) {
+            closeModalR.addEventListener('click', () => {
+                modalR.classList.remove('show');
+            });
+        }
+
+        // Tutup modal range ketika klik di luar modal
+        modalR.addEventListener('click', (e) => {
+            if (e.target === modalR) {
+                modalR.classList.remove('show');
+            }
+        });
+    }
+});
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+    let table = document.getElementById("attackLogsTable");
+    let tbody = table.querySelector("tbody");
+    let header = document.getElementById("sortableSeverity");
+
+    let ascending = true; // Default urutan ASC
+
+    header.addEventListener("click", function () {
+        let rows = Array.from(tbody.querySelectorAll("tr"));
+        
+        rows.sort((rowA, rowB) => {
+            let cellA = rowA.cells[9].innerText.trim(); // Index 9 = kolom "Keparahan"
+            let cellB = rowB.cells[9].innerText.trim();
+
+            return ascending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        });
+
+        ascending = !ascending; // Toggle ASC <-> DESC
+        
+        // Hapus isi tabel & tambahkan baris yang sudah diurutkan
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+
+        // Update ikon
+        let icon = header.querySelector("i");
+        icon.classList.toggle("fa-sort-up", ascending);
+        icon.classList.toggle("fa-sort-down", !ascending);
+    });
+});
+
+        function deleteItem(id) {
+            const response =  fetch(`/delete_log/${id}`, {
+                method: 'DELETE',
+            });
+            const data = response.json();
+            
+            if (data.success) {
+                // Remove the row from the table
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+           
+            }
+        }
+
+    </script>
+   
 </body>
 </html>

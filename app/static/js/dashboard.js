@@ -131,41 +131,52 @@ document.addEventListener('DOMContentLoaded', function () {
   // });
 
   // Add sorting functionality
-  const sortableHeader = document.querySelector('.sortable');
-  let isAscending = true;
+  let table = document.getElementById("attackLogsTable");
+  let tbody = table.querySelector("tbody");
+  let header = document.getElementById("sortableSeverity");
 
-  if (sortableHeader) {
-    sortableHeader.addEventListener('click', function () {
-      const table = document.getElementById('attackLogsTable');
-      const tbody = table.querySelector('tbody');
-      const rows = Array.from(tbody.querySelectorAll('tr'));
+  let ascending = true; // Default urutan ASC
 
-      // Toggle sort direction
-      isAscending = !isAscending;
+  header.addEventListener("click", function () {
+    let rows = Array.from(tbody.querySelectorAll("tr"));
+    
+    // Fungsi untuk mendapatkan nilai numerik dari severity
+    const getSeverityValue = (severity) => {
+      severity = severity.toUpperCase().trim();
+      switch(severity) {
+        case 'LOW': return 1;
+        case 'MEDIUM': return 2;
+        case 'HIGH': return 3;
+        case 'CRITICAL': return 4;
+        default: return 0;
+      }
+    };
 
-      // Update icon
-      this.classList.toggle('asc', isAscending);
+    rows.sort((rowA, rowB) => {
+      let severityA = rowA.querySelector('[data-label="Severity"] span').textContent;
+      let severityB = rowB.querySelector('[data-label="Severity"] span').textContent;
+      
+      let valueA = getSeverityValue(severityA);
+      let valueB = getSeverityValue(severityB);
 
-      // Sort rows
-      rows.sort((a, b) => {
-        const severityA = a.querySelector('[data-label="Severity"] span').textContent;
-        const severityB = b.querySelector('[data-label="Severity"] span').textContent;
-
-        const severityOrder = {
-          'High': 3,
-          'Medium': 2,
-          'Low': 1,
-          'Critical' : 4
-        };
-
-        const comparison = severityOrder[severityA] - severityOrder[severityB];
-        return isAscending ? comparison : -comparison;
-      });
-
-      // Reorder rows in DOM
-      rows.forEach(row => tbody.appendChild(row));
+      if (ascending) {
+        return valueA - valueB;
+      } else {
+        return valueB - valueA;
+      }
     });
-  }
+
+    ascending = !ascending;
+    
+    // Hapus isi tabel & tambahkan baris yang sudah diurutkan
+    tbody.innerHTML = "";
+    rows.forEach(row => tbody.appendChild(row));
+
+    // Update ikon
+    let icon = header.querySelector("i");
+    icon.classList.remove("fa-sort", "fa-sort-up", "fa-sort-down");
+    icon.classList.add(ascending ? "fa-sort-up" : "fa-sort-down");
+  });
 
   // Update delete button event listeners
   const deleteButtons = document.querySelectorAll('.fa-trash');
@@ -229,165 +240,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Add this to your existing JavaScript
-const uploadArea = document.querySelector('.upload-area');
-const fileInput = document.getElementById('fileInput');
-
-// Prevent default drag behaviors
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-  uploadArea.addEventListener(eventName, preventDefaults, false);
-  document.body.addEventListener(eventName, preventDefaults, false);
-});
-
-function preventDefaults(e) {
-  e.preventDefault();
-  e.stopPropagation();
-}
-
-// Handle drag and drop visual feedback
-['dragenter', 'dragover'].forEach(eventName => {
-  uploadArea.addEventListener(eventName, highlight, false);
-});
-
-['dragleave', 'drop'].forEach(eventName => {
-  uploadArea.addEventListener(eventName, unhighlight, false);
-});
-
-function highlight(e) {
-  uploadArea.classList.add('highlight');
-}
-
-function unhighlight(e) {
-  uploadArea.classList.remove('highlight');
-}
-
-// Handle dropped files
-uploadArea.addEventListener('drop', handleDrop, false);
-
-function handleDrop(e) {
-  const dt = e.dataTransfer;
-  const files = dt.files;
-  handleFiles(files);
-}
-
-// Handle file input change
-fileInput.addEventListener('change', function (e) {
-  const file = this.files[0];
-  if (file) {
-      document.getElementById('fileName').textContent = `Selected file: ${file.name}`; // Menampilkan nama file yang dipilih
-      document.getElementById('uploadIcon').style.display = 'none'; // Menghilangkan ikon setelah file dipilih
-      document.getElementById('uploadIconContainer').style.display = 'none'; // Menghilangkan kontainer ikon
-      document.getElementById('nama-payload').value = file.name.replace(/\.[^/.]+$/, ""); // Mengatur nama payload menjadi nama file tanpa ekstensi
-  } else {
-      document.getElementById('fileName').textContent = ''; // Menghapus nama file jika tidak ada
-      document.getElementById('uploadIcon').style.display = 'block'; // Menampilkan ikon jika tidak ada file
-  }
-});
-
-
-// Handle the submit upload button click
-document.getElementById('submitUpload').addEventListener('click', function() {
-    const file = fileInput.files[0];
-    const namaPayload = document.getElementById('nama-payload').value; // Ambil nama payload dari input
-    const severity = document.getElementById('severity').value;
-
-    // Validasi input
-    if (!file) {
-        alert('Please select a file to upload.');
-        return;
-    }
-    if (!namaPayload) {
-        alert('Please enter a name for the payload.');
-        return;
-    }
-
-    // Menggunakan FormData untuk mengirim file
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('nama_payload', namaPayload); // Pastikan ini dikirim
-    formData.append('severity', severity);
-
-    // Mengirim file ke server
-    fetch('/upload-endpoint', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            console.log('File uploaded successfully:', data);
-            // Menampilkan nama payload setelah upload
-            document.getElementById('fileName').textContent = `Uploaded: ${data.payload.nama_payload} with ${data.payload.jumlah_baris} lines`;
-            // Tutup modal setelah upload berhasil
-            document.getElementById('importModal').classList.remove('show'); // Uncomment if you want to close the modal
-        } else {
-            alert('Upload failed: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error uploading file:', error);
-        alert('An error occurred while uploading the file.');
-    });
-});
-
-function handleFiles(files) {
-  // Pastikan ada file yang dipilih
-  if (!files || files.length === 0) {
-    console.error("No files selected.");
-    return;
-  }
-
-  const file = files[0];
-  const validTypes = [
-    'text/plain',
-    'text/csv',
-    'application/vnd.ms-excel',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-  ];
-
-  // Validasi tipe file
-  if (!validTypes.includes(file.type)) {
-    alert('Please upload only .txt, .csv, or Excel files');
-    return;
-  }
-
-  // Menggunakan FormData untuk mengirim file
-  const formData = new FormData();
-  formData.append('file', file);
-
-  // Mengirim file ke server
-  fetch('/upload-endpoint', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => {
-      // Pastikan respons OK, jika tidak lempar error
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.success) {
-        console.log('File uploaded successfully:', data);
-        // Jika fungsi updateTable ada, panggil untuk memperbarui tabel
-        if (typeof updateTable === 'function' && data.payload) {
-          updateTable(data.payload);
-        }
-      } else {
-        alert('Upload failed: ' + data.message);
-      }
-    })
-    .catch(error => {
-      console.error('Error uploading file:', error);
-      alert('An error occurred while uploading the file.');
-    });
-}
 
 // Update the delete functionality
 function delete_log(id) {
@@ -716,170 +568,150 @@ document.addEventListener('click', function(e) {
 });
 
 function closeRangeModal() {
-    document.getElementById('rangeModal').classList.remove('show');
+    const modal = document.getElementById('rangeModal');
+    if (modal) {
+        modal.classList.remove('show');
+    }
 }
 
-// Fungsi untuk reset filter date dan menampilkan semua data
-function resetDateFilter() {
-    // Reset input dates
-    document.getElementById('startDate').value = '';
-    document.getElementById('endDate').value = '';
-    
-    // Show all rows
-    const rows = document.querySelectorAll('#attackLogsTable tbody tr');
-    rows.forEach(row => {
-        row.style.display = '';
-    });
-    
-    
-    closeRangeModal();
-    
-  initializePagination();
-}
-
-//counter tanggal
-function applyDateFilter() {
-  const startDate = document.getElementById('startDate').value;
-  const endDate = document.getElementById('endDate').value;
-  const rowsPerPage = 10;
-  let currentPage = 1;
-  
-  if (!startDate || !endDate) {
-      alert('Please select both start and end dates');
-      return;
-  }
-
-  // Convert dates to comparable format
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  end.setHours(23, 59, 59); 
-
-  if (start > end) {
-      alert('Start date cannot be later than end date');
-      return;
-  }
-
-  const rows = document.querySelectorAll('#attackLogsTable tbody tr');
-  let matchingRows = [];
-  
-  rows.forEach(row => {
-      const dateCell = row.querySelector('[data-label="Log Time"]');
-      const rowDate = new Date(dateCell.textContent.trim());
-      
-      if (rowDate >= start && rowDate <= end) {
-          matchingRows.push(row);
-      }
-      row.style.display = 'none'; // Hide all rows initially
-  });
-
-  // Update pagination
-  const pageCount = Math.ceil(matchingRows.length / rowsPerPage);
-  const paginationContainer = document.querySelector('.pagination');
-
-  if (matchingRows.length > 0) {
-      // Show pagination if there are matching rows
-      paginationContainer.style.display = 'flex';
-      paginationContainer.innerHTML = `
-          <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
-      `;
-
-      paginationContainer.innerHTML += `
-          <li><a href="#" class="${currentPage === 1 ? 'active' : ''}" onclick="return false">1</a></li>
-      `;
-
-      paginationContainer.innerHTML += `
-          <li><a href="#" class="${currentPage === pageCount ? 'active' : ''}" onclick="return false">${pageCount}</a></li>
-      `;
-
-      // Show first page of results
-      matchingRows.forEach((row, index) => {
-          if (index < rowsPerPage) {
-              row.style.display = '';
-          }
-      });
-
-      // Add click events to pagination
-      const paginationLinks = paginationContainer.querySelectorAll('a');
-      paginationLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-              e.preventDefault();
-              if (link.classList.contains('disabled')) return;
-
-              if (link.classList.contains('pagination-arrow')) {
-                  if (link.textContent === '«') {
-                      if (currentPage > 1) currentPage--;
-                  } else {
-                      if (currentPage < pageCount) currentPage++;
-                  }
-              } else {
-                  currentPage = parseInt(link.textContent);
-              }
-
-              // Update visible rows
-              matchingRows.forEach((row, index) => {
-                  if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
-                      row.style.display = '';
-                  } else {
-                      row.style.display = 'none';
-                  }
-              });
-
-              // Update active state
-              paginationLinks.forEach(link => link.classList.remove('active'));
-              if (!link.classList.contains('pagination-arrow')) {
-                  link.classList.add('active');
-              }
-          });
-      });
-  } else {
-      // Hide pagination if no results
-      paginationContainer.style.display = 'none';
-      
-      // Show "No results" message
-      const tbody = document.querySelector('#attackLogsTable tbody');
-      const noResultsRow = document.createElement('tr');
-      noResultsRow.innerHTML = `
-          <td colspan="10" style="text-align: center; padding: 20px;">
-              No results found for the selected date range
-          </td>
-      `;
-      tbody.appendChild(noResultsRow);
-  }
-
-  // Close the modal after applying filter
-  closeRangeModal();
-}
-
-// Set default date values when opening the range modal
-document.querySelector('.date').addEventListener('click', () => {
+// Tambahkan fungsi untuk menangani klik tombol date
+document.querySelector('.date').addEventListener('click', function() {
     const today = new Date();
     const sebulan = new Date();
     sebulan.setDate(today.getDate() - 30);
     
-    // Format dates for input fields (YYYY-MM-DD)
-    document.getElementById('startDate').value = sebulan.toISOString().split('T')[0];
-    document.getElementById('endDate').value = today.toISOString().split('T')[0];
+    // Format tanggal untuk input fields (YYYY-MM-DD)
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
     
+    // Hanya set default values jika input belum memiliki nilai
+    if (!startDateInput.value) {
+        startDateInput.value = sebulan.toISOString().split('T')[0];
+    }
+    if (!endDateInput.value) {
+        endDateInput.value = today.toISOString().split('T')[0];
+    }
+    
+    // Tampilkan modal
     document.getElementById('rangeModal').classList.add('show');
 });
 
-// Close modal when clicking outside
-document.getElementById('rangeModal').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('rangeModal')) {
+// Tambahkan event listener untuk menutup modal ketika mengklik di luar modal
+document.addEventListener('click', function(e) {
+    const rangeModal = document.getElementById('rangeModal');
+    const dateButton = document.querySelector('.date');
+    
+    if (e.target === rangeModal && !dateButton.contains(e.target)) {
         closeRangeModal();
     }
 });
 
-// Reset date filter when search is used
-document.querySelector('.search-box input').addEventListener('keyup', function() {
-    const rows = document.querySelectorAll('#attackLogsTable tbody tr');
+// Perbaiki fungsi applyDateFilter
+function applyDateFilter() {
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    endDate.setHours(23, 59, 59);
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        alert('Silakan pilih tanggal awal dan akhir');
+        return;
+    }
+
+    if (startDate > endDate) {
+        alert('Tanggal awal tidak boleh lebih besar dari tanggal akhir');
+        return;
+    }
+
+    const table = document.getElementById('attackLogsTable');
+    if (!table) {
+        console.error('Table not found');
+        return;
+    }
+
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+    let visibleRows = 0;
+    let hasNoDataRow = false;
+
+    // Remove existing no data message if exists
+    const existingNoData = tbody.querySelector('.no-data-row');
+    if (existingNoData) {
+        existingNoData.remove();
+        hasNoDataRow = true;
+    }
+
+    // Store original display states
+    const originalDisplayStates = new Map();
     rows.forEach(row => {
-        if (this.value === '') {
-            row.style.display = '';
+        originalDisplayStates.set(row, row.style.display);
+    });
+
+    // Filter rows based on date
+    rows.forEach(row => {
+        const dateCell = row.querySelector('[data-label="Log Time"]');
+        if (dateCell) {
+            const rowDate = new Date(dateCell.textContent.trim());
+            if (rowDate >= startDate && rowDate <= endDate) {
+                row.style.display = '';
+                visibleRows++;
+            } else {
+                row.style.display = 'none';
+            }
         }
     });
-});
 
+    // Show no data message if needed
+    if (visibleRows === 0) {
+        // Create no data message
+        const noDataRow = document.createElement('tr');
+        noDataRow.className = 'no-data-row';
+        noDataRow.innerHTML = `
+            <td  style="text-align: center; padding: 20px;">
+                <div class="alert alert-info" role="alert">
+                    Tidak ada data untuk rentang tanggal yang dipilih
+                    <button class="btn btn-link" onclick="resetDateFilter()">Reset Filter</button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(noDataRow);
+    }
+
+    closeRangeModal();
+    initializePagination();
+}
+
+function resetDateFilter() {
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const table = document.getElementById('attackLogsTable');
+    
+    if (!table || !startDateInput || !endDateInput) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    // Reset input dates
+    startDateInput.value = '';
+    endDateInput.value = '';
+    
+    // Show all rows
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+    
+    // Remove no data message if exists
+    const noDataRow = tbody.querySelector('.no-data-row');
+    if (noDataRow) {
+        noDataRow.remove();
+    }
+    
+    // Show all data rows
+    rows.forEach(row => {
+        row.style.display = '';
+    });
+    
+    closeRangeModal();
+    initializePagination();
+}
 
 //export single row
 function exportSingleRow(button) {
@@ -927,3 +759,221 @@ function exportSingleRowToExcel(rowId) {
     XLSX.writeFile(wb, `log_${rowId}.xlsx`);
 }
 
+
+//konfirmasi logout
+function confirmLogout(event) {
+  event.preventDefault();
+  if (confirm('Apakah Anda yakin ingin logout?')) {
+    window.location.href = '/logout';
+  }
+}
+
+// Single DOMContentLoaded event listener for all initializations
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize date range modal functionality
+    initializeDateRangeModal();
+    
+    // Initialize other functionalities
+    initializeSearch();
+    initializePagination();
+    initializeNotifications();
+});
+
+function initializeDateRangeModal() {
+    const dateBtn = document.querySelector('.date');
+    const rangeModal = document.getElementById('rangeModal');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+    if (!dateBtn || !rangeModal || !startDateInput || !endDateInput) {
+        console.error('Required elements for date range modal not found');
+        return;
+    }
+
+    // Date button click handler
+    dateBtn.addEventListener('click', function() {
+        const today = new Date();
+        const sebulan = new Date();
+        sebulan.setDate(today.getDate() - 30);
+        
+        if (!startDateInput.value) {
+            startDateInput.value = sebulan.toISOString().split('T')[0];
+        }
+        if (!endDateInput.value) {
+            endDateInput.value = today.toISOString().split('T')[0];
+        }
+        
+        rangeModal.classList.add('show');
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === rangeModal) {
+            closeRangeModal();
+        }
+    });
+}
+
+function applyDateFilter() {
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    endDate.setHours(23, 59, 59);
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        alert('Silakan pilih tanggal awal dan akhir');
+        return;
+    }
+
+    if (startDate > endDate) {
+        alert('Tanggal awal tidak boleh lebih besar dari tanggal akhir');
+        return;
+    }
+
+    const table = document.getElementById('attackLogsTable');
+    if (!table) {
+        console.error('Table not found');
+        return;
+    }
+
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+    let visibleRows = 0;
+    let hasNoDataRow = false;
+
+    // Remove existing no data message if exists
+    const existingNoData = tbody.querySelector('.no-data-row');
+    if (existingNoData) {
+        existingNoData.remove();
+        hasNoDataRow = true;
+    }
+
+    // Store original display states
+    const originalDisplayStates = new Map();
+    rows.forEach(row => {
+        originalDisplayStates.set(row, row.style.display);
+    });
+
+    // Filter rows based on date
+    rows.forEach(row => {
+        const dateCell = row.querySelector('[data-label="Log Time"]');
+        if (dateCell) {
+            const rowDate = new Date(dateCell.textContent.trim());
+            if (rowDate >= startDate && rowDate <= endDate) {
+                row.style.display = '';
+                visibleRows++;
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    });
+
+    // Show no data message if needed
+    if (visibleRows === 0) {
+        // Create no data message
+        const noDataRow = document.createElement('tr');
+        noDataRow.className = 'no-data-row';
+        noDataRow.innerHTML = `
+            <td colspan="11" style="text-align: center; padding: 20px;">
+                <div class="alert alert-info" role="alert">
+                    Tidak ada data untuk rentang tanggal yang dipilih
+                    <button class="btn btn-link" onclick="resetDateFilter()">Reset Filter</button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(noDataRow);
+    }
+
+    closeRangeModal();
+    initializePagination();
+}
+
+function resetDateFilter() {
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const table = document.getElementById('attackLogsTable');
+    
+    if (!table || !startDateInput || !endDateInput) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    // Reset input dates
+    startDateInput.value = '';
+    endDateInput.value = '';
+    
+    // Show all rows
+    const tbody = table.querySelector('tbody');
+    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+    
+    // Remove no data message if exists
+    const noDataRow = tbody.querySelector('.no-data-row');
+    if (noDataRow) {
+        noDataRow.remove();
+    }
+    
+    // Show all data rows
+    rows.forEach(row => {
+        row.style.display = '';
+    });
+    
+    closeRangeModal();
+    initializePagination();
+}
+
+// Date Range Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dateButton = document.querySelector('.date');
+    const dateRangeModal = document.getElementById('dateRangeModal');
+    const closeDateModal = document.getElementById('closeDateModal');
+    const resetDateBtn = document.getElementById('resetDate');
+    const applyDateBtn = document.getElementById('applyDate');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+    // Set default dates
+    const today = new Date();
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(today.getDate() - 30);
+
+    startDateInput.value = thirtyDaysAgo.toISOString().split('T')[0];
+    endDateInput.value = today.toISOString().split('T')[0];
+
+    // Show modal when date button is clicked
+    dateButton.addEventListener('click', function() {
+        dateRangeModal.classList.add('show');
+    });
+
+    // Close modal when close button is clicked
+    closeDateModal.addEventListener('click', function() {
+        dateRangeModal.classList.remove('show');
+    });
+
+    // Close modal when clicking outside
+    dateRangeModal.addEventListener('click', function(e) {
+        if (e.target === dateRangeModal) {
+            dateRangeModal.classList.remove('show');
+        }
+    });
+
+    // Reset dates
+    resetDateBtn.addEventListener('click', function() {
+        startDateInput.value = thirtyDaysAgo.toISOString().split('T')[0];
+        endDateInput.value = today.toISOString().split('T')[0];
+    });
+
+    // Apply date filter
+    applyDateBtn.addEventListener('click', function() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        if (startDate > endDate) {
+            alert('Tanggal awal tidak boleh lebih besar dari tanggal akhir');
+            return;
+        }
+
+        // Here you can add your date filtering logic
+        // For example, filter table rows based on date range
+
+        dateRangeModal.classList.remove('show');
+    });
+});

@@ -5,16 +5,14 @@ function deletePayload(id) {
       })
       .then(response => response.json())
       .then(data => {
+      
         if (data.success) {
-          // Remove the row from the table only after successful deletion
           const row = document.querySelector(`tr[data-payload-id="${id}"]`);
           if (row) {
             row.remove();
-            // Optionally show a success message
             showNotification('Payload deleted successfully', 'success');
           }
         } else {
-          // Show error message if deletion failed
           showNotification('Failed to delete payload: ' + (data.message || 'Unknown error'), 'error');
         }
       })
@@ -24,3 +22,213 @@ function deletePayload(id) {
       });
     }
   }
+
+  //konfirmasi logout
+function confirmLogout(event) {
+  event.preventDefault();
+  if (confirm('Apakah Anda yakin ingin logout?')) {
+    window.location.href = '/logout';
+  }
+}
+// Add this to your existing JavaScript
+const uploadArea = document.querySelector('.upload-area');
+const fileInput = document.getElementById('fileInput');
+
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, preventDefaults, false);
+  document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+// Handle drag and drop visual feedback
+['dragenter', 'dragover'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+  uploadArea.addEventListener(eventName, unhighlight, false);
+});
+
+function highlight(e) {
+  uploadArea.classList.add('highlight');
+}
+
+function unhighlight(e) {
+  uploadArea.classList.remove('highlight');
+}
+
+// Handle dropped files
+uploadArea.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+  const dt = e.dataTransfer;
+  const files = dt.files;
+  handleFiles(files);
+}
+
+// Handle file input change
+fileInput.addEventListener('change', function (e) {
+  const file = this.files[0];
+  if (file) {
+      document.getElementById('fileName').textContent = `Selected file: ${file.name}`; // Menampilkan nama file yang dipilih
+      document.getElementById('uploadIcon').style.display = 'none'; // Menghilangkan ikon setelah file dipilih
+      document.getElementById('uploadIconContainer').style.display = 'none'; // Menghilangkan kontainer ikon
+      document.getElementById('nama-payload').value = file.name.replace(/\.[^/.]+$/, ""); // Mengatur nama payload menjadi nama file tanpa ekstensi
+  } else {
+      document.getElementById('fileName').textContent = ''; // Menghapus nama file jika tidak ada
+      document.getElementById('uploadIcon').style.display = 'block'; // Menampilkan ikon jika tidak ada file
+  }
+});
+
+
+// Handle the submit upload button click
+document.getElementById('submitUpload').addEventListener('click', function() {
+    const file = fileInput.files[0];
+    const namaPayload = document.getElementById('nama-payload').value; // Ambil nama payload dari input
+    const severity = document.getElementById('severity').value;
+
+    // Validasi input
+    if (!file) {
+        alert('Please select a file to upload.');
+        return;
+    }
+    if (!namaPayload) {
+        alert('Please enter a name for the payload.');
+        return;
+    }
+
+    // Menggunakan FormData untuk mengirim file
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('nama_payload', namaPayload); // Pastikan ini dikirim
+    formData.append('severity', severity);
+
+    // Mengirim file ke server
+    fetch('/upload-endpoint', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            console.log('File uploaded successfully:', data);
+            // Menampilkan nama payload setelah upload
+            document.getElementById('fileName').textContent = `Uploaded: ${data.payload.nama_payload} with ${data.payload.jumlah_baris} lines`;
+            // Tutup modal setelah upload berhasil
+            document.getElementById('importModal').classList.remove('show'); // Uncomment if you want to close the modal
+        } else {
+            alert('Upload failed: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error uploading file:', error);
+        alert('An error occurred while uploading the file.');
+    });
+});
+
+function handleFiles(files) {
+  // Pastikan ada file yang dipilih
+  if (!files || files.length === 0) {
+    console.error("No files selected.");
+    return;
+  }
+
+  const file = files[0];
+  const validTypes = [
+    'text/plain',
+    'text/csv',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  ];
+
+  // Validasi tipe file
+  if (!validTypes.includes(file.type)) {
+    alert('Please upload only .txt or .csv Excel files');
+    return;
+  }
+
+  // Menggunakan FormData untuk mengirim file
+  const formData = new FormData();
+  formData.append('file', file);
+
+  // Mengirim file ke server
+  fetch('/upload-endpoint', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      // Pastikan respons OK, jika tidak lempar error
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        console.log('File uploaded successfully:', data);
+        // Jika fungsi updateTable ada, panggil untuk memperbarui tabel
+        if (typeof updateTable === 'function' && data.payload) {
+          updateTable(data.payload);
+        }
+      } else {
+        alert('Upload failed: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error uploading file:', error);
+      alert('An error occurred while uploading the file.');
+    });
+    
+}
+
+
+
+// Fungsi untuk refresh data tabel
+function refreshTableData() {
+  fetch('/get-payloads')
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.querySelector('table tbody');
+      if (!tbody) return;
+      
+      // Bersihkan tabel yang ada
+      tbody.innerHTML = '';
+      
+      // Tambahkan data baru
+      data.payloads.forEach(payload => {
+        const row = document.createElement('tr');
+        row.setAttribute('data-payload-id', payload.id);
+        
+        row.innerHTML = `
+          <td>${payload.nama_payload}</td>
+          <td>${payload.jumlah_baris}</td>
+          <td>${payload.severity}</td>
+          <td>${payload.created_at}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deletePayload(${payload.id})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        `;
+        
+        tbody.appendChild(row);
+      });
+      
+      // Tampilkan notifikasi sukses
+      showNotification('Data has been refreshed', 'success');
+    })
+    .catch(error => {
+      console.error('Error refreshing table:', error);
+      showNotification('Failed to refresh data', 'error');
+    });
+}

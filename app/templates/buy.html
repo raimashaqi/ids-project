@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payload - YukMari Project</title>
+    <title>Import Logs - YukMari Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/export.css">
+    <link rel="stylesheet" href="../static/css/buy.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <!-- Add html2pdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Yukmari Logo" class="img-fluid">
+                    <button class="menu-toggle hamburger d-md border-0">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <nav>
+                <div class="nav flex-column">
+                    <a href="{{ url_for('main.dashboard') }}" class="nav-item " id="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ url_for('main.export') }}" class="nav-item " id="export">
+                        <i class="fas fa-file-export"></i>
+                        <span>Logs</span>
+                    </a>
+                    <a href="{{ url_for('main.importt') }}" class="nav-item" id="import">
+                        <i class="fas fa-file-import"></i>
+                        <span>Payload</span>
+                    </a>
+                    <a href="#" class="nav-item active" id="buy">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span>Buy</span>
+                    </a>
+                    <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
+                        <i class="fas fa-gear"></i>
+                        <span>Setting</span>
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-item logout" id="logout" onclick="confirmLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+            <div class="main-content flex-grow-1">
+                <div class="container-fluid px-4">
+                    <div class="top-bar row align-items-center mb-4">
+                        <div class="col">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" class="form-control" placeholder="Cari deteksi">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="notification" role="button" title="Notifications">
+                                <i class="fa-regular fa-bell"></i>
+                                <span class="badge" style="display: none;">0</span>
+                            </div>
+                        </div>
+                        <div class="notification-dropdown" style="display: none;">
+                            <div class="notification-items">
+                                <div class="notification-item">
+                                    <div class="notification-content">
+                                        <p class="notification-title">Payload diunggah</p>
+                                        <p class="notification-text">Payload baru telah diunggah dengan 256 baris</p>
+                                        <p class="notification-time">4 hari yang lalu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-all-notifications">Tandai semua sebagai telah dibaca</button>
+                        </div>
+                    </div>
+    
+                    <!-- Content Area -->
+                    <div class="content-area">
+                        <div class="container mt-5">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2 class="purchase-title mb-0">Kode Pembelian</h2>
+                                <button type="button" class="btn btn-outline-warning" id="guideButton">
+                                    <i class="fas fa-crosshairs me-2"></i>
+                                    Panduan Instalasi
+                                </button>
+                            </div>
+                            <form id="buyForm">
+                                <div class="mb-3">
+                                    <label for="purchaseCode" class="form-label">Masukkan Kode Pembelian</label>
+                                    <input type="text" class="form-control" id="purchaseCode" placeholder="Masukkan kode pembelian Anda" required>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary">Beli</button>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fas fa-shopping-cart me-2"></i>Checkout
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/dashboard.js"></script>
+    <script src="../static/js/importt.js"></script>
+    <script src="../static/js/buy.js"></script>
+
+    <!-- Modal Panduan Instalasi -->
+    <div class="modal fade" id="guideModal" tabindex="-1" aria-labelledby="guideModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header guide-header">
+                    <h5 class="modal-title" id="guideModalLabel">Panduan Instalasi Perangkat</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="guide-step">
+                        <i class="fas fa-1"></i>
+                        <p>Pastikan perangkat dalam kondisi mati</p>
+                    </div>
+                    <div class="guide-step">
+                        <i class="fas fa-2"></i>
+                        <p>Hubungkan kabel power ke sumber listrik</p>
+                    </div>
+                    <div class="guide-step">
+                        <i class="fas fa-3"></i>
+                        <p>Tekan tombol power selama 3 detik</p>
+                    </div>
+                    <div class="guide-step">
+                        <i class="fas fa-4"></i>
+                        <p>Tunggu hingga lampu indikator menyala</p>
+                    </div>
+                    <div class="guide-step">
+                        <i class="fas fa-5"></i>
+                        <p>Perangkat siap digunakan</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="generatePdfBtn">
+                        <i class="fas fa-file-pdf me-2"></i>Generate PDF
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

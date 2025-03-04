@@ -101,7 +101,7 @@ def detect_attack(input_payload):
     return None, None, None
 
 # Fungsi untuk mencatat log
-def log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity):
+def log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, location):
     # Dapatkan koneksi database
     mydb, mycursor = get_db_connection()
     
@@ -111,8 +111,8 @@ def log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity):
         f.write(log_entry)
     
     # Simpan ke database
-    sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity) VALUES (%s, %s, %s, %s, %s, %s)"
-    mycursor.execute(sql, (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity))
+    sql = "INSERT INTO logs (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, location) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    mycursor.execute(sql, (log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, location))
     mydb.commit()
 
 # Tambahkan variabel global untuk mengontrol sniffing
@@ -146,7 +146,7 @@ def test_payload(payload, ip_src="127.0.0.1", tcp_sport=0, ip_dst="127.0.0.1", t
         detected_payload = payload
     
     log_message = f"{attack_type} Attack Detected! Payload: {detected_payload}"
-    log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity)
+    log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, severity, location)
     
     return attack_type, severity
 

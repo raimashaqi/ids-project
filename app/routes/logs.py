@@ -6,10 +6,67 @@ from datetime import datetime
 from app.idsServer import detect_attack, log_attack
 import mysql.connector
 import socket
+import requests
 
 # Define Logs Route
 
 logs_bp = Blueprint('logs', __name__)
+
+def get_location_from_ip(location):
+    """
+    Mendapatkan lokasi dari IP address menggunakan API geolocation
+    Args:
+        location (str): IP address yang akan dicari lokasinya
+    Returns:
+        str: String berisi informasi lokasi dalam format "City, Region, Country"
+    """
+    try:
+        # Validasi IP address kosong atau None
+        if not location or location == "Unknown":
+            return "Location not available"
+            
+        # Handle localhost dan private IP
+        if location in ['127.0.0.1', 'localhost', '::1'] or location.startswith('192.168.') or location.startswith('10.'):
+            return "Local Network"
+
+        print(f"Attempting to get location for IP: {location}")
+        
+        # Gunakan ip-api.com dengan timeout 5 detik untuk menghindari hanging
+        response = requests.get(f'http://ip-api.com/json/{location}', timeout=5)
+        data = response.json()
+        print(f"API Response: {data}")
+        
+        if data['status'] == 'success':
+            location_parts = []
+            
+            # Tambahkan komponen lokasi jika tersedia
+            if data.get('city'):
+                location_parts.append(data['city'])
+            if data.get('regionName'):
+                location_parts.append(data['regionName'])
+            if data.get('country'):
+                location_parts.append(data['country'])
+            
+            # Jika tidak ada komponen lokasi yang tersedia
+            if not location_parts:
+                return "Location details not available"
+                
+            # Gabungkan komponen dengan koma
+            return ", ".join(location_parts)
+            
+        print(f"API request not successful. Status: {data.get('status')}, Message: {data.get('message', 'No message')}")
+        return "Location lookup failed"
+        
+    except requests.Timeout:
+        print("Timeout while getting location")
+        return "Location service timeout"
+    except requests.RequestException as e:
+        print(f"Network error while getting location: {str(e)}")
+        return "Network error"
+    except Exception as e:
+        print(f"Error getting location: {str(e)}")
+        print(f"Full error details: {type(e).__name__}")
+        return "Error getting location"
 
 # Routing Logs Route (JSON)
 
@@ -55,7 +112,8 @@ def get_logs():
                 'tcp_sport': log.tcp_sport,
                 'ip_dst': log.ip_dst,
                 'tcp_dport': log.tcp_dport,
-                'severity': normalized_severity
+                'severity': normalized_severity,
+                'location': log.location
             })
         return jsonify(logs_list)
     except Exception as e:
@@ -144,8 +202,11 @@ def test_payload():
 
         log_message = f"{attack_type} Attack Detected!"
 
+        # Get location from IP address using geolocation service
+        location = get_location_from_ip(user_ip)
+
         # 🔹 Log attack with real IPs and ports
-        log_attack(log_message, user_ip, source_port, server_ip, destination_port, severity)
+        log_attack(log_message, user_ip, source_port, server_ip, destination_port, severity, location)
 
         return jsonify({
             'success': True,
