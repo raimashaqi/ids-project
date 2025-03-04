@@ -89,7 +89,7 @@ fileInput.addEventListener('change', function (e) {
 // Handle the submit upload button click
 document.getElementById('submitUpload').addEventListener('click', function() {
     const file = fileInput.files[0];
-    const namaPayload = document.getElementById('nama-payload').value; // Ambil nama payload dari input
+    const namaPayload = document.getElementById('nama-payload').value;
     const severity = document.getElementById('severity').value;
 
     // Validasi input
@@ -105,7 +105,7 @@ document.getElementById('submitUpload').addEventListener('click', function() {
     // Menggunakan FormData untuk mengirim file
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('nama_payload', namaPayload); // Pastikan ini dikirim
+    formData.append('nama_payload', namaPayload);
     formData.append('severity', severity);
 
     // Mengirim file ke server
@@ -120,19 +120,31 @@ document.getElementById('submitUpload').addEventListener('click', function() {
         return response.json();
     })
     .then(data => {
+        console.log('Server response:', data); 
         if (data.success) {
-            console.log('File uploaded successfully:', data);
-            // Menampilkan nama payload setelah upload
-            document.getElementById('fileName').textContent = `Uploaded: ${data.payload.nama_payload} with ${data.payload.jumlah_baris} lines`;
-            // Tutup modal setelah upload berhasil
-            document.getElementById('importModal').classList.remove('show'); // Uncomment if you want to close the modal
+            console.log('Payload data:', data.payload); 
+            
+            // Close modal
+            document.getElementById('importModal').classList.remove('show');
+            
+            // Show success notification
+            showNotification('File uploaded successfully', 'success');
+            
+            // Reset form
+            document.getElementById('uploadForm').reset();
+            document.getElementById('fileName').textContent = '';
+            document.getElementById('uploadIcon').style.display = 'block';
+            document.getElementById('uploadIconContainer').style.display = 'block';
+
+            // Refresh table data immediately
+            refreshTableData();
         } else {
-            alert('Upload failed: ' + data.message);
+            showNotification('Upload failed: ' + (data.message || 'Unknown error'), 'error');
         }
     })
     .catch(error => {
         console.error('Error uploading file:', error);
-        alert('An error occurred while uploading the file.');
+        showNotification('An error occurred while uploading the file', 'error');
     });
 });
 
@@ -198,7 +210,7 @@ function refreshTableData() {
   fetch('/get-payloads')
     .then(response => response.json())
     .then(data => {
-      const tbody = document.querySelector('table tbody');
+      const tbody = document.querySelector('#attackLogsTable tbody');
       if (!tbody) return;
       
       // Bersihkan tabel yang ada
@@ -210,14 +222,12 @@ function refreshTableData() {
         row.setAttribute('data-payload-id', payload.id);
         
         row.innerHTML = `
-          <td>${payload.nama_payload}</td>
-          <td>${payload.jumlah_baris}</td>
-          <td>${payload.severity}</td>
-          <td>${payload.created_at}</td>
+          <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+          <td class="id-column">${payload.id}</td>
+          <td data-label="Nama Payload">${payload.nama_payload}</td>
+          <td data-label="Jumlah Baris">${payload.jumlah_baris}</td>
           <td>
-            <button class="btn btn-danger btn-sm" onclick="deletePayload(${payload.id})">
-              <i class="fas fa-trash"></i>
-            </button>
+            <i class="fas fa-trash-alt text-danger" onclick="deletePayload('${payload.id}')"></i>
           </td>
         `;
         

@@ -5,9 +5,19 @@ from app.models.payload import Payload
 from app import db
 import pandas as pd
 import os
+import midtransclient
+from flask_login import current_user
+import random
+import string
 
 SITE_KEY = '6Lco2OgqAAAAALLuA_ZLP9YeHfy-X9Bs56mP_Whh'
 SECRET_KEY = '6Lco2OgqAAAAAIJxtkMNe2-snqqtsvE2Apcl5Ier'
+
+# Initialize Midtrans Snap
+snap = midtransclient.Snap(
+    is_production=False,  # Set to True for production
+    server_key='SB-Mid-server-v1L3Qo-dsj00YheU0yE_yJj0'  # Replace with your server key
+)
 
 main_bp = Blueprint('main', __name__,
                    static_folder='../static',
@@ -84,6 +94,55 @@ def account_settings():
 @login_required
 def buy():
     return render_template('buy.html')
+
+@main_bp.route('/create-payment', methods=['POST'])
+@login_required
+def create_payment():
+    try:
+        customer_name = request.form.get('customerName')
+        customer_email = request.form.get('customerEmail')
+        customer_phone = request.form.get('customerPhone')
+        
+        if not customer_name:
+            return jsonify({'success': False, 'message': 'Customer name is required'}), 400
+            
+        if not customer_email:
+            return jsonify({'success': False, 'message': 'Customer email is required'}), 400
+            
+        if not customer_phone:
+            return jsonify({'success': False, 'message': 'Customer phone is required'}), 400
+
+        # Generate a random order ID
+        order_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+        # Build API parameter
+        param = {
+            "transaction_details": {
+                "order_id": f"ORDER-{order_id}",
+                "gross_amount": 200000  # Amount in IDR (200,000)
+            },
+            "credit_card": {
+                "secure": True
+            },
+            "customer_details": {
+                "first_name": customer_name,
+                "email": customer_email,
+                "phone": customer_phone
+            }
+        }
+
+        # Create transaction
+        transaction = snap.create_transaction(param)
+        transaction_token = transaction['token']
+
+        return jsonify({
+            'success': True,
+            'snap_token': transaction_token,
+            'order_id': param['transaction_details']['order_id']
+        })
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 @main_bp.route('/upload-endpoint', methods=['POST'])
 @login_required

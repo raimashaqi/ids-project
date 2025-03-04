@@ -15,6 +15,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <!-- Add html2pdf library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Midtrans Snap -->
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-wIfFBYFIMYaIP1cG"></script>
+    
 </head>
 
 <body>
@@ -102,11 +105,11 @@
                             <form id="buyForm">
                                 <div class="mb-3">
                                     <label for="purchaseCode" class="form-label">Masukkan Kode Pembelian</label>
-                                    <input type="text" class="form-control" id="purchaseCode" placeholder="Masukkan kode pembelian Anda" required>
+                                    <input type="text" class="form-control" id="purchaseCode" placeholder="Masukkan kode pembelian Anda">
                                 </div>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary">Beli</button>
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" id="checkoutBtn">
                                         <i class="fas fa-shopping-cart me-2"></i>Checkout
                                     </button>
                                 </div>
@@ -122,6 +125,38 @@
     <script src="../static/js/dashboard.js"></script>
     <script src="../static/js/importt.js"></script>
     <script src="../static/js/buy.js"></script>
+
+    <!-- Modal Customer Details -->
+    <div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-labelledby="customerDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customerDetailsModalLabel">Detail Pembeli</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="customerDetailsForm" novalidate>
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="customerName" placeholder="Masukkan nama lengkap Anda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="customerEmail" placeholder="Masukkan email Anda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerPhone" class="form-label">Nomor Telepon</label>
+                            <input type="tel" class="form-control" id="customerPhone" placeholder="Masukkan nomor telepon Anda" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="proceedToPayment">Lanjutkan ke Pembayaran</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Panduan Instalasi -->
     <div class="modal fade" id="guideModal" tabindex="-1" aria-labelledby="guideModalLabel" aria-hidden="true">
