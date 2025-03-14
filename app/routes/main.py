@@ -151,7 +151,6 @@ def upload_file():
         return jsonify(success=False, message='No file part')
     
     file = request.files['file']
-
     if file.filename == '':
         return jsonify(success=False, message='No selected file')
 
@@ -163,38 +162,44 @@ def upload_file():
         return jsonify(success=False, message='Invalid file type. Please upload .txt, .csv, or .xlsx files.')
 
     nama_payload = request.form.get('nama_payload')  # Ambil nama payload dari form
-    severity = request.form.get('severity')  # Ambil severity dari form
 
-    # Proses file sesuai kebutuhan
     try:
-        if file_extension == 'txt':
-            # Baca file .txt dan hitung jumlah baris
-            content = file.read().decode('utf-8')  # Membaca konten file
-            lines = content.splitlines()  # Memisahkan konten menjadi baris
-            jumlah_baris = len(lines)  # Menghitung jumlah baris
+        payload_dir = os.path.join('app', 'static', 'payload')
+        os.makedirs(payload_dir, exist_ok=True)
 
-            # Simpan data ke database menggunakan model Payload
-            log_entry = Payload(nama_payload=nama_payload, jumlah_baris=jumlah_baris)
-            db.session.add(log_entry)
-
-        elif file_extension == 'csv':
-            df = pd.read_csv(file)
-            # Simpan data ke database menggunakan model Payload
-            for index, row in df.iterrows():
-                log_entry = Payload(nama_payload=row['nama_payload'], jumlah_baris=row['jumlah_baris'])
-                db.session.add(log_entry)
+        file_path = os.path.join(payload_dir, f"{nama_payload}.{file_extension}")
         
-        elif file_extension == 'xlsx':
-            df = pd.read_excel(file)
-            # Simpan data ke database menggunakan model Payload
-            for index, row in df.iterrows():
-                log_entry = Payload(nama_payload=row['nama_payload'], jumlah_baris=row['jumlah_baris'])
-                db.session.add(log_entry)
+        file.save(file_path)
 
+        # Hitung jumlah baris berdasarkan tipe file
+        if file_extension == 'txt':
+            with open(file_path, 'r', encoding='utf-8') as f:
+                jumlah_baris = sum(1 for line in f)
+        elif file_extension in ['csv', 'xlsx']:
+            if file_extension == 'csv':
+                df = pd.read_csv(file_path)
+            else:
+                df = pd.read_excel(file_path)
+            jumlah_baris = len(df)
+
+        payload = Payload(
+            nama_payload=nama_payload,
+            jumlah_baris=jumlah_baris
+        )
+        db.session.add(payload)
         db.session.commit()
 
-        return jsonify(success=True, payload={'nama_payload': nama_payload, 'jumlah_baris': jumlah_baris})  # Kembalikan data yang diperlukan
+        return jsonify(success=True, payload={
+            'id': payload.id,
+            'nama_payload': nama_payload,
+            'jumlah_baris': jumlah_baris
+        })
+
     except Exception as e:
+        # Jika terjadi error, hapus file jika sudah terupload
+        if os.path.exists(file_path):
+            os.remove(file_path)
+        print(f"Error in upload_file: {str(e)}")  # Debug log
         return jsonify(success=False, message=str(e))
 
 @main_bp.route('/get_log_data', methods=['GET'])
@@ -238,3 +243,77 @@ def delete_log(id):
         return jsonify(success=True, message='Log entry deleted successfully')
     except Exception as e:
         return jsonify(success=False, message=str(e)), 500
+
+@main_bp.route('/get-payloads', methods=['GET'])
+@login_required
+def get_payloads():
+    """
+    Returns all payload data as JSON for table refresh
+    """
+    try:
+        payloads = Payload.query.all()
+        payload_list = [{
+            'id': p.id,
+            'nama_payload': p.nama_payload,
+            'jumlah_baris': p.jumlah_baris
+        } for p in payloads]
+        return jsonify({'success': True, 'payloads': payload_list})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@main_bp.route('/get-payload-content/<int:id>', methods=['GET'])
+@login_required
+def get_payload_content(id):
+    """
+    Returns the content of a specific payload file
+    """
+    try:
+        # Get the payload from database
+        payload = Payload.query.get(id)
+        print(f"Looking for payload with ID: {id}")
+        print(f"Found payload: {payload}")
+        
+        if not payload:
+            return jsonify({'success': False, 'message': 'Payload not found'}), 404
+
+        # Get the file path based on payload name
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        payload_dir = os.path.join(current_dir, 'static', 'payload')
+        print(f"Looking in directory: {payload_dir}")
+        print(f"Payload name: {payload.nama_payload}")
+        
+        # Try different possible file extensions
+        possible_extensions = ['.txt', '.csv', '.xlsx']
+        file_path = None
+        
+        for ext in possible_extensions:
+            temp_path = os.path.join(payload_dir, payload.nama_payload + ext)
+            print(f"Trying path: {temp_path}")
+            print(f"File exists: {os.path.exists(temp_path)}")
+            if os.path.exists(temp_path):
+                file_path = temp_path
+                break
+        
+        if not file_path:
+            return jsonify({'success': False, 'message': f'Payload file not found. Looked in {payload_dir} for {payload.nama_payload}'}), 404
+
+        # Read the file content
+        content = []
+        if file_path.endswith('.txt'):
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read().splitlines()
+        elif file_path.endswith('.csv'):
+            df = pd.read_csv(file_path)
+            content = df.values.tolist()
+        elif file_path.endswith('.xlsx'):
+            df = pd.read_excel(file_path)
+            content = df.values.tolist()
+
+        return jsonify({
+            'success': True,
+            'content': content
+        })
+
+    except Exception as e:
+        print(f"Error in get_payload_content: {str(e)}")
+        return jsonify({'success': False, 'message': str(e)}), 500
