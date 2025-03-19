@@ -4,6 +4,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app.models.user import User
 from app import db
 from app.utils.decorators import login_required
+from app.translations import translations
 import requests
 
 import random
@@ -24,7 +25,14 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/', methods=['GET'])
 def login_page():
-    return render_template('login.html', site_key=SITE_KEY)
+    lang = session.get('lang', 'id')  # Default to Indonesian
+    return render_template('login.html', site_key=SITE_KEY, lang=lang, translations=translations[lang])
+
+@auth_bp.route('/set-language/<lang>')
+def set_language(lang):
+    if lang in ['en', 'id']:
+        session['lang'] = lang
+    return redirect(request.referrer or url_for('auth.login_page'))
 
 @auth_bp.route('/login', methods=['POST'])
 def login():

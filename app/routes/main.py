@@ -9,9 +9,8 @@ import midtransclient
 from flask_login import current_user
 import random
 import string
-
-SITE_KEY = '6Lco2OgqAAAAALLuA_ZLP9YeHfy-X9Bs56mP_Whh'
-SECRET_KEY = '6Lco2OgqAAAAAIJxtkMNe2-snqqtsvE2Apcl5Ier'
+import requests
+from app.routes.auth import SITE_KEY, SECRET_KEY
 
 # Initialize Midtrans Snap
 snap = midtransclient.Snap(
@@ -93,12 +92,22 @@ def account_settings():
 @main_bp.route('/buy')
 @login_required
 def buy():
-    return render_template('buy.html')
+    return render_template('buy.html', site_key=SITE_KEY)
 
 @main_bp.route('/create-payment', methods=['POST'])
 @login_required
 def create_payment():
     try:
+        # Verify reCAPTCHA first
+        secret_response = request.form.get('g-recaptcha-response')
+        if not secret_response:
+            return jsonify({'success': False, 'message': 'Please complete the reCAPTCHA verification'}), 400
+            
+        verify_response = requests.post(url=f'https://www.google.com/recaptcha/api/siteverify?secret={SECRET_KEY}&response={secret_response}').json()
+        
+        if not verify_response.get('success'):
+            return jsonify({'success': False, 'message': 'reCAPTCHA verification failed. Please try again.'}), 400
+
         customer_name = request.form.get('customerName')
         customer_email = request.form.get('customerEmail')
         customer_phone = request.form.get('customerPhone')

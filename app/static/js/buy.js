@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to handle payment
     async function handlePayment() {
         try {
+            // Get reCAPTCHA response
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                alert('Mohon selesaikan verifikasi CAPTCHA terlebih dahulu');
+                return;
+            }
+
             // Show loading state
             const submitButton = buyForm.querySelector('button[type="submit"]');
             const checkoutButton = buyForm.querySelector('button[type="button"]');
@@ -40,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: new URLSearchParams({
                     'customerName': customerName,
                     'customerEmail': customerEmail,
-                    'customerPhone': customerPhone
+                    'customerPhone': customerPhone,
+                    'g-recaptcha-response': recaptchaResponse
                 })
             });
             
@@ -52,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Close the customer details modal
             customerDetailsModal.hide();
+            
+            // Reset reCAPTCHA
+            grecaptcha.reset();
             
             // Open Midtrans Snap popup
             window.snap.pay(data.snap_token, {

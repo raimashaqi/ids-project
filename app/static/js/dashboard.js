@@ -977,3 +977,17 @@ document.addEventListener('DOMContentLoaded', function() {
         dateRangeModal.classList.remove('show');
     });
 });
+
+// Fungsi untuk menampilkan jam
+function updateClock() {
+    const now = new Date();
+    const wibTime = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+    const hours = String(wibTime.getUTCHours()).padStart(2, '0');
+    const minutes = String(wibTime.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(wibTime.getUTCSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Update jam setiap detik
+setInterval(updateClock, 1000);
+updateClock(); // Panggil sekali untuk menampilkan jam segera

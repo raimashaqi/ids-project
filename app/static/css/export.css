@@ -106,14 +106,32 @@
 .logo {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 20px 10px;
-    height: 100px;
+    height: auto;
+    min-height: 100px;
+}
+
+.logo .d-flex {
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .logo img {
     width: 90%;
     max-width: 170px;
+}
+
+#clock {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 15px;
+    border-radius: 5px;
+    width: auto;
 }
 
 .hamburger {
