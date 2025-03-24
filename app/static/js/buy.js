@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load Midtrans Snap
     const script = document.createElement('script');
-    script.src = 'https://app.sandbox.midtrans.com/snap/snap.js';
-    script.setAttribute('data-client-key', 'SB-Mid-client-wIfFBYFIMYaIP1cG');
+    script.src = 'https://app.midtrans.com/snap/snap.js';
+    script.setAttribute('data-client-key', 'Mid-client-a0Qdc090d4Z1OSXw');
     document.head.appendChild(script);
 
     // Function to handle payment

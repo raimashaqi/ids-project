@@ -343,6 +343,93 @@ document.addEventListener("DOMContentLoaded", function () {
             updateClock();
             setInterval(updateClock, 1000);
         });
+
+        //rangedate
+        function applyDateFilter() {
+    let startDate = document.getElementById("startDate").value;
+    let endDate = document.getElementById("endDate").value;
+
+    if (!startDate || !endDate) {
+        alert("Pilih rentang tanggal terlebih dahulu!");
+        return;
+    }
+
+    let start = new Date(startDate + "T00:00:00"); // Mulai dari awal hari
+    let end = new Date(endDate + "T23:59:59"); // Sampai akhir hari
+
+    let table = document.getElementById("attackLogsTable");
+    let rows = table.querySelectorAll("tbody tr");
+
+    // Temukan indeks kolom "Waktu Log" secara otomatis
+    let headers = table.querySelectorAll("thead th");
+    let logTimeIndex = -1;
+
+    headers.forEach((th, index) => {
+        if (th.innerText.trim().includes("Waktu Log")) { // Gunakan includes() untuk lebih fleksibel
+            logTimeIndex = index;
+        }
+    });
+
+    if (logTimeIndex === -1) {
+        console.error("Kolom 'Waktu Log' tidak ditemukan.");
+        return;
+    }
+
+    rows.forEach(row => {
+        let cellDate = row.cells[logTimeIndex].innerText.trim();
+
+        // Konversi format "YYYY-MM-DD HH:MM:SS" menjadi objek Date
+        let parts = cellDate.split(" ");
+        if (parts.length !== 2) return; // Skip jika format salah
+
+        let datePart = parts[0].split("-"); // Pisahkan tanggal
+        let timePart = parts[1].split(":"); // Pisahkan waktu
+
+        if (datePart.length !== 3 || timePart.length !== 3) return;
+
+        let rowDate = new Date(
+            parseInt(datePart[0]), // Tahun
+            parseInt(datePart[1]) - 1, // Bulan (0-based index)
+            parseInt(datePart[2]), // Hari
+            parseInt(timePart[0]), // Jam
+            parseInt(timePart[1]), // Menit
+            parseInt(timePart[2]) // Detik
+        );
+
+        if (rowDate >= start && rowDate <= end) {
+            row.style.display = ""; // Tampilkan baris
+        } else {
+            row.style.display = "none"; // Sembunyikan
+        }
+    });
+
+    closeRangeModal();
+}
+
+function resetDateFilter() {
+    document.getElementById("startDate").value = "";
+    document.getElementById("endDate").value = "";
+
+    let rows = document.querySelectorAll("#attackLogsTable tbody tr");
+    rows.forEach(row => row.style.display = ""); // Pastikan semua baris ditampilkan kembali
+
+    closeRangeModal();
+}
+
+function closeRangeModal() {
+    const modal = document.getElementById("rangeModal");
+    if (modal) {
+        modal.classList.remove("show");
+    }
+}
+
+
+    function closeRangeModal() {
+    const modal = document.getElementById('rangeModal');
+    if (modal) {
+        modal.classList.remove('show');
+    }
+}
     </script>
    
 </body>

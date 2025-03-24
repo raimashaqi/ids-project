@@ -14,8 +14,8 @@ from app.routes.auth import SITE_KEY, SECRET_KEY
 
 # Initialize Midtrans Snap
 snap = midtransclient.Snap(
-    is_production=False,  
-    server_key='SB-Mid-server-v1L3Qo-dsj00YheU0yE_yJj0'  
+    is_production=True,  
+    server_key='Mid-server-nQ40waJaQMihHi-DnUtxndLH'  
 )
 
 main_bp = Blueprint('main', __name__,
@@ -128,7 +128,7 @@ def create_payment():
         param = {
             "transaction_details": {
                 "order_id": f"ORDER-{order_id}",
-                "gross_amount": 200000  # Amount in IDR (200,000)
+                "gross_amount": 1  # Amount in IDR (200,000)
             },
             "credit_card": {
                 "secure": True

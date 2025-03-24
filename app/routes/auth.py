@@ -121,11 +121,11 @@ def client():
         return jsonify({'success': True, 'redirect': url_for('main.dashboard')})
     else:
         return jsonify({'success': False, 'message': 'Invalid credentials'}), 401
-
+    
 def is_valid_email(email):
     """Memeriksa apakah email valid dengan regex"""
     email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
-    return re.match(email_regex, email)
+    return re.match(email_regex, email) is not None  # Mengembalikan True/False
 
 @auth_bp.route('/account_settings', methods=['GET', 'POST'])
 @login_required
@@ -138,10 +138,15 @@ def account_settings():
         return redirect(url_for("auth.login_page"))
 
     if request.method == "POST":
-        new_email = request.form.get("newEmail")
-        new_password = request.form.get("newPassword")
-        current_password = request.form.get("currentPassword")
+        # Ambil data dari form
+        new_email = request.form.get("newEmail", "").strip()
+        new_password = request.form.get("newPassword", "").strip()
+        current_password = request.form.get("currentPassword", "").strip()
 
+        email_changed = False
+        password_changed = False
+
+        # Perubahan Email
         if new_email and new_email != user.email:
             if not is_valid_email(new_email):
                 flash("Format email tidak valid!", "danger")
@@ -153,8 +158,9 @@ def account_settings():
                 return redirect(url_for("auth.account_settings"))
 
             user.email = new_email
-            session["user"] = new_email
+            email_changed = True  
 
+        # Perubahan Password
         if new_password and current_password:
             if not check_password_hash(user.password_hash, current_password):
                 flash("Password lama salah!", "danger")
@@ -165,13 +171,16 @@ def account_settings():
                 return redirect(url_for("auth.account_settings"))
 
             user.password_hash = generate_password_hash(new_password)
+            password_changed = True
 
-        try:
-            db.session.commit()
-            flash("Perubahan berhasil disimpan!", "success")
-        except Exception as e:
-            db.session.rollback()
-            flash("Terjadi kesalahan saat menyimpan perubahan!", "danger")
+        # Simpan perubahan jika ada
+        if email_changed or password_changed:
+            try:
+                db.session.commit()
+                flash("Perubahan berhasil disimpan!", "success")
+            except Exception:
+                db.session.rollback()
+                flash("Terjadi kesalahan saat menyimpan perubahan!", "danger")
 
         return redirect(url_for("auth.account_settings"))
 

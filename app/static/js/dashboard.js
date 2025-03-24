@@ -494,173 +494,173 @@ function closeViewModal() {
     document.getElementById('viewModal').classList.remove('show');
 }
 
-// Close modal when clicking outside
-document.addEventListener('click', function(e) {
-    const viewModal = document.getElementById('viewModal');
-    if (e.target === viewModal) {
-        closeViewModal();
-    }
-});
+// // Close modal when clicking outside
+// document.addEventListener('click', function(e) {
+//     const viewModal = document.getElementById('viewModal');
+//     if (e.target === viewModal) {
+//         closeViewModal();
+//     }
+// });
 
-function closeRangeModal() {
-    const modal = document.getElementById('rangeModal');
-    if (modal) {
-        modal.classList.remove('show');
-    }
-}
+// function closeRangeModal() {
+//     const modal = document.getElementById('rangeModal');
+//     if (modal) {
+//         modal.classList.remove('show');
+//     }
+// }
 
-// Tambahkan fungsi untuk menangani klik tombol date
-document.querySelector('.date').addEventListener('click', function() {
-    const today = new Date();
-    const sebulan = new Date();
-    sebulan.setDate(today.getDate() - 30);
+// // Tambahkan fungsi untuk menangani klik tombol date
+// document.querySelector('.date').addEventListener('click', function() {
+//     const today = new Date();
+//     const sebulan = new Date();
+//     sebulan.setDate(today.getDate() - 30);
     
-    // Format tanggal untuk input fields (YYYY-MM-DD)
-    const startDateInput = document.getElementById('startDate');
-    const endDateInput = document.getElementById('endDate');
+//     // Format tanggal untuk input fields (YYYY-MM-DD)
+//     const startDateInput = document.getElementById('startDate');
+//     const endDateInput = document.getElementById('endDate');
     
-    // Hanya set default values jika input belum memiliki nilai
-    if (!startDateInput.value) {
-        startDateInput.value = sebulan.toISOString().split('T')[0];
-    }
-    if (!endDateInput.value) {
-        endDateInput.value = today.toISOString().split('T')[0];
-    }
+//     // Hanya set default values jika input belum memiliki nilai
+//     if (!startDateInput.value) {
+//         startDateInput.value = sebulan.toISOString().split('T')[0];
+//     }
+//     if (!endDateInput.value) {
+//         endDateInput.value = today.toISOString().split('T')[0];
+//     }
     
-    // Tampilkan modal
-    document.getElementById('rangeModal').classList.add('show');
-});
+//     // Tampilkan modal
+//     document.getElementById('rangeModal').classList.add('show');
+// });
 
-// Tambahkan event listener untuk menutup modal ketika mengklik di luar modal
-document.addEventListener('click', function(e) {
-    const rangeModal = document.getElementById('rangeModal');
-    const dateButton = document.querySelector('.date');
+// // Tambahkan event listener untuk menutup modal ketika mengklik di luar modal
+// document.addEventListener('click', function(e) {
+//     const rangeModal = document.getElementById('rangeModal');
+//     const dateButton = document.querySelector('.date');
     
-    if (e.target === rangeModal && !dateButton.contains(e.target)) {
-        closeRangeModal();
-    }
-});
+//     if (e.target === rangeModal && !dateButton.contains(e.target)) {
+//         closeRangeModal();
+//     }
+// });
 
-function applyDateFilter() {
-    const startDateInput = document.getElementById('startDate').value;
-    const endDateInput = document.getElementById('endDate').value;
+// function applyDateFilter() {
+//     const startDateInput = document.getElementById('startDate').value;
+//     const endDateInput = document.getElementById('endDate').value;
 
-    if (!startDateInput || !endDateInput) {
-        alert('Silakan pilih tanggal awal dan akhir');
-        return;
-    }
+//     if (!startDateInput || !endDateInput) {
+//         alert('Silakan pilih tanggal awal dan akhir');
+//         return;
+//     }
 
-    // Konversi nilai input ke objek Date
-    const startDate = new Date(startDateInput);
-    const endDate = new Date(endDateInput);
-    endDate.setHours(23, 59, 59, 999); // Pastikan sampai akhir hari
+//     // Konversi nilai input ke objek Date
+//     const startDate = new Date(startDateInput);
+//     const endDate = new Date(endDateInput);
+//     endDate.setHours(23, 59, 59, 999); // Pastikan sampai akhir hari
 
-    console.log("Start Date:", startDate);
-    console.log("End Date:", endDate);
+//     console.log("Start Date:", startDate);
+//     console.log("End Date:", endDate);
 
-    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-        alert('Format tanggal tidak valid');
-        return;
-    }
+//     if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+//         alert('Format tanggal tidak valid');
+//         return;
+//     }
 
-    if (startDate > endDate) {
-        alert('Tanggal awal tidak boleh lebih besar dari tanggal akhir');
-        return;
-    }
+//     if (startDate > endDate) {
+//         alert('Tanggal awal tidak boleh lebih besar dari tanggal akhir');
+//         return;
+//     }
 
-    const table = document.getElementById('attackLogsTable');
-    if (!table) {
-        console.error('Table not found');
-        return;
-    }
+//     const table = document.getElementById('attackLogsTable');
+//     if (!table) {
+//         console.error('Table not found');
+//         return;
+//     }
 
-    const tbody = table.querySelector('tbody');
-    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
-    let visibleRows = 0;
+//     const tbody = table.querySelector('tbody');
+//     const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+//     let visibleRows = 0;
 
-    // Hapus pesan "tidak ada data" yang sudah ada
-    const existingNoData = tbody.querySelector('.no-data-row');
-    if (existingNoData) {
-        existingNoData.remove();
-    }
+//     // Hapus pesan "tidak ada data" yang sudah ada
+//     const existingNoData = tbody.querySelector('.no-data-row');
+//     if (existingNoData) {
+//         existingNoData.remove();
+//     }
 
-    rows.forEach(row => {
-        const dateCell = row.querySelector('[data-label="Log Time"]');
-        if (dateCell) {
-            let dateText = dateCell.textContent.trim(); // Format 'YYYY-MM-DD HH:MM:SS'
+//     rows.forEach(row => {
+//         const dateCell = row.querySelector('[data-label="Log Time"]');
+//         if (dateCell) {
+//             let dateText = dateCell.textContent.trim(); // Format 'YYYY-MM-DD HH:MM:SS'
 
-            // Konversi ke objek Date
-            let rowDate = new Date(dateText.replace(/-/g, '/')); // Pastikan bisa dibaca oleh JavaScript
+//             // Konversi ke objek Date
+//             let rowDate = new Date(dateText.replace(/-/g, '/')); // Pastikan bisa dibaca oleh JavaScript
 
-            console.log(`Row Date: ${dateText} => ${rowDate}`);
+//             console.log(`Row Date: ${dateText} => ${rowDate}`);
 
-            if (isNaN(rowDate.getTime())) {
-                console.warn('Tanggal tidak valid:', dateText);
-                return;
-            }
+//             if (isNaN(rowDate.getTime())) {
+//                 console.warn('Tanggal tidak valid:', dateText);
+//                 return;
+//             }
 
-            if (rowDate >= startDate && rowDate <= endDate) {
-                row.style.display = '';
-                visibleRows++;
-            } else {
-                row.style.display = 'none';
-            }
-        }
-    });
+//             if (rowDate >= startDate && rowDate <= endDate) {
+//                 row.style.display = '';
+//                 visibleRows++;
+//             } else {
+//                 row.style.display = 'none';
+//             }
+//         }
+//     });
 
-    // Jika tidak ada baris yang ditampilkan, tampilkan pesan "Tidak ada data"
-    if (visibleRows === 0) {
-        const noDataRow = document.createElement('tr');
-        noDataRow.className = 'no-data-row';
-        noDataRow.innerHTML = `
-            <td colspan="11" style="text-align: center; padding: 20px;">
-                <div class="alert alert-info" role="alert">
-                    Tidak ada data untuk rentang tanggal yang dipilih
-                    <button class="btn btn-link" onclick="resetDateFilter()">Reset Filter</button>
-                </div>
-            </td>
-        `;
-        tbody.appendChild(noDataRow);
-    }
+//     // Jika tidak ada baris yang ditampilkan, tampilkan pesan "Tidak ada data"
+//     if (visibleRows === 0) {
+//         const noDataRow = document.createElement('tr');
+//         noDataRow.className = 'no-data-row';
+//         noDataRow.innerHTML = `
+//             <td colspan="11" style="text-align: center; padding: 20px;">
+//                 <div class="alert alert-info" role="alert">
+//                     Tidak ada data untuk rentang tanggal yang dipilih
+//                     <button class="btn btn-link" onclick="resetDateFilter()">Reset Filter</button>
+//                 </div>
+//             </td>
+//         `;
+//         tbody.appendChild(noDataRow);
+//     }
 
-    closeRangeModal();
-    initializePagination();
-}
+//     closeRangeModal();
+//     initializePagination();
+// }
 
 
 
-function resetDateFilter() {
-    const startDateInput = document.getElementById('startDate');
-    const endDateInput = document.getElementById('endDate');
-    const table = document.getElementById('attackLogsTable');
+// function resetDateFilter() {
+//     const startDateInput = document.getElementById('startDate');
+//     const endDateInput = document.getElementById('endDate');
+//     const table = document.getElementById('attackLogsTable');
     
-    if (!table || !startDateInput || !endDateInput) {
-        console.error('Required elements not found');
-        return;
-    }
+//     if (!table || !startDateInput || !endDateInput) {
+//         console.error('Required elements not found');
+//         return;
+//     }
 
-    // Reset input dates
-    startDateInput.value = '';
-    endDateInput.value = '';
+//     // Reset input dates
+//     startDateInput.value = '';
+//     endDateInput.value = '';
     
-    // Show all rows
-    const tbody = table.querySelector('tbody');
-    const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
+//     // Show all rows
+//     const tbody = table.querySelector('tbody');
+//     const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
     
-    // Remove no data message if exists
-    const noDataRow = tbody.querySelector('.no-data-row');
-    if (noDataRow) {
-        noDataRow.remove();
-    }
+//     // Remove no data message if exists
+//     const noDataRow = tbody.querySelector('.no-data-row');
+//     if (noDataRow) {
+//         noDataRow.remove();
+//     }
     
-    // Show all data rows
-    rows.forEach(row => {
-        row.style.display = '';
-    });
+//     // Show all data rows
+//     rows.forEach(row => {
+//         row.style.display = '';
+//     });
     
-    closeRangeModal();
-    initializePagination();
-}
+//     closeRangeModal();
+//     initializePagination();
+// }
 
 //export single row
 function exportSingleRow(button) {
