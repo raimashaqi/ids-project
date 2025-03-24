@@ -761,3 +761,76 @@ canvas {
     background-color: #D80000;
     color: white;
 }
+/*.payload-modal*/
+.payload-modal {
+    max-width: 1000px;
+    margin: 1rem auto;
+    margin-top: 0 !important;
+    position: fixed;
+    top: 2%;
+    left: 15%;
+    height: 90vh; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+.payload-modal .modal-content {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+.payload-modal .modal-body {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    max-height: 90vh; 
+}
+
+@media (max-width: 768px) {
+    .payload-modal {
+        max-width: 95%;
+        height: 90vh;
+    }
+    
+    .payload-modal .modal-body {
+        max-height: 65vh;
+    }
+}
+
+/* import Modal Styles */
+.import-modal {
+    max-width: 1200;
+    margin: 1.75rem auto;
+}
+
+.import-modal .modal-content {
+    width: 100%;
+    margin: auto;
+}
+
+.import-modal .card {
+    margin-bottom: 0;
+}
+
+.import-modal .card-body {
+    padding: 0.5rem;
+}
+
+.import-modal .modal-body {
+    max-height: none;
+    overflow-y: visible;
+}
+
+@media (max-width: 768px) {
+    .import-modal {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+    
+    .import-modal .card-body {
+        padding: 0.5rem;
+    }
+}

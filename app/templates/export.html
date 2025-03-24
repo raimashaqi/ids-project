@@ -281,21 +281,32 @@
 });
 
 
-        document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     let table = document.getElementById("attackLogsTable");
     let tbody = table.querySelector("tbody");
     let header = document.getElementById("sortableSeverity");
 
     let ascending = true; // Default urutan ASC
 
+    // Definisikan urutan tingkat keparahan
+    const severityOrder = {
+        "LOW": 1,
+        "MEDIUM": 2,
+        "HIGH": 3,
+        "CRITICAL": 4
+    };
+
     header.addEventListener("click", function () {
         let rows = Array.from(tbody.querySelectorAll("tr"));
         
         rows.sort((rowA, rowB) => {
-            let cellA = rowA.cells[9].innerText.trim(); // Index 9 = kolom "Keparahan"
+            let cellA = rowA.cells[9].innerText.trim(); // Ambil nilai dari kolom ke-9 (Keparahan)
             let cellB = rowB.cells[9].innerText.trim();
 
-            return ascending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            let valueA = severityOrder[cellA] || 0; // Jika tidak ditemukan, set default 0
+            let valueB = severityOrder[cellB] || 0;
+
+            return ascending ? valueA - valueB : valueB - valueA;
         });
 
         ascending = !ascending; // Toggle ASC <-> DESC
@@ -306,10 +317,13 @@
 
         // Update ikon
         let icon = header.querySelector("i");
-        icon.classList.toggle("fa-sort-up", ascending);
-        icon.classList.toggle("fa-sort-down", !ascending);
+        if (icon) {
+            icon.classList.toggle("fa-sort-up", ascending);
+            icon.classList.toggle("fa-sort-down", !ascending);
+        }
     });
 });
+
 
         function deleteItem(id) {
             const response =  fetch(`/delete_log/${id}`, {

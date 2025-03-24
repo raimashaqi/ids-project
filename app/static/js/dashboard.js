@@ -113,71 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // // Add event listeners for export buttons
-  // const exportButtons = document.querySelectorAll('.export-option');
-  // exportButtons.forEach(button => {
-  //   button.addEventListener('click', function () {
-  //     const buttonText = this.textContent.trim();
-  //     if (buttonText.includes('Excel')) {
-  //       exportToExcel();
-  //     } else if (buttonText.includes('CSV')) {
-  //       exportToCSV();
-  //     } else if (buttonText.includes('TXT')) {
-  //       exportToTXT();
-  //     }
-  //     // Close modal after export
-  //     document.getElementById('downloadModal').classList.remove('show');
-  //   });
-  // });
-
-  // Add sorting functionality
-  let table = document.getElementById("attackLogsTable");
-  let tbody = table.querySelector("tbody");
-  let header = document.getElementById("sortableSeverity");
-
-  let ascending = true; // Default urutan ASC
-
-  header.addEventListener("click", function () {
-    let rows = Array.from(tbody.querySelectorAll("tr"));
-    
-    // Fungsi untuk mendapatkan nilai numerik dari severity
-    const getSeverityValue = (severity) => {
-      severity = severity.toUpperCase().trim();
-      switch(severity) {
-        case 'LOW': return 1;
-        case 'MEDIUM': return 2;
-        case 'HIGH': return 3;
-        case 'CRITICAL': return 4;
-        default: return 0;
-      }
-    };
-
-    rows.sort((rowA, rowB) => {
-      let severityA = rowA.querySelector('[data-label="Severity"] span').textContent;
-      let severityB = rowB.querySelector('[data-label="Severity"] span').textContent;
-      
-      let valueA = getSeverityValue(severityA);
-      let valueB = getSeverityValue(severityB);
-
-      if (ascending) {
-        return valueA - valueB;
-      } else {
-        return valueB - valueA;
-      }
-    });
-
-    ascending = !ascending;
-    
-    // Hapus isi tabel & tambahkan baris yang sudah diurutkan
-    tbody.innerHTML = "";
-    rows.forEach(row => tbody.appendChild(row));
-
-    // Update ikon
-    let icon = header.querySelector("i");
-    icon.classList.remove("fa-sort", "fa-sort-up", "fa-sort-down");
-    icon.classList.add(ascending ? "fa-sort-up" : "fa-sort-down");
-  });
-
   // Update delete button event listeners
   const deleteButtons = document.querySelectorAll('.fa-trash');
   deleteButtons.forEach(button => {
@@ -606,14 +541,25 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Perbaiki fungsi applyDateFilter
 function applyDateFilter() {
-    const startDate = new Date(document.getElementById('startDate').value);
-    const endDate = new Date(document.getElementById('endDate').value);
-    endDate.setHours(23, 59, 59);
+    const startDateInput = document.getElementById('startDate').value;
+    const endDateInput = document.getElementById('endDate').value;
+
+    if (!startDateInput || !endDateInput) {
+        alert('Silakan pilih tanggal awal dan akhir');
+        return;
+    }
+
+    // Konversi nilai input ke objek Date
+    const startDate = new Date(startDateInput);
+    const endDate = new Date(endDateInput);
+    endDate.setHours(23, 59, 59, 999); // Pastikan sampai akhir hari
+
+    console.log("Start Date:", startDate);
+    console.log("End Date:", endDate);
 
     if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-        alert('Silakan pilih tanggal awal dan akhir');
+        alert('Format tanggal tidak valid');
         return;
     }
 
@@ -631,26 +577,28 @@ function applyDateFilter() {
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr:not(.no-data-row)');
     let visibleRows = 0;
-    let hasNoDataRow = false;
 
-    // Remove existing no data message if exists
+    // Hapus pesan "tidak ada data" yang sudah ada
     const existingNoData = tbody.querySelector('.no-data-row');
     if (existingNoData) {
         existingNoData.remove();
-        hasNoDataRow = true;
     }
 
-    // Store original display states
-    const originalDisplayStates = new Map();
-    rows.forEach(row => {
-        originalDisplayStates.set(row, row.style.display);
-    });
-
-    // Filter rows based on date
     rows.forEach(row => {
         const dateCell = row.querySelector('[data-label="Log Time"]');
         if (dateCell) {
-            const rowDate = new Date(dateCell.textContent.trim());
+            let dateText = dateCell.textContent.trim(); // Format 'YYYY-MM-DD HH:MM:SS'
+
+            // Konversi ke objek Date
+            let rowDate = new Date(dateText.replace(/-/g, '/')); // Pastikan bisa dibaca oleh JavaScript
+
+            console.log(`Row Date: ${dateText} => ${rowDate}`);
+
+            if (isNaN(rowDate.getTime())) {
+                console.warn('Tanggal tidak valid:', dateText);
+                return;
+            }
+
             if (rowDate >= startDate && rowDate <= endDate) {
                 row.style.display = '';
                 visibleRows++;
@@ -660,13 +608,12 @@ function applyDateFilter() {
         }
     });
 
-    // Show no data message if needed
+    // Jika tidak ada baris yang ditampilkan, tampilkan pesan "Tidak ada data"
     if (visibleRows === 0) {
-        // Create no data message
         const noDataRow = document.createElement('tr');
         noDataRow.className = 'no-data-row';
         noDataRow.innerHTML = `
-            <td  style="text-align: center; padding: 20px;">
+            <td colspan="11" style="text-align: center; padding: 20px;">
                 <div class="alert alert-info" role="alert">
                     Tidak ada data untuk rentang tanggal yang dipilih
                     <button class="btn btn-link" onclick="resetDateFilter()">Reset Filter</button>
@@ -679,6 +626,8 @@ function applyDateFilter() {
     closeRangeModal();
     initializePagination();
 }
+
+
 
 function resetDateFilter() {
     const startDateInput = document.getElementById('startDate');

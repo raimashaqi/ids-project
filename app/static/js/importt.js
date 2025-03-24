@@ -228,15 +228,15 @@ function refreshTableData() {
                   
                   row.innerHTML = `
                       <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                      <td class="id-column">${payload.id}</td>
-                      <td data-label="Nama Payload">${payload.nama_payload}</td>
-                      <td data-label="Jumlah Baris">${payload.jumlah_baris}</td>
-                      <td class="d-flex justify-content-start gap-2">
-                          <button class="btn text-info btn-link" onclick="viewPayload('${payload.id}', '${payload.nama_payload}')">
-                              <i class="fas fa-eye"></i>
-                          </button>
-                          <i class="fas fa-trash-alt btn text-danger btn-link" onclick="deletePayload('${payload.id}')"></i>
-                      </td>
+                      <td class="id-column text-center">${payload.id}</td>
+                      <td class="text-center" data-label="Nama Payload">${payload.nama_payload}</td>
+                      <td class="text-center" data-label="Jumlah Baris">${payload.jumlah_baris}</td>
+                       <td class="d-flex justify-content-center align-item-center gap-2 text-center" >
+                            <button class="btn text-info btn-link" onclick="viewPayload('{{ payload.id }}', '{{ payload.nama_payload }}') ">
+                                <i class="fas fa-eye text-center"></i>
+                            </button>
+                            <i class="fas fa-trash-alt btn text-danger btn-link text-center" onclick="deletePayload('{{ payload.id }}')"></i>
+                        </td>
                   `;
                   
                   tbody.appendChild(row);
@@ -254,253 +254,253 @@ function refreshTableData() {
 }
 
 // Also add initialization when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    initializePagination();
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     initializePagination();
+// });
 
-// Add this function to handle pagination
-function initializePagination() {
-  const table = document.getElementById('attackLogsTable');
-  const tbody = table.querySelector('tbody');
-  const rows = tbody.querySelectorAll('tr');
-  const rowsPerPage = 10;
-  const pageCount = Math.ceil(rows.length / rowsPerPage);
-  let currentPage = 1;
+// // Add this function to handle pagination
+// function initializePagination() {
+//   const table = document.getElementById('attackLogsTable');
+//   const tbody = table.querySelector('tbody');
+//   const rows = tbody.querySelectorAll('tr');
+//   const rowsPerPage = 10;
+//   const pageCount = Math.ceil(rows.length / rowsPerPage);
+//   let currentPage = 1;
 
-  // Create pagination controls
-  function updatePagination() {
-      const paginationContainer = document.querySelector('.pagination');
-      paginationContainer.innerHTML = `
-          <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
-      `;
+//   // Create pagination controls
+//   function updatePagination() {
+//       const paginationContainer = document.querySelector('.pagination');
+//       paginationContainer.innerHTML = `
+//           <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}" onclick="return false">&laquo;</a></li>
+//       `;
 
-      // Add page numbers
-      for (let i = 1; i <= pageCount; i++) {
-          if (i === 1 || i === pageCount || (i >= currentPage - 1 && i <= currentPage + 1)) {
-              paginationContainer.innerHTML += `
-                  <li><a href="#" class="${i === currentPage ? 'active' : ''}" onclick="return false">${i}</a></li>
-              `;
-          } else if (i === currentPage - 2 || i === currentPage + 2) {
-              paginationContainer.innerHTML += `
-                  <li><a href="#" class="pagination-dots" onclick="return false">...</a></li>
-              `;
-          }
-      }
+//       // Add page numbers
+//       for (let i = 1; i <= pageCount; i++) {
+//           if (i === 1 || i === pageCount || (i >= currentPage - 1 && i <= currentPage + 1)) {
+//               paginationContainer.innerHTML += `
+//                   <li><a href="#" class="${i === currentPage ? 'active' : ''}" onclick="return false">${i}</a></li>
+//               `;
+//           } else if (i === currentPage - 2 || i === currentPage + 2) {
+//               paginationContainer.innerHTML += `
+//                   <li><a href="#" class="pagination-dots" onclick="return false">...</a></li>
+//               `;
+//           }
+//       }
 
-      paginationContainer.innerHTML += `
-          <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}" onclick="return false">&raquo;</a></li>
-      `;
+//       paginationContainer.innerHTML += `
+//           <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}" onclick="return false">&raquo;</a></li>
+//       `;
 
-      // Add click events to pagination controls
-      const paginationLinks = paginationContainer.querySelectorAll('a');
-      paginationLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-              e.preventDefault();
-              if (link.classList.contains('disabled')) return;
+//       // Add click events to pagination controls
+//       const paginationLinks = paginationContainer.querySelectorAll('a');
+//       paginationLinks.forEach(link => {
+//           link.addEventListener('click', (e) => {
+//               e.preventDefault();
+//               if (link.classList.contains('disabled')) return;
 
-              if (link.classList.contains('pagination-arrow')) {
-                  if (link.textContent === '«') {
-                      if (currentPage > 1) currentPage--;
-                  } else {
-                      if (currentPage < pageCount) currentPage++;
-                  }
-              } else if (!link.classList.contains('pagination-dots')) {
-                  currentPage = parseInt(link.textContent);
-              }
-              updatePage();
-          });
-      });
+//               if (link.classList.contains('pagination-arrow')) {
+//                   if (link.textContent === '«') {
+//                       if (currentPage > 1) currentPage--;
+//                   } else {
+//                       if (currentPage < pageCount) currentPage++;
+//                   }
+//               } else if (!link.classList.contains('pagination-dots')) {
+//                   currentPage = parseInt(link.textContent);
+//               }
+//               updatePage();
+//           });
+//       });
       
-  }
+//   }
 
-  // Show current page
-  function updatePage() {
-      const start = (currentPage - 1) * rowsPerPage;
-      const end = start + rowsPerPage;
+//   // Show current page
+//   function updatePage() {
+//       const start = (currentPage - 1) * rowsPerPage;
+//       const end = start + rowsPerPage;
 
-      rows.forEach((row, index) => {
-          row.style.display = (index >= start && index < end) ? '' : 'none';
-      });
+//       rows.forEach((row, index) => {
+//           row.style.display = (index >= start && index < end) ? '' : 'none';
+//       });
 
-      updatePagination();
-  }
+//       updatePagination();
+//   }
 
-  // Initialize first page
-  updatePage();
-}
+//   // Initialize first page
+//   updatePage();
+// }
 
-// Update the search functionality
-function initializeSearch() {
-    const searchInput = document.querySelector('.search-box input');
-    const table = document.getElementById('attackLogsTable');
-    const tbody = table.querySelector('tbody');
-    const rows = tbody.getElementsByTagName('tr');
-    const rowsPerPage = parseInt(document.querySelector('.rows-per-page').value) || 10;
-    let currentPage = 1;
-    const noResultsRow = document.createElement('tr');
+// // Update the search functionality
+// function initializeSearch() {
+//     const searchInput = document.querySelector('.search-box input');
+//     const table = document.getElementById('attackLogsTable');
+//     const tbody = table.querySelector('tbody');
+//     const rows = tbody.getElementsByTagName('tr');
+//     const rowsPerPage = parseInt(document.querySelector('.rows-per-page').value) || 10;
+//     let currentPage = 1;
+//     const noResultsRow = document.createElement('tr');
     
-    // Create "No results found" message row
-    noResultsRow.innerHTML = `
-        <td colspan="5" class="text-center py-4">
-            <div class="alert alert-info mb-0">
-                Tidak ada hasil yang ditemukan
-            </div>
-        </td>
-    `;
+//     // Create "No results found" message row
+//     noResultsRow.innerHTML = `
+//         <td colspan="5" class="text-center py-4">
+//             <div class="alert alert-info mb-0">
+//                 Tidak ada hasil yang ditemukan
+//             </div>
+//         </td>
+//     `;
 
-    function highlightText(text, searchTerm) {
-        if (!searchTerm) return text;
-        const regex = new RegExp(`(${searchTerm})`, 'gi');
-        return text.replace(regex, '<mark style="background-color: yellow; padding: 0;">$1</mark>');
-    }
+//     function highlightText(text, searchTerm) {
+//         if (!searchTerm) return text;
+//         const regex = new RegExp(`(${searchTerm})`, 'gi');
+//         return text.replace(regex, '<mark style="background-color: yellow; padding: 0;">$1</mark>');
+//     }
 
-    function updatePaginationForSearch(matchingRows) {
-        const pageCount = Math.ceil(matchingRows.length / rowsPerPage);
-        currentPage = 1; // Reset to first page when searching
+//     function updatePaginationForSearch(matchingRows) {
+//         const pageCount = Math.ceil(matchingRows.length / rowsPerPage);
+//         currentPage = 1; // Reset to first page when searching
 
-        // Hide all rows initially
-        Array.from(rows).forEach(row => {
-            row.style.display = 'none';
-        });
+//         // Hide all rows initially
+//         Array.from(rows).forEach(row => {
+//             row.style.display = 'none';
+//         });
 
-        const paginationContainer = document.querySelector('.pagination');
+//         const paginationContainer = document.querySelector('.pagination');
         
-        if (matchingRows.length > 0) {
-            paginationContainer.style.display = 'flex';
-            paginationContainer.innerHTML = `
-                <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}">&laquo;</a></li>
-            `;
+//         if (matchingRows.length > 0) {
+//             paginationContainer.style.display = 'flex';
+//             paginationContainer.innerHTML = `
+//                 <li><a href="#" class="pagination-arrow ${currentPage === 1 ? 'disabled' : ''}">&laquo;</a></li>
+//             `;
 
-            for (let i = 1; i <= pageCount; i++) {
-                if (i === 1 || i === pageCount || (i >= currentPage - 1 && i <= currentPage + 1)) {
-                    paginationContainer.innerHTML += `
-                        <li><a href="#" class="${i === currentPage ? 'active' : ''}">${i}</a></li>
-                    `;
-                } else if (i === currentPage - 2 || i === currentPage + 2) {
-                    paginationContainer.innerHTML += `
-                        <li><a href="#" class="pagination-dots">...</a></li>
-                    `;
-                }
-            }
+//             for (let i = 1; i <= pageCount; i++) {
+//                 if (i === 1 || i === pageCount || (i >= currentPage - 1 && i <= currentPage + 1)) {
+//                     paginationContainer.innerHTML += `
+//                         <li><a href="#" class="${i === currentPage ? 'active' : ''}">${i}</a></li>
+//                     `;
+//                 } else if (i === currentPage - 2 || i === currentPage + 2) {
+//                     paginationContainer.innerHTML += `
+//                         <li><a href="#" class="pagination-dots">...</a></li>
+//                     `;
+//                 }
+//             }
 
-            paginationContainer.innerHTML += `
-                <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}">&raquo;</a></li>
-            `;
+//             paginationContainer.innerHTML += `
+//                 <li><a href="#" class="pagination-arrow ${currentPage === pageCount ? 'disabled' : ''}">&raquo;</a></li>
+//             `;
 
-            // Show first page of results
-            matchingRows.forEach((row, index) => {
-                if (index < rowsPerPage) {
-                    row.style.display = '';
-                }
-            });
+//             // Show first page of results
+//             matchingRows.forEach((row, index) => {
+//                 if (index < rowsPerPage) {
+//                     row.style.display = '';
+//                 }
+//             });
 
-            // Add click events to pagination
-            const paginationLinks = paginationContainer.querySelectorAll('a');
-            paginationLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (link.classList.contains('disabled')) return;
+//             // Add click events to pagination
+//             const paginationLinks = paginationContainer.querySelectorAll('a');
+//             paginationLinks.forEach(link => {
+//                 link.addEventListener('click', (e) => {
+//                     e.preventDefault();
+//                     if (link.classList.contains('disabled')) return;
 
-                    if (link.classList.contains('pagination-arrow')) {
-                        if (link.textContent === '«') {
-                            if (currentPage > 1) currentPage--;
-                        } else {
-                            if (currentPage < pageCount) currentPage++;
-                        }
-                    } else if (!link.classList.contains('pagination-dots')) {
-                        currentPage = parseInt(link.textContent);
-                    }
+//                     if (link.classList.contains('pagination-arrow')) {
+//                         if (link.textContent === '«') {
+//                             if (currentPage > 1) currentPage--;
+//                         } else {
+//                             if (currentPage < pageCount) currentPage++;
+//                         }
+//                     } else if (!link.classList.contains('pagination-dots')) {
+//                         currentPage = parseInt(link.textContent);
+//                     }
 
-                    // Update visible rows
-                    matchingRows.forEach((row, index) => {
-                        if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
+//                     // Update visible rows
+//                     matchingRows.forEach((row, index) => {
+//                         if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
+//                             row.style.display = '';
+//                         } else {
+//                             row.style.display = 'none';
+//                         }
+//                     });
 
-                    // Update active state
-                    paginationLinks.forEach(link => link.classList.remove('active'));
-                    if (!link.classList.contains('pagination-arrow')) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        } else {
-            paginationContainer.style.display = 'none';
-        }
-    }
+//                     // Update active state
+//                     paginationLinks.forEach(link => link.classList.remove('active'));
+//                     if (!link.classList.contains('pagination-arrow')) {
+//                         link.classList.add('active');
+//                     }
+//                 });
+//             });
+//         } else {
+//             paginationContainer.style.display = 'none';
+//         }
+//     }
 
-    searchInput.addEventListener('keyup', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        let matchingRows = [];
+//     searchInput.addEventListener('keyup', function() {
+//         const searchTerm = this.value.toLowerCase().trim();
+//         let matchingRows = [];
 
-        // Remove existing "No results" row if it exists
-        const existingNoResults = tbody.querySelector('tr[data-no-results]');
-        if (existingNoResults) {
-            existingNoResults.remove();
-        }
+//         // Remove existing "No results" row if it exists
+//         const existingNoResults = tbody.querySelector('tr[data-no-results]');
+//         if (existingNoResults) {
+//             existingNoResults.remove();
+//         }
 
-        // Search in each row
-        Array.from(rows).forEach(row => {
-            // Store original cell contents if not already stored
-            if (!row.hasAttribute('data-original')) {
-                const originalContent = {};
-                row.querySelectorAll('td').forEach((td, index) => {
-                    // Skip checkbox column and action column
-                    if (index !== 0 && !td.querySelector('button') && !td.querySelector('i')) {
-                        originalContent[index] = td.innerHTML;
-                    }
-                });
-                row.setAttribute('data-original', JSON.stringify(originalContent));
-            }
+//         // Search in each row
+//         Array.from(rows).forEach(row => {
+//             // Store original cell contents if not already stored
+//             if (!row.hasAttribute('data-original')) {
+//                 const originalContent = {};
+//                 row.querySelectorAll('td').forEach((td, index) => {
+//                     // Skip checkbox column and action column
+//                     if (index !== 0 && !td.querySelector('button') && !td.querySelector('i')) {
+//                         originalContent[index] = td.innerHTML;
+//                     }
+//                 });
+//                 row.setAttribute('data-original', JSON.stringify(originalContent));
+//             }
 
-            // Get original content
-            const originalContent = JSON.parse(row.getAttribute('data-original'));
-            let found = false;
+//             // Get original content
+//             const originalContent = JSON.parse(row.getAttribute('data-original'));
+//             let found = false;
 
-            // Check each cell and highlight if match found
-            row.querySelectorAll('td').forEach((td, index) => {
-                // Skip checkbox column and action column
-                if (index !== 0 && !td.querySelector('button') && !td.querySelector('i')) {
-                    const originalText = originalContent[index];
-                    if (originalText && originalText.toLowerCase().includes(searchTerm)) {
-                        found = true;
-                        if (searchTerm) {
-                            td.innerHTML = highlightText(originalText, searchTerm);
-                        } else {
-                            td.innerHTML = originalText;
-                        }
-                    } else if (!searchTerm && originalText) {
-                        td.innerHTML = originalText;
-                    }
-                }
-            });
+//             // Check each cell and highlight if match found
+//             row.querySelectorAll('td').forEach((td, index) => {
+//                 // Skip checkbox column and action column
+//                 if (index !== 0 && !td.querySelector('button') && !td.querySelector('i')) {
+//                     const originalText = originalContent[index];
+//                     if (originalText && originalText.toLowerCase().includes(searchTerm)) {
+//                         found = true;
+//                         if (searchTerm) {
+//                             td.innerHTML = highlightText(originalText, searchTerm);
+//                         } else {
+//                             td.innerHTML = originalText;
+//                         }
+//                     } else if (!searchTerm && originalText) {
+//                         td.innerHTML = originalText;
+//                     }
+//                 }
+//             });
 
-            if (found) {
-                matchingRows.push(row);
-            }
-        });
+//             if (found) {
+//                 matchingRows.push(row);
+//             }
+//         });
 
-        // Show "No results" message if no matches found and there's a search term
-        if (matchingRows.length === 0 && searchTerm !== '') {
-            noResultsRow.setAttribute('data-no-results', 'true');
-            tbody.appendChild(noResultsRow);
-        }
+//         // Show "No results" message if no matches found and there's a search term
+//         if (matchingRows.length === 0 && searchTerm !== '') {
+//             noResultsRow.setAttribute('data-no-results', 'true');
+//             tbody.appendChild(noResultsRow);
+//         }
 
-        // Update pagination with matching rows
-        updatePaginationForSearch(matchingRows);
-    });
-}
+//         // Update pagination with matching rows
+//         updatePaginationForSearch(matchingRows);
+//     });
+// }
 
-// Add rows per page change handler
-document.querySelector('.rows-per-page').addEventListener('change', function() {
-    initializePagination();
-});
+// // Add rows per page change handler
+// document.querySelector('.rows-per-page').addEventListener('change', function() {
+//     initializePagination();
+// });
 
-// Make sure search and pagination are initialized when document loads
-document.addEventListener('DOMContentLoaded', function() {
-    initializeSearch();
-    initializePagination();
-});
+// // Make sure search and pagination are initialized when document loads
+// document.addEventListener('DOMContentLoaded', function() {
+//     initializeSearch();
+//     initializePagination();
+// });

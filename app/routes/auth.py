@@ -23,7 +23,7 @@ auth_bp = Blueprint('auth', __name__)
 
 # ROuting Login Page
 
-@auth_bp.route('/', methods=['GET'])
+@auth_bp.route('/login', methods=['GET'])
 def login_page():
     lang = session.get('lang', 'id')  # Default to Indonesian
     return render_template('login.html', site_key=SITE_KEY, lang=lang, translations=translations[lang])

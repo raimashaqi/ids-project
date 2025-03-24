@@ -14,8 +14,8 @@ from app.routes.auth import SITE_KEY, SECRET_KEY
 
 # Initialize Midtrans Snap
 snap = midtransclient.Snap(
-    is_production=False,  # Set to True for production
-    server_key='SB-Mid-server-v1L3Qo-dsj00YheU0yE_yJj0'  # Replace with your server key
+    is_production=False,  
+    server_key='SB-Mid-server-v1L3Qo-dsj00YheU0yE_yJj0'  
 )
 
 main_bp = Blueprint('main', __name__,

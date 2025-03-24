@@ -92,16 +92,10 @@
                 <div class="content-area">
                     <div class="search-container mb-4">
                         <div class="pagination-container d-flex justify-content-between align-items-center">
-                            <div class="rows-section">
-                                <label for="rows">Tampilkan:</label>
-                                <select class="rows-per-page" id="rows">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            <button class="import">Import Payload</button>
+                        
+                            <button class="import">Import Payload
+                                <i class="fa-solid fa-upload"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -121,9 +115,9 @@
                                 {% for payload in payloads %}
                                 <tr data-payload-id="{{ payload.id }}" class="text-center">
                                     <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                                    <td class="id-column">{{ payload.id }}</td>
-                                    <td data-label="Nama Payload">{{ payload.nama_payload }}</td>
-                                    <td data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
+                                    <td class="id-column text-center">{{ payload.id }}</td>
+                                    <td class="text-center" data-label="Nama Payload">{{ payload.nama_payload }}</td>
+                                    <td class="text-center" data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
                                     <td class="d-flex justify-content-center align-item-center gap-2 text-center" >
                                         <button class="btn text-info btn-link" onclick="viewPayload('{{ payload.id }}', '{{ payload.nama_payload }}') ">
                                             <i class="fas fa-eye text-center"></i>
@@ -150,9 +144,10 @@
 
             <!-- Import Modal -->
             <div class="modal" id="importModal">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered import-modal">
                     <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
                         <div class="modal-header d-flex justify-content-between align-items-center">
+                            
                             <h2 class="modal-title">Unggah File</h2>
                             <button type="button" class="close close-modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -191,7 +186,7 @@
 
             <!-- Add Modal for Viewing Payload Content -->
             <div class="modal" id="viewPayloadModal">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-dialog modal-dialog-centered modal-lg payload-modal">
                     <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
                         <div class="modal-header d-flex justify-content-between align-items-center">
                             <h2 class="modal-title">Payload Content</h2>
