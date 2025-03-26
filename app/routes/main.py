@@ -79,9 +79,19 @@ def view_payloads():
 def delete_payload(id):
     payload = Payload.query.get(id)
     if payload:
+       
+        payload_dir = os.path.join('app', 'static', 'payload')
+        for ext in ['txt', 'csv', 'xlsx']:
+            file_path = os.path.join(payload_dir, f"{payload.nama_payload}.{ext}")
+            if os.path.exists(file_path):
+                os.remove(file_path)  
+
+        
         db.session.delete(payload)
         db.session.commit()
+        
         return jsonify(success=True)
+    
     return jsonify(success=False, message='Payload not found')
 
 @main_bp.route('/account_settings')
@@ -104,7 +114,7 @@ def create_payment():
             return jsonify({'success': False, 'message': 'Please complete the reCAPTCHA verification'}), 400
             
         verify_response = requests.post(url=f'https://www.google.com/recaptcha/api/siteverify?secret={SECRET_KEY}&response={secret_response}').json()
-        
+
         if not verify_response.get('success'):
             return jsonify({'success': False, 'message': 'reCAPTCHA verification failed. Please try again.'}), 400
 

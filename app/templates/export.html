@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../static/css/dashboard.css">
     <link rel="stylesheet" href="../static/css/export.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body data-page="export">
     <div class="wrapper d-flex">
@@ -428,9 +429,17 @@ function closeRangeModal() {
     const modal = document.getElementById('rangeModal');
     if (modal) {
         modal.classList.remove('show');
-    }
+    }s
 }
     </script>
    
+    <script>
+  function reloadPage() {
+        location.reload(); 
+    }
+
+    
+    setInterval(reloadPage, 2000);
+    </script>
 </body>
 </html>
