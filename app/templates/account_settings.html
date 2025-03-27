@@ -4,97 +4,182 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pengaturan Akun</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="../static/css/account_settings.css" />
   </head>
   <body>
     <!-- Logo di luar card -->
     <div class="logo-container">
-      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo YukMarii" class="logo" />
+      <img
+        src="{{ url_for('static', filename='img/logo.png') }}"
+        alt="Logo YukMarii"
+        class="logo"
+      />
     </div>
 
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-7 col-lg-5">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="title">Pengaturan Akun</h3>
+      <div
+        class="protected-content {% if not serial_active %}disabled{% endif %}"
+      >
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="card">
+              <div class="card-body">
+                <h3 class="title">Pengaturan Akun</h3>
 
-              <!-- Form utama (Email & Password) -->
-              <form method="POST" action="{{ url_for('auth.account_settings') }}">
-                <!-- Informasi Email -->
-                <div class="row align-items-center">
-                  <div class="col-md-6">
-                    <p>Hallo, <span id="userEmail" class="fw-bold">{{ user_email }}</span></p>
-                  </div>
-                  <div class="col-md-6 text-end">
-                    <span id="changeEmail" class="change-email" data-bs-toggle="modal" data-bs-target="#emailModal">Ubah Email</span>
-                  </div>
-                </div>
-
-                <!-- Input Email (Hidden, untuk menyimpan perubahan dari modal) -->
-                <input type="hidden" name="newEmail" id="hiddenNewEmail" value="{{ user_email }}">
-
-                <!-- Form Ganti Password -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="newPassword">Kata Sandi Baru:</label>
-                    <div class="password-input-container">
-                      <input type="password" name="newPassword" id="newPassword" class="form-control input-password" required />
-                      <span class="password-toggle" onclick="togglePassword('newPassword')">
-                        <i class="fas fa-eye"></i>
-                      </span>
+                <!-- Form utama (Email & Password) -->
+                <form
+                  method="POST"
+                  action="{{ url_for('auth.account_settings') }}"
+                >
+                  <!-- Informasi Email -->
+                  <div class="row align-items-center">
+                    <div class="col-md-6">
+                      <p>
+                        Hallo,
+                        <span id="userEmail" class="fw-bold"
+                          >{{ user_email }}</span
+                        >
+                      </p>
                     </div>
-                    <div id="newPasswordError" class="text-danger mt-1"></div>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="currentPassword">Kata Sandi Lama:</label>
-                    <div class="password-input-container">
-                      <input type="password" name="currentPassword" id="currentPassword" class="form-control input-password" required />
-                      <span class="password-toggle" onclick="togglePassword('currentPassword')">
-                        <i class="fas fa-eye"></i>
-                      </span>
+                    <div class="col-md-6 text-end">
+                      <span
+                        id="changeEmail"
+                        class="change-email"
+                        data-bs-toggle="modal"
+                        data-bs-target="#emailModal"
+                        >Ubah Email</span
+                      >
                     </div>
-                    <div id="passwordError" class="text-danger mt-1"></div>
                   </div>
+
+                  <!-- Input Email (Hidden, untuk menyimpan perubahan dari modal) -->
+                  <input
+                    type="hidden"
+                    name="newEmail"
+                    id="hiddenNewEmail"
+                    value="{{ user_email }}"
+                  />
+
+                  <!-- Form Ganti Password -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="newPassword">Kata Sandi Baru:</label>
+                      <div class="password-input-container">
+                        <input
+                          type="password"
+                          name="newPassword"
+                          id="newPassword"
+                          class="form-control input-password"
+                          required
+                        />
+                        <span
+                          class="password-toggle"
+                          onclick="togglePassword('newPassword')"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </span>
+                      </div>
+                      <div id="newPasswordError" class="text-danger mt-1"></div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="currentPassword">Kata Sandi Lama:</label>
+                      <div class="password-input-container">
+                        <input
+                          type="password"
+                          name="currentPassword"
+                          id="currentPassword"
+                          class="form-control input-password"
+                          required
+                        />
+                        <span
+                          class="password-toggle"
+                          onclick="togglePassword('currentPassword')"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </span>
+                      </div>
+                      <div id="passwordError" class="text-danger mt-1"></div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block reset-button mt-3"
+                  >
+                    Simpan Perubahan
+                  </button>
+                </form>
+
+                <div class="d-flex justify-content-end mt-2">
+                  <a href="{{ url_for('main.dashboard') }}" class="back-link">
+                    <i class="fa-solid fa-chevron-left"></i> Kembali
+                  </a>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-block reset-button mt-3">Simpan Perubahan</button>
-              </form>
-
-              <div class="d-flex justify-content-end mt-2">
-                <a href="{{ url_for('main.dashboard') }}" class="back-link">
-                  <i class="fa-solid fa-chevron-left"></i> Kembali
-                </a>
               </div>
             </div>
-          </div>
 
-          <p class="copyright text-center mt-3">
-            &copy; 2025 PT. Yuk Mari Proje Indonesia
-          </p>
+            <p class="copyright text-center mt-3">
+              &copy; 2025 PT. Yuk Mari Proje Indonesia
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Ganti Email -->
-    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="emailModal"
+      tabindex="-1"
+      aria-labelledby="emailModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title text-black">Ganti Email</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
-            <label for="newEmail" class="form-label text-black">Email Baru:</label>
-            <input type="email" id="newEmail" class="form-control" value="{{ user_email }}" />
+            <label for="newEmail" class="form-label text-black"
+              >Email Baru:</label
+            >
+            <input
+              type="email"
+              id="newEmail"
+              class="form-control"
+              value="{{ user_email }}"
+            />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="button" id="saveEmail" class="btn btn-primary">Simpan</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button type="button" id="saveEmail" class="btn btn-primary">
+              Simpan
+            </button>
           </div>
         </div>
       </div>
@@ -102,45 +187,63 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("featuresActivated") !== "true") {
+          // Disable form elements
+          document.querySelectorAll("input, button, select").forEach((el) => {
+            if (!el.classList.contains("back-link")) {
+              el.disabled = true;
+            }
+          });
+
+          // Disable email change link
+          document.getElementById("changeEmail").style.pointerEvents = "none";
+          document.getElementById("changeEmail").style.opacity = "0.6";
+        }
+      });
+    </script>
+
     <script>
       $(document).ready(function () {
         let originalEmail = $("#userEmail").text(); // Simpan email awal saat halaman dimuat
-      
+
         // Saat tombol "Save" di modal email diklik
         $("#saveEmail").click(function () {
           let newEmail = $("#newEmail").val().trim();
-      
+
           // Jika email berubah, simpan ke input hidden
           if (newEmail !== originalEmail && newEmail !== "") {
             $("#hiddenNewEmail").val(newEmail);
             $("#userEmail").text(newEmail); // Update tampilan email
             originalEmail = newEmail; // Update email awal
           }
-      
+
           $("#emailModal").modal("hide");
         });
-      
+
         // Validasi sebelum submit
         $(".reset-button").click(function (e) {
           e.preventDefault();
           let currentPassword = $("#currentPassword").val().trim();
           let newPassword = $("#newPassword").val().trim();
           let newEmail = $("#hiddenNewEmail").val().trim();
-      
+
           // Reset pesan error
           $("#passwordError").text("");
           $("#newPasswordError").text("");
-      
+
           // Periksa apakah ada perubahan yang dilakukan
           let isEmailChanged = newEmail !== "" && newEmail !== originalEmail;
           let isPasswordChanged = newPassword !== "" && currentPassword !== "";
-      
+
           // Jika tidak ada perubahan, munculkan alert dan hentikan proses
           if (!isEmailChanged && !isPasswordChanged) {
             alert("Tidak ada perubahan yang dilakukan.");
             return;
           }
-      
+
           // Validasi perubahan password jika diisi
           if (isPasswordChanged) {
             if (currentPassword === "") {
@@ -148,63 +251,63 @@
               return;
             }
             if (newPassword.length < 8) {
-              $("#newPasswordError").text("Password baru harus minimal 8 karakter!");
+              $("#newPasswordError").text(
+                "Password baru harus minimal 8 karakter!"
+              );
               return;
             }
           }
-      
+
           // Jika email tidak berubah, tetap kirimkan email lama ke backend
           if (!isEmailChanged) {
             $("#hiddenNewEmail").val(originalEmail);
           }
-      
+
           // Jika valid, tampilkan alert berhasil dan submit form
           alert("Perubahan berhasil disimpan!");
           $("form").submit();
         });
       });
-      
     </script>
 
     <script>
-    function togglePassword(inputId) {
-      const input = document.getElementById(inputId);
-      const icon = input.parentElement.querySelector('.password-toggle i');
-      
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        input.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
+      function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = input.parentElement.querySelector(".password-toggle i");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          input.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
       }
-    }
     </script>
 
     <style>
-    .password-input-container {
-      position: relative;
-    }
+      .password-input-container {
+        position: relative;
+      }
 
-    .password-toggle {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #666;
-    }
+      .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+      }
 
-    .password-toggle:hover {
-      color: #333;
-    }
+      .password-toggle:hover {
+        color: #333;
+      }
 
-    .input-password {
-      padding-right: 35px;
-    }
+      .input-password {
+        padding-right: 35px;
+      }
     </style>
   </body>
 </html>
-

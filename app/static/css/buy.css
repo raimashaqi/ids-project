@@ -683,3 +683,112 @@ nav {
         justify-content: center;
     }
 }
+
+/* Serial Generator Modal Styles */
+.serial-display {
+    font-family: monospace;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 15px;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Disabled state for other pages */
+.disabled-feature {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.disabled-feature::after {
+    content: "Please enter a valid serial number in Buy section";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+#generateSerialBtn {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+#generateSerialBtn:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Disabled state for protected features */
+.protected-content {
+    position: relative;
+}
+
+.protected-content::before {
+    content: "Please purchase and enter a valid serial number to unlock all features";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.protected-content.active::before {
+    display: none;
+}
+
+/* Improved disabled state */
+.protected-content.disabled {
+    position: relative;
+    pointer-events: none;
+}
+
+.protected-content.disabled::after {
+    content: "Please purchase and enter a valid serial number to unlock all features";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+.protected-content.disabled button,
+.protected-content.disabled input,
+.protected-content.disabled .btn-link {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}

@@ -67,69 +67,67 @@
         </div>
 
         <!-- Main Content -->
-            <div class="main-content flex-grow-1">
-                <div class="container-fluid px-4">
-                    <!-- <div class="top-bar row align-items-center mb-4">
-                        <div class="col">
-                            <div class="search-box">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <input type="text" class="form-control" placeholder="Cari deteksi">
-                            </div>
+        <div class="main-content flex-grow-1">
+            <div class="container-fluid px-4">
+                <div class="content-area d-flex justify-content-between align-items-center">
+                    <div class="container mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="purchase-title mb-0">Kode Pembelian</h2>
+                            <button type="button" class="btn btn-outline-warning" id="guideButton">
+                                <i class="fas fa-crosshairs me-2"></i>
+                                Panduan Instalasi
+                            </button>
                         </div>
-                        <div class="col-auto">
-                            <div class="notification" role="button" title="Notifications">
-                                <i class="fa-regular fa-bell"></i>
-                                <span class="badge" style="display: none;">0</span>
+                        <form id="buyForm">
+                            <div class="mb-3">
+                                <label for="purchaseCode" class="form-label">Masukkan Kode Pembelian</label>
+                                <input type="text" class="form-control" id="purchaseCode" placeholder="Masukkan kode pembelian Anda">
                             </div>
-                        </div>
-                        <div class="notification-dropdown" style="display: none;">
-                            <div class="notification-items">
-                                <div class="notification-item">
-                                    <div class="notification-content">
-                                        <p class="notification-title">Payload diunggah</p>
-                                        <p class="notification-text">Payload baru telah diunggah dengan 256 baris</p>
-                                        <p class="notification-time">4 hari yang lalu</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="read-all-notifications">Tandai semua sebagai telah dibaca</button>
-                        </div>
-                    </div> -->
-    
-                    <!-- Content Area -->
-                    <div class="content-area d-flex justify-content-between align-items-center">
-                        <div class="container mt-5">
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h2 class="purchase-title mb-0">Kode Pembelian</h2>
-                                <button type="button" class="btn btn-outline-warning" id="guideButton">
-                                    <i class="fas fa-crosshairs me-2"></i>
-                                    Panduan Instalasi
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary" id="beliBtn">
+                                    <i class="fa-solid fa-shop me-2"></i> Beli
+                                </button>
+                                <button type="button" class="btn btn-primary" id="checkoutBtn">
+                                    <i class="fas fa-shopping-cart me-2"></i> Checkout
+                                </button>
+                                <button type="button" class="btn btn-primary" id="generateSerialBtn">
+                                    <i class="fas fa-key me-2"></i> Generate
                                 </button>
                             </div>
-                            <form id="buyForm">
-                                <div class="mb-3">
-                                    <label for="purchaseCode" class="form-label">Masukkan Kode Pembelian</label>
-                                    <input type="text" class="form-control" id="purchaseCode" placeholder="Masukkan kode pembelian Anda">
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa-solid fa-shop me-2"></i> Beli
-                                    </button>
-                                    <button type="button" class="btn btn-primary" id="checkoutBtn">
-                                        <i class="fas fa-shopping-cart me-2"></i>Checkout
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Serial Generator Modal -->
+    <div class="modal fade" id="serialModal" tabindex="-1" aria-labelledby="serialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serialModalLabel">Generator Nomor Seri</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="serial-display" id="serialNumber">
+                        Klik Generate untuk nomor seri
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="generateBtn">GENERATE</button>
+                    <button type="button" class="btn btn-primary" id="copyBtn">SALIN</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/importt.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/serial.js') }}"></script>
     <script src="{{ url_for('static', filename='js/buy.js') }}"></script>
     <script>
         // Initialize clock on page load
