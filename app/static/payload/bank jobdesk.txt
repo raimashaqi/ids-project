@@ -1,0 +1,21 @@
+1. FE: Hilangkan kolom Action di file excel DONE
+2. FE: Ganti bahasa jadi bahasa indonesia kecuali tabel DONE
+3. BE: Fungsi hapus terkoneksi ke databse
+4. FE: Revisi asc/ desc severity
+5. FE: Revisi Range Date
+6. BE: Ketika terdeteksi threats baru, muncul notifikasi tambahan
+7. BE: Upload file payload tanpa harus refresh
+8. BE: Ketika upload payload, file ikut terupload ke server
+9. BE: Buat mekanisme session untuk menampilkan beberapa fitur menu saja (menyembunyikan tombol delete dilogs, tabel payload di menu payload, dan fungsi import payload dimatikan)
+10. FE: Tambah menu sidebar beli dengan icon keranjang dibawah menu payload DONE
+11. FE: Isi konten di menu beli berisi field kosong dengan label kode pembelian dan tombol beli DONE
+12. BE: Di atas field memasukan kode pembelian, ada satu tombol checkout yang memunculkan payment gateway
+13. BE: Proses checkout setelah payment gateway berhasil dan ngirim ke email
+14. FE: Tambahkan menu navigasi panduan instalasi perangkat IDS pake icon shooting  berbentuk popup box
+15. FE: Isi konten dari menu navigasi adalah konten deskripsi panduan
+16. FE: Tambah tombol generate PDF untuk generate konten deskripsi panduan
+17. BE: Tambah Re-Captcha Google di form login
+18. FE: Di form login email, bagian placholder (Enter your email/No. Handphone) DONE
+19. BE: Mekanisme OTP ketika login pakai nomor handphone
+20. FE: Ketika logout, muncul konfirmasi ya/tidak DONE
+21. FE: Tambah Icon mata di setting pergantian password DONE

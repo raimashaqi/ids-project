@@ -2856,3 +2856,14 @@ INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 22:33:06] "[36mGET /static/js/script.j
 [2025-03-21 12:06:37.236587] HIGH - SST Injection Attack Detected!
 [2025-03-21 12:06:45.313376] MEDIUM - XSS Injection Attack Detected!
 [2025-03-24 15:05:43.672934] LOG DELETED - ID: 20
+[2025-03-24 17:48:31.310128] MEDIUM - XSS Injection Attack Detected!
+[2025-03-24 17:50:47.751940] LOG DELETED - ID: 21
+[2025-03-24 17:50:51.665943] LOG DELETED - ID: 22
+[2025-03-24 17:50:54.103599] LOG DELETED - ID: 14
+[2025-03-24 17:51:01.240755] LOG DELETED - ID: 24
+[2025-03-26 13:33:00.321747] LOW - Unknown Attack Detected!
+[2025-03-26 13:33:00.661664] LOW - Unknown Attack Detected!
+[2025-03-26 13:34:43.260245] MEDIUM - XSS Injection Attack Detected!
+[2025-03-26 13:45:04.470971] LOW - Unknown Attack Detected!
+[2025-03-26 13:45:25.609378] MEDIUM - XSS Injection Attack Detected!
+[2025-03-26 13:46:11.492127] MEDIUM - XSS Injection Attack Detected!
