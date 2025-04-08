@@ -1,220 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payload - YukMari Project</title>
     <title>Import Logs - YukMari Project</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/dashboard.css">
-    <link rel="stylesheet" href="../static/css/export.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+    <link rel="stylesheet" href="../static/css/export.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-</head>
+  </head>
 
-<body data-page="import">
+  <body data-page="import">
     <div class="wrapper d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar position-fixed" id="sidebar">
-            <div class="logo">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Yukmari Logo" class="img-fluid">
-                    <button class="menu-toggle hamburger d-md border-0">
-                        <i class="fas fa-bars"></i>
+      <!-- Sidebar -->
+      <div class="sidebar position-fixed" id="sidebar">
+        <div class="logo">
+          <div class="d-flex align-items-center justify-content-between w-100">
+            <img
+              src="{{ url_for('static', filename='img/logo.png') }}"
+              alt="Yukmari Logo"
+              class="img-fluid"
+            />
+            <button class="menu-toggle hamburger d-md border-0">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          <div id="clock" class="text-center mt-3 text-white"></div>
+        </div>
+        <nav>
+          <div class="nav flex-column">
+            <a
+              href="{{ url_for('main.dashboard') }}"
+              class="nav-item"
+              id="dashboard"
+            >
+              <i class="fas fa-home"></i>
+              <span>Dashboard</span>
+            </a>
+            <a href="{{ url_for('main.export') }}" class="nav-item" id="export">
+              <i class="fas fa-file-export"></i>
+              <span>Logs</span>
+            </a>
+            <a href="#" class="nav-item active" id="import">
+              <i class="fas fa-file-import"></i>
+              <span>Payload</span>
+            </a>
+            <a href="{{ url_for('main.buy') }}" class="nav-item" id="buy">
+              <i class="fa-solid fa-basket-shopping"></i>
+              <span>Buy</span>
+            </a>
+            <a
+              href="{{ url_for('main.account_settings') }}"
+              class="nav-item setting"
+              id="setting"
+            >
+              <i class="fas fa-gear"></i>
+              <span>Setting</span>
+            </a>
+            <a
+              href="{{ url_for('auth.logout') }}"
+              class="nav-item logout"
+              id="logout"
+              onclick="confirmLogout(event)"
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content flex-grow-1">
+        <div class="container-fluid px-4">
+          <div class="top-bar row align-items-center mb-4">
+            <div class="col">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Cari payload..."
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="notification" role="button" title="Notifications">
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge" style="display: none">0</span>
+              </div>
+            </div>
+            <div class="notification-dropdown" style="display: none">
+              <div class="notification-items">
+                <div class="notification-item">
+                  <div class="notification-content">
+                    <p class="notification-title">Payload diunggah</p>
+                    <p class="notification-text">
+                      Payload baru telah diunggah dengan 256 baris
+                    </p>
+                    <p class="notification-time">4 hari yang lalu</p>
+                  </div>
+                </div>
+              </div>
+              <button class="read-all-notifications">
+                Tandai semua sebagai telah dibaca
+              </button>
+            </div>
+          </div>
+
+          <!-- Content Area -->
+          <div class="content-area">
+            <div
+              class="protected-content {% if not serial_active %}disabled{% endif %}"
+            >
+              <div class="search-container mb-4">
+                <div
+                  class="pagination-container d-flex justify-content-between align-items-center"
+                >
+                  <button class="import">
+                    Import Payload
+                    <i class="fa-solid fa-upload"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Table Section -->
+              <div class="table-responsive">
+                <table class="table custom-table" id="attackLogsTable">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-column">
+                        <input
+                          type="checkbox"
+                          id="select"
+                          class="form-check-input"
+                        />
+                      </th>
+                      <th class="id-column">ID</th>
+                      <th class="text-center">Nama Payload</th>
+                      <th class="text-center">Jumlah Baris</th>
+                      <th class="text-center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for payload in payloads %}
+                    <tr data-payload-id="{{ payload.id }}" class="text-center">
+                      <td class="checkbox-column">
+                        <input type="checkbox" class="form-check-input" />
+                      </td>
+                      <td class="id-column text-center">{{ payload.id }}</td>
+                      <td class="text-center" data-label="Nama Payload">
+                        {{ payload.nama_payload }}
+                      </td>
+                      <td class="text-center" data-label="Jumlah Baris">
+                        {{ payload.jumlah_baris }}
+                      </td>
+                      <td
+                        class="d-flex justify-content-center align-item-center gap-2 text-center"
+                      >
+                        <button
+                          class="btn text-info btn-link"
+                          onclick="viewPayload('{{ payload.id }}', '{{ payload.nama_payload }}') "
+                        >
+                          <i class="fas fa-eye text-center"></i>
+                        </button>
+                        <i
+                          class="fas fa-trash-alt btn text-danger btn-link text-center"
+                          onclick="deletePayload('{{ payload.id }}')"
+                        ></i>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+              <ul class="pagination">
+                <li><a href="#" class="pagination-arrow">&laquo;</a></li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#" class="pagination-dots">...</a></li>
+                <li><a href="#">10</a></li>
+                <li><a href="#" class="pagination-arrow">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Import Modal -->
+        <div class="modal" id="importModal">
+          <div class="modal-dialog modal-dialog-centered import-modal">
+            <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
+              <div
+                class="modal-header d-flex justify-content-between align-items-center"
+              >
+                <h2 class="modal-title">Unggah File</h2>
+                <button
+                  type="button"
+                  class="close close-modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="uploadForm">
+                  <div class="mb-3">
+                    <label for="nama-payload" class="form-label"
+                      >Nama Payload</label
+                    >
+                    <input
+                      type="text"
+                      id="nama-payload"
+                      class="form-control"
+                      placeholder="Masukkan Nama Payload"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="severity" class="form-label">Keparahan</label>
+                    <select id="severity" class="form-select">
+                      <option value="low">Rendah</option>
+                      <option value="medium">Sedang</option>
+                      <option value="high">Tinggi</option>
+                    </select>
+                  </div>
+                  <div
+                    class="upload-area border-2 border-dashed border-gray-300 p-4 text-center rounded-lg mb-4"
+                  >
+                    <div class="mb-3" id="uploadIconContainer">
+                      <i
+                        class="fas fa-cloud-upload-alt text-4xl text-gray-500"
+                        id="uploadIcon"
+                      ></i>
+                    </div>
+                    <p class="text-gray-600 mb-2">
+                      Pilih file atau tarik & lepas di sini
+                    </p>
+                    <p class="file-types text-gray-400 text-sm mb-4">
+                      Format yang diterima: .txt, .csv
+                    </p>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      accept=".txt,.csv"
+                      style="display: none"
+                    />
+                    <button
+                      type="button"
+                      class="browse-btn btn btn-warning"
+                      onclick="document.getElementById('fileInput').click()"
+                    >
+                      Browse File
                     </button>
-                </div>
-                <div id="clock" class="text-center mt-3 text-white"></div>
+                    <p id="fileName" class="mt-2 text-gray-700"></p>
+                  </div>
+                  <button
+                    type="button"
+                    id="submitUpload"
+                    class="btn btn-warning w-100"
+                  >
+                    Submit Upload
+                  </button>
+                </form>
+              </div>
             </div>
-            <nav>
-                <div class="nav flex-column">
-                    <a href="{{ url_for('main.dashboard') }}" class="nav-item " id="dashboard">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="{{ url_for('main.export') }}" class="nav-item " id="export">
-                        <i class="fas fa-file-export"></i>
-                        <span>Logs</span>
-                    </a>
-                    <a href="#" class="nav-item active" id="import">
-                        <i class="fas fa-file-import"></i>
-                        <span>Payload</span>
-                    </a>
-                    <a href="{{ url_for('main.buy') }}" class="nav-item" id="buy">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                        <span>Buy</span>
-                    </a>
-                    <a href="{{ url_for('main.account_settings') }}" class="nav-item setting" id="setting">
-                        <i class="fas fa-gear"></i>
-                        <span>Setting</span>
-                    </a>
-                    <a href="{{ url_for('auth.logout') }}" class="nav-item logout" id="logout" onclick="confirmLogout(event)">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </nav>
+          </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content flex-grow-1">
-            <div class="container-fluid px-4">
-                <div class="top-bar row align-items-center mb-4">
-                    <div class="col">
-                        <div class="search-box">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" class="form-control" placeholder="Cari payload..." autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="notification" role="button" title="Notifications">
-                            <i class="fa-regular fa-bell"></i>
-                            <span class="badge" style="display: none;">0</span>
-                        </div>
-                    </div>
-                    <div class="notification-dropdown" style="display: none;">
-                        <div class="notification-items">
-                            <div class="notification-item">
-                                <div class="notification-content">
-                                    <p class="notification-title">Payload diunggah</p>
-                                    <p class="notification-text">Payload baru telah diunggah dengan 256 baris</p>
-                                    <p class="notification-time">4 hari yang lalu</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="read-all-notifications">Tandai semua sebagai telah dibaca</button>
-                    </div>
+        <!-- Add Modal for Viewing Payload Content -->
+        <div class="modal" id="viewPayloadModal">
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg payload-modal"
+          >
+            <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
+              <div
+                class="modal-header d-flex justify-content-between align-items-center"
+              >
+                <h2 class="modal-title">Payload Content</h2>
+                <button
+                  type="button"
+                  class="close close-payload-modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="payload-info mb-3">
+                  <h4 id="payloadName"></h4>
                 </div>
-
-                <!-- Content Area -->
-                <div class="content-area">
-                    <div class="search-container mb-4">
-                        <div class="pagination-container d-flex justify-content-between align-items-center">
-                        
-                            <button class="import">Import Payload
-                                <i class="fa-solid fa-upload"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Table Section -->
-                    <div class="table-responsive">
-                        <table class="table custom-table" id="attackLogsTable">
-                            <thead >
-                                <tr>
-                                    <th class="checkbox-column"><input type="checkbox" id="select" class="form-check-input"></th>
-                                    <th class="id-column">ID</th>
-                                    <th class="text-center">Nama Payload</th>
-                                    <th class="text-center">Jumlah Baris</th>   
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for payload in payloads %}
-                                <tr data-payload-id="{{ payload.id }}" class="text-center">
-                                    <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                                    <td class="id-column text-center">{{ payload.id }}</td>
-                                    <td class="text-center" data-label="Nama Payload">{{ payload.nama_payload }}</td>
-                                    <td class="text-center" data-label="Jumlah Baris">{{ payload.jumlah_baris }}</td>
-                                    <td class="d-flex justify-content-center align-item-center gap-2 text-center" >
-                                        <button class="btn text-info btn-link" onclick="viewPayload('{{ payload.id }}', '{{ payload.nama_payload }}') ">
-                                            <i class="fas fa-eye text-center"></i>
-                                        </button>
-                                        <i class="fas fa-trash-alt btn text-danger btn-link text-center" onclick="deletePayload('{{ payload.id }}')"></i>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <ul class="pagination">
-                        <li><a href="#" class="pagination-arrow">&laquo;</a></li>
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#" class="pagination-dots">...</a></li>
-                        <li><a href="#">10</a></li>
-                        <li><a href="#" class="pagination-arrow">&raquo;</a></li>
-                    </ul>
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered table-striped"
+                    id="payloadContentTable"
+                  >
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Content</th>
+                      </tr>
+                    </thead>
+                    <tbody id="payloadContentBody"></tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-
-            <!-- Import Modal -->
-            <div class="modal" id="importModal">
-                <div class="modal-dialog modal-dialog-centered import-modal">
-                    <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
-                        <div class="modal-header d-flex justify-content-between align-items-center">
-                            
-                            <h2 class="modal-title">Unggah File</h2>
-                            <button type="button" class="close close-modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="uploadForm">
-                                <div class="mb-3">
-                                    <label for="nama-payload" class="form-label">Nama Payload</label>
-                                    <input type="text" id="nama-payload" class="form-control" placeholder="Masukkan Nama Payload">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="severity" class="form-label">Keparahan</label>
-                                    <select id="severity" class="form-select">
-                                        <option value="low">Rendah</option>
-                                        <option value="medium">Sedang</option>
-                                        <option value="high">Tinggi</option>
-                                    </select>
-                                </div>
-                                <div class="upload-area border-2 border-dashed border-gray-300 p-4 text-center rounded-lg mb-4">
-                                    <div class="mb-3" id="uploadIconContainer">
-                                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-500" id="uploadIcon"></i>
-                                    </div>
-                                    <p class="text-gray-600 mb-2">Pilih file atau tarik & lepas di sini</p>
-                                    <p class="file-types text-gray-400 text-sm mb-4">Format yang diterima: .txt, .csv</p>
-                                    <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;">
-                                    <button type="button" class="browse-btn btn btn-warning" onclick="document.getElementById('fileInput').click()">Browse File</button>
-                                    <p id="fileName" class="mt-2 text-gray-700"></p> 
-                                </div>
-                                <button type="button" id="submitUpload" class="btn btn-warning w-100">Submit Upload</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Modal for Viewing Payload Content -->
-            <div class="modal" id="viewPayloadModal">
-                <div class="modal-dialog modal-dialog-centered modal-lg payload-modal">
-                    <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
-                        <div class="modal-header d-flex justify-content-between align-items-center">
-                            <h2 class="modal-title">Payload Content</h2>
-                            <button type="button" class="close close-payload-modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="payload-info mb-3">
-                                <h4 id="payloadName"></h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="payloadContentTable">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Content</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="payloadContentBody">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -222,62 +327,67 @@
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/importt.js') }}"></script>
     <script>
-        const importBtn = document.querySelector('.import');
-        const modal = document.getElementById('importModal');
-        const closeModal = document.querySelector('.close-modal');
+      const importBtn = document.querySelector(".import");
+      const modal = document.getElementById("importModal");
+      const closeModal = document.querySelector(".close-modal");
 
-        importBtn.addEventListener('click', () => {
-            modal.classList.add('show');
-        });
+      importBtn.addEventListener("click", () => {
+        modal.classList.add("show");
+      });
 
-        closeModal.addEventListener('click', () => {
-            modal.classList.remove('show');
-        });
+      closeModal.addEventListener("click", () => {
+        modal.classList.remove("show");
+      });
 
-        // Close modal when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
+      // Close modal when clicking outside
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("show");
+        }
+      });
     </script>
     <script>
-        // Notification functionality
-  const notificationBtn = document.querySelector('.notification');
-  const notificationDropdown = document.querySelector('.notification-dropdown');
-  const badge = document.querySelector('.notification .badge');
-  
-  // Set initial notification count
-  badge.style.display = 'flex';
-  badge.textContent = '3';
+      // Notification functionality
+      const notificationBtn = document.querySelector(".notification");
+      const notificationDropdown = document.querySelector(
+        ".notification-dropdown"
+      );
+      const badge = document.querySelector(".notification .badge");
 
-  notificationBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    notificationDropdown.style.display = notificationDropdown.style.display === 'none' ? 'block' : 'none';
-  });
+      // Set initial notification count
+      badge.style.display = "flex";
+      badge.textContent = "3";
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!notificationDropdown.contains(e.target) && !notificationBtn.contains(e.target)) {
-      notificationDropdown.style.display = 'none';
-    }
-  });
+      notificationBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        notificationDropdown.style.display =
+          notificationDropdown.style.display === "none" ? "block" : "none";
+      });
 
-  // Handle "Read all notifications"
-  const readAllBtn = document.querySelector('.read-all-notifications');
-  readAllBtn.addEventListener('click', function() {
-    badge.style.display = 'none';
-    badge.textContent = '0';
-    notificationDropdown.style.display = 'none';
-  });
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        if (
+          !notificationDropdown.contains(e.target) &&
+          !notificationBtn.contains(e.target)
+        ) {
+          notificationDropdown.style.display = "none";
+        }
+      });
+
+      // Handle "Read all notifications"
+      const readAllBtn = document.querySelector(".read-all-notifications");
+      readAllBtn.addEventListener("click", function () {
+        badge.style.display = "none";
+        badge.textContent = "0";
+        notificationDropdown.style.display = "none";
+      });
     </script>
     <script>
-        // Initialize clock on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateClock();
-            setInterval(updateClock, 1000);
-        });
+      // Initialize clock on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        updateClock();
+        setInterval(updateClock, 1000);
+      });
     </script>
-</body>
-
+  </body>
 </html>
