@@ -18,9 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
   </head>
   <body data-page="export">
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body data-page="export">
+=======
+>>>>>>> eb61e45c361e34e027c20f3d48d7046e7a552a1f
     <div class="wrapper d-flex">
       <!-- Sidebar -->
       <div class="sidebar position-fixed" id="sidebar">
@@ -401,6 +404,7 @@
             icon.classList.toggle("fa-sort-up", ascending);
             icon.classList.toggle("fa-sort-down", !ascending);
           }
+<<<<<<< HEAD
         });
       });
 
@@ -525,4 +529,28 @@ function closeRangeModal() {
     setInterval(reloadPage, 2000);
     </script>
 </body>
+=======
+        });
+      });
+
+      function deleteItem(id) {
+        const response = fetch(`/delete_log/${id}`, {
+          method: "DELETE",
+        });
+        const data = response.json();
+
+        if (data.success) {
+          // Remove the row from the table
+          const row = document.querySelector(`tr[data-id="${id}"]`);
+        }
+      }
+
+      // Initialize clock on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        updateClock();
+        setInterval(updateClock, 1000);
+      });
+    </script>
+  </body>
+>>>>>>> eb61e45c361e34e027c20f3d48d7046e7a552a1f
 </html>

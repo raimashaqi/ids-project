@@ -208,42 +208,42 @@
     <script>
       $(document).ready(function () {
         let originalEmail = $("#userEmail").text(); // Simpan email awal saat halaman dimuat
-      
+
         // Saat tombol "Save" di modal email diklik
         $("#saveEmail").click(function () {
           let newEmail = $("#newEmail").val().trim();
-      
+
           // Jika email berubah, simpan ke input hidden
           if (newEmail !== originalEmail && newEmail !== "") {
             $("#hiddenNewEmail").val(newEmail);
             $("#userEmail").text(newEmail); // Update tampilan email
             originalEmail = newEmail; // Update email awal
           }
-      
+
           $("#emailModal").modal("hide");
         });
-      
+
         // Validasi sebelum submit
         $(".reset-button").click(function (e) {
           e.preventDefault();
           let currentPassword = $("#currentPassword").val().trim();
           let newPassword = $("#newPassword").val().trim();
           let newEmail = $("#hiddenNewEmail").val().trim();
-      
+
           // Reset pesan error
           $("#passwordError").text("");
           $("#newPasswordError").text("");
-      
+
           // Periksa apakah ada perubahan yang dilakukan
           let isEmailChanged = newEmail !== "" && newEmail !== originalEmail;
           let isPasswordChanged = newPassword !== "" && currentPassword !== "";
-      
+
           // Jika tidak ada perubahan, munculkan alert dan hentikan proses
           if (!isEmailChanged && !isPasswordChanged) {
             alert("Tidak ada perubahan yang dilakukan.");
             return;
           }
-      
+
           // Validasi perubahan password jika diisi
           if (isPasswordChanged) {
             if (currentPassword === "") {
@@ -251,22 +251,23 @@
               return;
             }
             if (newPassword.length < 8) {
-              $("#newPasswordError").text("Password baru harus minimal 8 karakter!");
+              $("#newPasswordError").text(
+                "Password baru harus minimal 8 karakter!"
+              );
               return;
             }
           }
-      
+
           // Jika email tidak berubah, tetap kirimkan email lama ke backend
           if (!isEmailChanged) {
             $("#hiddenNewEmail").val(originalEmail);
           }
-      
+
           // Jika valid, tampilkan alert berhasil dan submit form
           alert("Perubahan berhasil disimpan!");
           $("form").submit();
         });
       });
-      
     </script>
 
     <script>
