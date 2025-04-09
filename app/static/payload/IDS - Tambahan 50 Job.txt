@@ -1,0 +1,54 @@
+IDS:
+1. Tambah Fungsi Jam secara Real Time di bagian bawah logo yukmari sidebar
+2. Tambah Icon di tombol Import Payload
+3. Modul requests tambah di requirements
+4. Modul pandas tambah di requirements
+5. Modul midtransclient tambah di requirements
+6. Perbaiki Error "Unknown server host 'None' (11001)") ketika pertama instalasi. File .env hilang / tidak ada.
+7. Tidak ada di README keterangan username dan password yang dapat dicoba
+8. Di halaman login ganti logonya menjadi logo baru "Yuk-Mari IDS"
+9. Di halaman dashboard ganti logonya menjadi logo baru "Yuk-Mari IDS"
+10. Tambah Tombol Forgot Password di halaman Login, tapi arahkan ke Whatsapp
+11. Tambah Box Kecil berisi akun "Username: email, Password: Password" untuk mencoba Demo nya
+12. Tambah Fungsi Kondisi Batasan Login, jika lebih dari 3x salah login, maka IP akan di blok dan tidak muncul form login nya selama 1 jam durasi nya, setelah 1 jam muncul kembali
+13. Tambah Live Chat System di pojok bawah kanan
+14. Tambah tombol Tim Pengembang Aplikasi
+15. Ketika di klik tombol pengembang Aplikasi, Muncul Pop Up box berisi keterangan Tim Pengembang. Disini tambah saja foto raima dan profil raima. Alfiyan tanyain mau dimasukin atau tidak, kalo mau boleh, tidak juga tidak apa apa.
+16. Tambah Tombol bernama Fitur Aplikasi
+17. Ketika Fitur Aplikasi di klik, maka akan muncul informasi Fitur - Fitur yang ada di dalam dashboard admin Apa saja
+18. Tambah Efek CSS Animasi untuk Form Login ketika halaman pertama kali dibuka, seperti efek CSS Fade / Transition
+19. Tambah tombol di halaman dashboard bernama 'Donate / Donasi'
+20. Ketika di klik tombol Donate / Donasi, keluar pop up box midtrans, jadi langsung bisa donasi tanpa harus isi dulu data - data nya seperti di buy
+21. Tambah tombol hubungi kami di halaman login dan dashboard
+22. Ketika di Klik tombol hubungi kami, maka akan redirect ke Whatsapp
+23. Cek kembali, jika ada popupbox memanjang kebawah / nabrak, sesuaikan dan dirapihkan, tidak nabrak tapi bisa di scoll atas bawah jika sekiranya panjang
+24. di Tombol ketika akan checkout di buy, maka ada verifikasi captcha terlebih dahulu seperti pada menu login
+25. Di menu pengaturan Dashboard, tambah input field untuk memasukan data serial number / lisensi number untuk mengaktifkan semua fiturnya
+26. Setelah memasukan data lisensi number, buat kondisi menu yang awalnya di hidden jika belum memasukan serial number, maka otomatis menu terbuka ketika dimasukan serial number
+27. Setelah memasukan data lisensi number pula, muncul 1 tombol untuk melakukan pengunduhan aplikasi Yuk-Mari IDS dalam format ZIP File yang dapat diperoleh dari akun Whatsapp. Jadi diarahkan ke Whatsapp.
+28. Live Chat yang diadmin pastikan muncul juga di halaman dashboard (Posisi Sama)
+29. Tambah Pilih Bahasa dekat tombol lonceng untuk di halaman dashboard (English - Indonesia)
+30. Tambah Pilih Bahasa di halaman Login (English - Indonesia)
+31. IDE KREATIFMU
+32. IDE KREATIFMU
+33. IDE KREATIFMU
+34. IDE KREATIFMU
+35. IDE KREATIFMU
+36. IDE KREATIFMU
+37. IDE KREATIFMU
+38. IDE KREATIFMU
+39. IDE KREATIFMU
+40. IDE KREATIFMU
+41. IDE KREATIFMU
+42. IDE KREATIFMU
+43. IDE KREATIFMU
+44. IDE KREATIFMU
+45. IDE KREATIFMU
+46. IDE KREATIFMU
+47. IDE KREATIFMU
+48. IDE KREATIFMU
+49. IDE KREATIFMU
+50. IDE KREATIFMU
+
+DEADLINE:
+KAMIS, 20 Maret 2025
