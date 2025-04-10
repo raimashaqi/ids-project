@@ -331,9 +331,15 @@
       const modal = document.getElementById("importModal");
       const closeModal = document.querySelector(".close-modal");
 
-      importBtn.addEventListener("click", () => {
-        modal.classList.add("show");
-      });
+      if (importBtn) {
+        importBtn.addEventListener("click", () => {
+          if (localStorage.getItem("featuresActivated") !== "true") {
+            alert("Please activate your serial number first");
+            return;
+          }
+          document.getElementById("importModal").classList.add("show");
+        });
+      }
 
       closeModal.addEventListener("click", () => {
         modal.classList.remove("show");
@@ -388,6 +394,98 @@
         updateClock();
         setInterval(updateClock, 1000);
       });
+    </script>
+    <!-- Add this script at the bottom of your file, before closing </body> tag -->
+    <script>
+      // Initialize feature lock system
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check activation status on page load
+        checkActivationStatus();
+
+        // Disable interactive elements if not activated
+        if (localStorage.getItem("featuresActivated") !== "true") {
+          disablePayloadFeatures();
+        }
+      });
+
+      function checkActivationStatus() {
+        if (localStorage.getItem("featuresActivated") === "true") {
+          enablePayloadFeatures();
+        }
+      }
+
+      function disablePayloadFeatures() {
+        // Disable import button
+        const importBtn = document.querySelector(".import");
+        if (importBtn) {
+          importBtn.disabled = true;
+          importBtn.style.opacity = "0.6";
+          importBtn.style.cursor = "not-allowed";
+        }
+
+        // Disable all delete buttons
+        document.querySelectorAll(".fa-trash-alt").forEach((btn) => {
+          btn.style.pointerEvents = "none";
+          btn.style.opacity = "0.6";
+          btn.style.cursor = "not-allowed";
+        });
+
+        // Disable file input if modal is opened
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput) fileInput.disabled = true;
+
+        const submitUpload = document.getElementById("submitUpload");
+        if (submitUpload) submitUpload.disabled = true;
+      }
+
+      function enablePayloadFeatures() {
+        // Enable import button
+        const importBtn = document.querySelector(".import");
+        if (importBtn) {
+          importBtn.disabled = false;
+          importBtn.style.opacity = "1";
+          importBtn.style.cursor = "pointer";
+        }
+
+        // Enable all delete buttons
+        document.querySelectorAll(".fa-trash-alt").forEach((btn) => {
+          btn.style.pointerEvents = "auto";
+          btn.style.opacity = "1";
+          btn.style.cursor = "pointer";
+        });
+
+        // Enable file input if modal is opened
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput) fileInput.disabled = false;
+
+        const submitUpload = document.getElementById("submitUpload");
+        if (submitUpload) submitUpload.disabled = false;
+      }
+
+      // Modify your existing deletePayload function to check activation
+      function deletePayload(id) {
+        if (localStorage.getItem("featuresActivated") !== "true") {
+          alert("Please activate your serial number first");
+          return;
+        }
+
+        if (confirm("Are you sure you want to delete this payload?")) {
+          // Your existing delete logic here
+          fetch(`/delete-payload/${id}`, {
+            method: "DELETE",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                const row = document.querySelector(
+                  `tr[data-payload-id="${id}"]`
+                );
+                if (row) row.remove();
+                alert("Payload deleted successfully");
+              }
+            });
+        }
+      }
     </script>
   </body>
 </html>

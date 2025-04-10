@@ -302,73 +302,15 @@
       document.addEventListener("DOMContentLoaded", () => {
         const downloadBtn = document.querySelector(".download");
         const dateBtn = document.querySelector(".date");
-        const modalR = document.getElementById("rangeModal");
         const modal = document.getElementById("downloadModal");
+        const modalR = document.getElementById("rangeModal");
         const closeModal = document.querySelector(".close-modal");
         const closeModalR = document.querySelector(".close-modal-range");
+        const exportBtn = document.getElementById("exportExcelBtn");
+        const table = document.getElementById("attackLogsTable");
+        const header = document.getElementById("sortableSeverity");
+        let ascending = true;
 
-        if (localStorage.getItem("featuresActivated") !== "true") {
-          // Disable all interactive elements
-          document
-            .querySelectorAll("#dateRangeBtn, #exportExcelBtn, .btn-link")
-            .forEach((btn) => {
-              btn.disabled = true;
-              btn.style.opacity = "0.6";
-              btn.style.pointerEvents = "none";
-            });
-        }
-
-        // Pastikan elemen ada sebelum menambahkan event listener
-        if (downloadBtn && modal) {
-          downloadBtn.addEventListener("click", () => {
-            modal.classList.add("show");
-          });
-
-          // Tutup modal ketika tombol close diklik
-          if (closeModal) {
-            closeModal.addEventListener("click", () => {
-              modal.classList.remove("show");
-            });
-          }
-
-          // Tutup modal ketika klik di luar modal
-          modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-              modal.classList.remove("show");
-            }
-          });
-        }
-
-        // Pastikan elemen ada sebelum menambahkan event listener untuk range modal
-        if (dateBtn && modalR) {
-          dateBtn.addEventListener("click", () => {
-            modalR.classList.add("show");
-          });
-
-          // Tutup modal range ketika tombol close diklik
-          if (closeModalR) {
-            closeModalR.addEventListener("click", () => {
-              modalR.classList.remove("show");
-            });
-          }
-
-          // Tutup modal range ketika klik di luar modal
-          modalR.addEventListener("click", (e) => {
-            if (e.target === modalR) {
-              modalR.classList.remove("show");
-            }
-          });
-        }
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        let table = document.getElementById("attackLogsTable");
-        let tbody = table.querySelector("tbody");
-        let header = document.getElementById("sortableSeverity");
-
-        let ascending = true; // Default urutan ASC
-
-        // Definisikan urutan tingkat keparahan
         const severityOrder = {
           LOW: 1,
           MEDIUM: 2,
@@ -376,175 +318,145 @@
           CRITICAL: 4,
         };
 
-        header.addEventListener("click", function () {
-          let rows = Array.from(tbody.querySelectorAll("tr"));
-
-          rows.sort((rowA, rowB) => {
-            let cellA = rowA.cells[9].innerText.trim(); // Ambil nilai dari kolom ke-9 (Keparahan)
-            let cellB = rowB.cells[9].innerText.trim();
-
-            let valueA = severityOrder[cellA] || 0; // Jika tidak ditemukan, set default 0
-            let valueB = severityOrder[cellB] || 0;
-
-            return ascending ? valueA - valueB : valueB - valueA;
+        // Feature access control
+        function updateFeatureAccess() {
+          const enabled = localStorage.getItem("featuresActivated") === "true";
+          document.querySelectorAll(".download, .date, .btn-link").forEach(btn => {
+            btn.disabled = !enabled;
+            btn.style.opacity = enabled ? "1" : "0.6";
+            btn.style.pointerEvents = enabled ? "auto" : "none";
           });
+        }
 
-          ascending = !ascending; // Toggle ASC <-> DESC
+        updateFeatureAccess();
 
-          // Hapus isi tabel & tambahkan baris yang sudah diurutkan
-          tbody.innerHTML = "";
-          rows.forEach((row) => tbody.appendChild(row));
-
-          // Update ikon
-          let icon = header.querySelector("i");
-          if (icon) {
-            icon.classList.toggle("fa-sort-up", ascending);
-            icon.classList.toggle("fa-sort-down", !ascending);
+        // Modal controls
+        function setupModalTriggers(btn, modalEl, closeBtn) {
+          if (btn && modalEl) {
+            btn.addEventListener("click", () => modalEl.classList.add("show"));
+            modalEl.addEventListener("click", e => {
+              if (e.target === modalEl) modalEl.classList.remove("show");
+            });
+            if (closeBtn) {
+              closeBtn.addEventListener("click", () => modalEl.classList.remove("show"));
+            }
           }
-        });
+        }
+
+        setupModalTriggers(downloadBtn, modal, closeModal);
+        setupModalTriggers(dateBtn, modalR, closeModalR);
+
+        // Severity sorting
+        if (header && table) {
+          const tbody = table.querySelector("tbody");
+          header.addEventListener("click", () => {
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            rows.sort((a, b) => {
+              const valA = severityOrder[a.cells[9].innerText.trim()] || 0;
+              const valB = severityOrder[b.cells[9].innerText.trim()] || 0;
+              return ascending ? valA - valB : valB - valA;
+            });
+            ascending = !ascending;
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+            const icon = header.querySelector("i");
+            if (icon) {
+              icon.classList.toggle("fa-sort-up", ascending);
+              icon.classList.toggle("fa-sort-down", !ascending);
+            }
+          });
+        }
+
+        // Live clock
+        function updateClock() {
+          const now = new Date();
+          const clock = document.getElementById("clock");
+          if (clock) clock.innerText = now.toLocaleTimeString();
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Export button
+        if (exportBtn) {
+          exportBtn.addEventListener("click", (e) => {
+            if (localStorage.getItem("featuresActivated") !== "true") {
+              e.preventDefault();
+              showAlert("Please activate your serial first", "error");
+            } else {
+              exportToExcel();
+            }
+          });
+        }
+
+        // Auto page reload (optional, uncomment if needed)
+        // setInterval(() => location.reload(), 2000);
       });
 
-      function deleteItem(id) {
-        const response = fetch(`/delete_log/${id}`, {
-          method: "DELETE",
-        });
-        const data = response.json();
-
-        if (data.success) {
-          // Remove the row from the table
-          const row = document.querySelector(`tr[data-id="${id}"]`);
+      // Delete log entry
+      async function deleteItem(id) {
+        try {
+          const response = await fetch(`/delete_log/${id}`, { method: "DELETE" });
+          const data = await response.json();
+          if (data.success) {
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            if (row) row.remove();
+          }
+        } catch (error) {
+          console.error("Delete failed:", error);
         }
       }
 
-      // Initialize clock on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        updateClock();
-        setInterval(updateClock, 1000);
-      });
-        // Initialize clock on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateClock();
-            setInterval(updateClock, 1000);
+      // Filter logs by date
+      function applyDateFilter() {
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        if (!startDate || !endDate) {
+          alert("Pilih rentang tanggal terlebih dahulu!");
+          return;
+        }
+
+        const start = new Date(`${startDate}T00:00:00`);
+        const end = new Date(`${endDate}T23:59:59`);
+        const table = document.getElementById("attackLogsTable");
+        const rows = table.querySelectorAll("tbody tr");
+        const headers = table.querySelectorAll("thead th");
+
+        let logTimeIndex = Array.from(headers).findIndex(th => th.innerText.includes("Waktu Log"));
+        if (logTimeIndex === -1) {
+          console.error("Kolom 'Waktu Log' tidak ditemukan.");
+          return;
+        }
+
+        rows.forEach(row => {
+          const cell = row.cells[logTimeIndex].innerText.trim();
+          const [date, time] = cell.split(" ");
+          if (!date || !time) return;
+
+          const [y, m, d] = date.split("-").map(Number);
+          const [h, min, s] = time.split(":").map(Number);
+          const rowDate = new Date(y, m - 1, d, h, min, s);
+
+          row.style.display = (rowDate >= start && rowDate <= end) ? "" : "none";
         });
 
-        //rangedate
-        function applyDateFilter() {
-    let startDate = document.getElementById("startDate").value;
-    let endDate = document.getElementById("endDate").value;
+        closeRangeModal();
+      }
 
-    if (!startDate || !endDate) {
-        alert("Pilih rentang tanggal terlebih dahulu!");
-        return;
-    }
+      // Reset date filter
+      function resetDateFilter() {
+        document.getElementById("startDate").value = "";
+        document.getElementById("endDate").value = "";
+        document.querySelectorAll("#attackLogsTable tbody tr").forEach(row => {
+          row.style.display = "";
+        });
+        closeRangeModal();
+      }
 
-    let start = new Date(startDate + "T00:00:00"); // Mulai dari awal hari
-    let end = new Date(endDate + "T23:59:59"); // Sampai akhir hari
-
-    let table = document.getElementById("attackLogsTable");
-    let rows = table.querySelectorAll("tbody tr");
-
-    // Temukan indeks kolom "Waktu Log" secara otomatis
-    let headers = table.querySelectorAll("thead th");
-    let logTimeIndex = -1;
-
-    headers.forEach((th, index) => {
-        if (th.innerText.trim().includes("Waktu Log")) { // Gunakan includes() untuk lebih fleksibel
-            logTimeIndex = index;
-        }
-    });
-
-    if (logTimeIndex === -1) {
-        console.error("Kolom 'Waktu Log' tidak ditemukan.");
-        return;
-    }
-
-    rows.forEach(row => {
-        let cellDate = row.cells[logTimeIndex].innerText.trim();
-
-        // Konversi format "YYYY-MM-DD HH:MM:SS" menjadi objek Date
-        let parts = cellDate.split(" ");
-        if (parts.length !== 2) return; // Skip jika format salah
-
-        let datePart = parts[0].split("-"); // Pisahkan tanggal
-        let timePart = parts[1].split(":"); // Pisahkan waktu
-
-        if (datePart.length !== 3 || timePart.length !== 3) return;
-
-        let rowDate = new Date(
-            parseInt(datePart[0]), // Tahun
-            parseInt(datePart[1]) - 1, // Bulan (0-based index)
-            parseInt(datePart[2]), // Hari
-            parseInt(timePart[0]), // Jam
-            parseInt(timePart[1]), // Menit
-            parseInt(timePart[2]) // Detik
-        );
-
-        if (rowDate >= start && rowDate <= end) {
-            row.style.display = ""; // Tampilkan baris
-        } else {
-            row.style.display = "none"; // Sembunyikan
-        }
-    });
-
-    closeRangeModal();
-}
-
-function resetDateFilter() {
-    document.getElementById("startDate").value = "";
-    document.getElementById("endDate").value = "";
-
-    let rows = document.querySelectorAll("#attackLogsTable tbody tr");
-    rows.forEach(row => row.style.display = ""); // Pastikan semua baris ditampilkan kembali
-
-    closeRangeModal();
-}
-
-function closeRangeModal() {
-    const modal = document.getElementById("rangeModal");
-    if (modal) {
-        modal.classList.remove("show");
-    }
-}
-
-
-    function closeRangeModal() {
-    const modal = document.getElementById('rangeModal');
-    if (modal) {
-        modal.classList.remove('show');
-    }s
-}
+      // Close range modal helper
+      function closeRangeModal() {
+        const modal = document.getElementById("rangeModal");
+        if (modal) modal.classList.remove("show");
+      }
     </script>
   </body>
-   
-    <script>
-  function reloadPage() {
-        location.reload(); 
-    }
-
-    
-    setInterval(reloadPage, 2000);
-    
-   
-
-  function deleteItem(id) {
-    const response = fetch(`/delete_log/${id}`, {
-      method: "DELETE",
-    });
-    const data = response.json();
-
-    if (data.success) {
-      // Remove the row from the table
-      const row = document.querySelector(`tr[data-id="${id}"]`);
-    }
-  }
-
-  // Initialize clock on page load
-  document.addEventListener("DOMContentLoaded", function () {
-    updateClock();
-    setInterval(updateClock, 1000);
-  });
-</script>
-
-</body>
-        
 </html>

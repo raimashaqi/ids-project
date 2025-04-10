@@ -1240,6 +1240,7 @@ mark {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 1000;
     animation: slideIn 0.3s ease;
+    transition: opacity 0.5s;
 }
 
 @keyframes slideIn {
@@ -1524,3 +1525,51 @@ mark {
     opacity: 0.9;
     transform: translateY(-1px);
 }
+
+.disabled-feature {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.disabled-feature::after {
+    content: "Please activate your serial";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* For the import button */
+.import.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* For delete buttons */
+.fa-trash-alt.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+#deactivateBtn {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.highlight {
+    border-color: #86b7fe;
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.is-valid { border-color: #28a745 !important; }
+.is-invalid { border-color: #dc3545 !important; }

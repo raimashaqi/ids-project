@@ -686,9 +686,9 @@ nav {
 
 /* Serial Generator Modal Styles */
 .serial-display {
-    font-family: monospace;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 5px;
@@ -696,6 +696,20 @@ nav {
     margin-bottom: 15px;
     text-align: center;
     word-break: break-all;
+}
+
+#serialModal .modal-footer {
+    justify-content: space-between;
+}
+
+.copied {
+    animation: flash 0.5s;
+}
+
+@keyframes flash {
+    0% { background-color: inherit; }
+    50% { background-color: #d1e7dd; }
+    100% { background-color: inherit; }
 }
 
 /* Disabled state for other pages */

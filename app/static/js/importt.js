@@ -1,256 +1,280 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize date range modal functionality
+  // Initialize UI components
   initializeDateRangeModal();
-  
-  // Initialize other functionalities
   initializeSearch();
   initializePagination();
   initializeNotifications();
+  setupFileUpload();
+  setupPayloadModal();
+
+  // Check activation status
+  if (localStorage.getItem('featuresActivated') !== 'true') {
+      disablePayloadFeatures();
+  }
+
+  // Secure delete buttons
+  document.querySelectorAll('.fa-trash-alt').forEach(btn => {
+      btn.onclick = function() {
+          if (!checkActivation()) return false;
+          return deletePayload(this.dataset.payloadId || this.closest('[data-payload-id]').dataset.payloadId);
+      };
+  });
+
+  // Secure import button
+  document.querySelector('.import')?.addEventListener('click', function(e) {
+      if (!checkActivation()) {
+          e.preventDefault();
+          return false;
+      }
+      document.getElementById('importModal').classList.add('show');
+      return true;
+  });
 });
+
+// ================= CORE FUNCTIONALITY ================= //
+
+function checkActivation() {
+  if (localStorage.getItem('featuresActivated') !== 'true') {
+      showAlert('Please activate your serial number first', 'error');
+      return false;
+  }
+  return true;
+}
 
 function deletePayload(id) {
-  if (confirm('Are you sure you want to delete this payload?')) {
-    fetch(`/delete-payload/${id}`, {
+  if (!confirm('Are you sure you want to delete this payload?')) return;
+  
+  fetch(`/delete-payload/${id}`, {
       method: 'DELETE'
-    })
-    .then(response => response.json())
-    .then(data => {
-    
+  })
+  .then(handleResponse)
+  .then(data => {
       if (data.success) {
-        const row = document.querySelector(`tr[data-payload-id="${id}"]`);
-        if (row) {
-          row.remove();
-          showNotification('Payload deleted successfully', 'success');
-        }
-      } else {
-        showNotification('Failed to delete payload: ' + (data.message || 'Unknown error'), 'error');
+          document.querySelector(`tr[data-payload-id="${id}"]`)?.remove();
+          showAlert('Payload deleted successfully', 'success');
       }
-    })
-    .catch(error => {
-      console.error('Error deleting payload:', error);
-      showNotification('An error occurred while deleting the payload', 'error');
-    });
+  })
+  .catch(handleError);
+}
+
+// ================= FEATURE CONTROL ================= //
+
+function enablePayloadFeatures() {
+  // Enable import button
+  const importBtn = document.querySelector('.import');
+  if (importBtn) {
+      importBtn.disabled = false;
+      importBtn.classList.remove('disabled-feature');
   }
+
+  // Enable delete buttons
+  document.querySelectorAll('.fa-trash-alt').forEach(btn => {
+      btn.classList.remove('disabled-feature');
+      btn.style.pointerEvents = 'auto';
+      btn.style.opacity = '1';
+  });
 }
 
-//konfirmasi logout
-function confirmLogout(event) {
-event.preventDefault();
-if (confirm('Apakah Anda yakin ingin logout?')) {
-  window.location.href = '/logout';
-}
-}
-// Add this to your existing JavaScript
-const uploadArea = document.querySelector('.upload-area');
-const fileInput = document.getElementById('fileInput');
-const submitButton = document.getElementById('submitUpload');
-
-// Prevent default drag behaviors
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-uploadArea.addEventListener(eventName, preventDefaults, false);
-document.body.addEventListener(eventName, preventDefaults, false);
-});
-
-function preventDefaults(e) {
-e.preventDefault();
-e.stopPropagation();
-}
-
-// Handle drag and drop visual feedback
-['dragenter', 'dragover'].forEach(eventName => {
-uploadArea.addEventListener(eventName, highlight, false);
-});
-
-['dragleave', 'drop'].forEach(eventName => {
-uploadArea.addEventListener(eventName, unhighlight, false);
-});
-
-function highlight(e) {
-uploadArea.classList.add('highlight');
-}
-
-function unhighlight(e) {
-uploadArea.classList.remove('highlight');
-}
-
-// Handle dropped files
-uploadArea.addEventListener('drop', handleDrop, false);
-
-function handleDrop(e) {
-const dt = e.dataTransfer;
-const files = dt.files;
-handleFiles(files);
-}
-
-// Handle file input change
-fileInput.addEventListener('change', function (e) {
-  const file = this.files[0];
-  if (file) {
-      document.getElementById('fileName').textContent = `Selected file: ${file.name}`;
-      document.getElementById('uploadIcon').style.display = 'none';
-      document.getElementById('uploadIconContainer').style.display = 'none';
-      document.getElementById('nama-payload').value = file.name.replace(/\.[^/.]+$/, "");
-  } else {
-      document.getElementById('fileName').textContent = '';
-      document.getElementById('uploadIcon').style.display = 'block';
+function disablePayloadFeatures() {
+  // Disable import button
+  const importBtn = document.querySelector('.import');
+  if (importBtn) {
+      importBtn.disabled = true;
+      importBtn.classList.add('disabled-feature');
   }
-});
 
-// Handle submit button click
-submitButton.addEventListener('click', function() {
-  const file = fileInput.files[0];
+  // Disable delete buttons
+  document.querySelectorAll('.fa-trash-alt').forEach(btn => {
+      btn.classList.add('disabled-feature');
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.6';
+  });
+}
+
+// ================= FILE UPLOAD ================= //
+
+function setupFileUpload() {
+  const uploadArea = document.querySelector('.upload-area');
+  const fileInput = document.getElementById('fileInput');
+  const submitButton = document.getElementById('submitUpload');
+
+  if (!uploadArea || !fileInput || !submitButton) return;
+
+  // Drag and drop handlers
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, preventDefaults, false);
+  });
+
+  ['dragenter', 'dragover'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, () => uploadArea.classList.add('highlight'), false);
+  });
+
+  ['dragleave', 'drop'].forEach(eventName => {
+      uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('highlight'), false);
+  });
+
+  uploadArea.addEventListener('drop', handleDrop, false);
+  fileInput.addEventListener('change', handleFileSelect);
+  submitButton.addEventListener('click', handleUploadSubmit);
+}
+
+function handleUploadSubmit() {
+  if (!checkActivation()) return;
+
+  const file = document.getElementById('fileInput').files[0];
   const namaPayload = document.getElementById('nama-payload').value;
   const severity = document.getElementById('severity').value;
 
-  // Validasi input
-  if (!file) {
-      alert('Please select a file to upload.');
-      return;
-  }
-  if (!namaPayload) {
-      alert('Please enter a name for the payload.');
-      return;
-  }
+  if (!validateUpload(file, namaPayload)) return;
 
-  // Menggunakan FormData untuk mengirim file
   const formData = new FormData();
   formData.append('file', file);
   formData.append('nama_payload', namaPayload);
   formData.append('severity', severity);
 
-  // Mengirim file ke server
   fetch('/upload-endpoint', {
       method: 'POST',
       body: formData
   })
-  .then(response => response.json())
+  .then(handleResponse)
   .then(data => {
       if (data.success) {
-          // Reset form
-          document.getElementById('uploadForm').reset();
-          document.getElementById('fileName').textContent = '';
-          document.getElementById('uploadIcon').style.display = 'block';
-          document.getElementById('uploadIconContainer').style.display = 'block';
-
-          // Close modal
-          document.getElementById('importModal').classList.remove('show');
-          
-          // Refresh table data immediately
+          resetUploadForm();
           refreshTableData();
-      } else {
-          alert('Upload failed: ' + (data.message || 'Unknown error'));
       }
   })
-  .catch(error => {
-      console.error('Error uploading file:', error);
-      alert('An error occurred while uploading the file');
-  });
-});
+  .catch(handleError);
+}
 
-// Function to handle drag and drop
-function handleFiles(files) {
-  const file = files[0];
+// ================= PAYLOAD VIEWER ================= //
+
+function setupPayloadModal() {
+  document.querySelector('.close-payload-modal')?.addEventListener('click', () => {
+      document.getElementById('viewPayloadModal').classList.remove('show');
+  });
+
+  document.getElementById('viewPayloadModal')?.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('viewPayloadModal')) {
+          document.getElementById('viewPayloadModal').classList.remove('show');
+      }
+  });
+}
+
+function viewPayload(id, name) {
+  if (!checkActivation()) return;
+
+  fetch(`/get-payload-content/${id}`)
+  .then(handleResponse)
+  .then(data => {
+      if (data.success) {
+          const modal = document.getElementById('viewPayloadModal');
+          document.getElementById('payloadName').textContent = name;
+          
+          const contentBody = document.getElementById('payloadContentBody');
+          contentBody.innerHTML = data.content.map((line, index) => `
+              <tr>
+                  <td>${index + 1}</td>
+                  <td>${line}</td>
+              </tr>
+          `).join('');
+          
+          modal.classList.add('show');
+      }
+  })
+  .catch(handleError);
+}
+
+// ================= HELPER FUNCTIONS ================= //
+
+function handleResponse(response) {
+  if (!response.ok) throw new Error('Network response was not ok');
+  return response.json();
+}
+
+function handleError(error) {
+  console.error('Error:', error);
+  showAlert('An error occurred. Please try again.', 'error');
+}
+
+function preventDefaults(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+function handleDrop(e) {
+  const dt = e.dataTransfer;
+  const files = dt.files;
+  handleFiles(files);
+}
+
+function handleFileSelect() {
+  const file = this.files[0];
   if (file) {
       document.getElementById('fileName').textContent = `Selected file: ${file.name}`;
       document.getElementById('uploadIcon').style.display = 'none';
-      document.getElementById('uploadIconContainer').style.display = 'none';
       document.getElementById('nama-payload').value = file.name.replace(/\.[^/.]+$/, "");
-      fileInput.files = files;
   }
 }
 
-// Function to view payload content
-function viewPayload(id, name) {
-  fetch(`/get-payload-content/${id}`)
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              const modal = document.getElementById('viewPayloadModal');
-              const payloadName = document.getElementById('payloadName');
-              const contentBody = document.getElementById('payloadContentBody');
-              
-              // Set payload name
-              payloadName.textContent = name;
-              
-              // Clear existing content
-              contentBody.innerHTML = '';
-              
-              // Add payload content to table
-              data.content.forEach((line, index) => {
-                  const row = document.createElement('tr');
-                  row.innerHTML = `
-                      <td>${index + 1}</td>
-                      <td>${line}</td>
-                  `;
-                  contentBody.appendChild(row);
-              });
-              
-              // Show modal
-              modal.classList.add('show');
-          } else {
-              alert('Failed to load payload content: ' + (data.message || 'Unknown error'));
-          }
-      })
-      .catch(error => {
-          console.error('Error loading payload content:', error);
-          alert('An error occurred while loading the payload content');
-      });
+function handleFiles(files) {
+  const file = files[0];
+  if (file) {
+      document.getElementById('fileInput').files = files;
+      handleFileSelect.call({ files: files });
+  }
 }
 
-// Handle closing the payload content modal
-document.querySelector('.close-payload-modal').addEventListener('click', () => {
-  document.getElementById('viewPayloadModal').classList.remove('show');
-});
-
-// Close payload modal when clicking outside
-document.getElementById('viewPayloadModal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('viewPayloadModal')) {
-      document.getElementById('viewPayloadModal').classList.remove('show');
+function validateUpload(file, namaPayload) {
+  if (!file) {
+      showAlert('Please select a file to upload.', 'error');
+      return false;
   }
-});
+  if (!namaPayload) {
+      showAlert('Please enter a name for the payload.', 'error');
+      return false;
+  }
+  return true;
+}
 
-// Update the refreshTableData function
+function resetUploadForm() {
+  document.getElementById('uploadForm').reset();
+  document.getElementById('fileName').textContent = '';
+  document.getElementById('uploadIcon').style.display = 'block';
+  document.getElementById('importModal').classList.remove('show');
+}
+
 function refreshTableData() {
   fetch('/get-payloads')
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              const tbody = document.querySelector('#attackLogsTable tbody');
-              if (!tbody) return;
-              
-              // Clear existing table
-              tbody.innerHTML = '';
-              
-              // Add new data
-              data.payloads.forEach(payload => {
-                  const row = document.createElement('tr');
-                  row.setAttribute('data-payload-id', payload.id);
-                  
-                  row.innerHTML = `
-                      <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
-                      <td class="id-column text-center">${payload.id}</td>
-                      <td class="text-center" data-label="Nama Payload">${payload.nama_payload}</td>
-                      <td class="text-center" data-label="Jumlah Baris">${payload.jumlah_baris}</td>
-                       <td class="d-flex justify-content-center align-item-center gap-2 text-center" >
-                            <button class="btn text-info btn-link" onclick="viewPayload('{{ payload.id }}', '{{ payload.nama_payload }}') ">
-                                <i class="fas fa-eye text-center"></i>
-                            </button>
-                            <i class="fas fa-trash-alt btn text-danger btn-link text-center" onclick="deletePayload('{{ payload.id }}')"></i>
-                        </td>
-                  `;
-                  
-                  tbody.appendChild(row);
-              });
+  .then(handleResponse)
+  .then(data => {
+      if (data.success) {
+          const tbody = document.querySelector('#attackLogsTable tbody');
+          if (!tbody) return;
+          
+          tbody.innerHTML = data.payloads.map(payload => `
+              <tr data-payload-id="${payload.id}">
+                  <td class="checkbox-column"><input type="checkbox" class="form-check-input"></td>
+                  <td class="id-column text-center">${payload.id}</td>
+                  <td class="text-center">${payload.nama_payload}</td>
+                  <td class="text-center">${payload.jumlah_baris}</td>
+                  <td class="d-flex justify-content-center gap-2">
+                      <button class="btn text-info btn-link" onclick="viewPayload('${payload.id}', '${payload.nama_payload}')">
+                          <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="btn text-danger btn-link" onclick="deletePayload('${payload.id}')">
+                          <i class="fas fa-trash-alt"></i>
+                      </button>
+                  </td>
+              </tr>
+          `).join('');
+      }
+  })
+  .catch(handleError);
+}
 
-              // Initialize pagination after adding new data
-              initializePagination();
-
-          }
-      })
-      .catch(error => {
-          console.error('Error refreshing table:', error);
-          alert('Failed to refresh data');
-      });
+function showAlert(message, type) {
+  // Replace with your preferred notification system
+  alert(`${type.toUpperCase()}: ${message}`);
 }
 
 // Also add initialization when page loads
