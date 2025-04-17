@@ -43,9 +43,15 @@ def export():
     try:
         print("Accessing export page...")  # Debug print
         print(f"Current user: {session.get('user')}")  # Debug print
-        logs = Log.query.order_by(Log.log_time.desc()).all()
-        print(f"Found {len(logs)} logs")  # Debug print
-        return render_template('export.html', logs=logs)
+        
+        # Query to join Log and Payload
+        logs_payloads = db.session.query(Log, Payload).outerjoin(Payload, Log.id == Payload.id_log).order_by(Log.log_time.desc()).all()
+        
+        print(f"Found {len(logs_payloads)} logs and associated payloads")  # Debug print
+
+        # Passing logs_payloads to the template
+        return render_template('export.html', logs_payloads=logs_payloads)
+    
     except Exception as e:
         print(f"Error in export route: {str(e)}")  # Debug print
         flash('Error mengakses halaman export', 'danger')

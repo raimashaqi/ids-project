@@ -173,6 +173,7 @@
                       <th class="id-column text-center">ID</th>
                       <th class="text-center">Waktu Log</th>
                       <th class="text-center">Pesan Log</th>
+                      <th class="text-center">Nama Payload</th>
                       <th class="text-center">IP Sumber</th>
                       <th class="text-center">Port Sumber</th>
                       <th class="text-center">IP Tujuan</th>
@@ -186,7 +187,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for log in logs %}
+                    {% for log, payload in logs_payloads %}
                     <tr data-id="{{ log.id }}" class="text-center">
                       <td class="checkbox-column">
                         <input type="checkbox" class="form-check-input" />
@@ -196,6 +197,7 @@
                         {{ log.log_time.strftime('%Y-%m-%d %H:%M:%S') }}
                       </td>
                       <td data-label="Log Message">{{ log.log_message }}</td>
+                      <td data-label="Payload">{{ payload.nama_payload }}</td>
                       <td data-label="Source IP">{{ log.ip_src }}</td>
                       <td data-label="Source Port">{{ log.tcp_sport }}</td>
                       <td data-label="Destination IP">{{ log.ip_dst }}</td>
