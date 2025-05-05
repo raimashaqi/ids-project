@@ -2853,3 +2853,746 @@ INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 22:33:06] "[36mGET /static/img/logo.pn
 INFO:werkzeug:127.0.0.1 - - [11/Feb/2025 22:33:06] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
 [2025-03-28 01:14:37.006811] LOG DELETED - ID: 30
 [2025-04-09 12:43:40.894107] LOG DELETED - ID: 30
+[2025-04-23 11:20:18.874434] LOG DELETED - ID: 29
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.11:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:48] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 10:59:48] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:00:25] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.11:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:5000
+INFO:root:Target URL: http://localhost:8000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\run_gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+[2025-04-27 11:33:34.166773] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:34] "[31m[1mGET / HTTP/1.1[0m" 403 -
+[2025-04-27 11:33:34.200563] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:34] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 403 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:42] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:43] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:43] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:33:44] "OPTIONS /api/login HTTP/1.1" 200 -
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+[2025-04-27 11:45:26.843040] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:45:26] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:45:31.565518] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:45:31] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:45:33.144300] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:45:33] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:45:38.654285] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:45:38] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:27.228610] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:27] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:28.955069] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:28] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:32.941802] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:32] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:33.765915] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:33] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:34.071259] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:34] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:34.997137] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:35] "[31m[1mGET /dashboard HTTP/1.1[0m" 403 -
+[2025-04-27 11:47:37.215500] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:47:37] "[31m[1mGET /export HTTP/1.1[0m" 403 -
+[2025-04-27 11:48:09.792609] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:48:09] "[31m[1mGET /login HTTP/1.1[0m" 403 -
+[2025-04-27 11:48:10.055865] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:48:10] "[31m[1mGET /login HTTP/1.1[0m" 403 -
+[2025-04-27 11:51:13.598558] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:51:13] "[31m[1mGET /login HTTP/1.1[0m" 403 -
+[2025-04-27 11:51:15.201537] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:51:15] "[31m[1mGET /login HTTP/1.1[0m" 403 -
+[2025-04-27 11:52:04.339054] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:52:04] "[31m[1mGET /login HTTP/1.1[0m" 403 -
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:53:08] "[35m[1mGET /export HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:53:13] "[35m[1mGET /export HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 11:56:14] "[35m[1mGET /export HTTP/1.1[0m" 500 -
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+[2025-04-27 12:15:03.702007] LOW - Unknown Attack Detected!
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+[2025-04-27 13:54:09.198440] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug:127.0.0.1 - - [27/Apr/2025 13:54:09] "[31m[1mGET /get_logs HTTP/1.1[0m" 403 -
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+[2025-04-27 15:30:04.374620] LOW - Unknown Attack Detected!
+INFO:root:Starting API Gateway on 0.0.0.0:1337
+INFO:root:Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:3000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Current time: 2025-04-29 11:08:24.872561
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Logging system initialized
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Current time: 2025-04-29 11:10:36.100830
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Logging system initialized
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Current time: 2025-04-29 11:12:33.275954
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Logging system initialized
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Current time: 2025-04-29 11:14:47.597273
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Logging system initialized
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Current time: 2025-04-29 11:17:32.378331
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Logging system initialized
+DEBUG:mysql.connector:Starting authorization phase
+DEBUG:mysql.connector:The provided initial strategy is mysql_native_password
+DEBUG:mysql.connector:mysql_native_password completed succesfully
+INFO:root:=== CORS Configuration ===
+INFO:root:Allowed origins: Not set
+INFO:root:Allowed methods: Not set
+INFO:root:Allowed headers: Not set
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== CORS Configuration ===
+INFO:root:Allowed origins: Not set
+INFO:root:Allowed methods: Not set
+INFO:root:Allowed headers: Not set
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== CORS Configuration ===
+INFO:root:Allowed origins: Not set
+INFO:root:Allowed methods: Not set
+INFO:root:Allowed headers: Not set
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== CORS Configuration ===
+INFO:root:Allowed origins: Not set
+INFO:root:Allowed methods: Not set
+INFO:root:Allowed headers: Not set
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== CORS Configuration ===
+INFO:root:Allowed origins: Not set
+INFO:root:Allowed methods: Not set
+INFO:root:Allowed headers: Not set
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Target URL: http://localhost:5000
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway. Target URL: http://localhost:5000
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\run_gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:root:Available endpoints:
+INFO:root:  - GET /test - Test endpoint
+INFO:root:  - GET / - Root endpoint
+INFO:root:  - All other paths will be proxied to backend
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\ids_detector.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:root:Available endpoints:
+INFO:root:  - GET /test - Test endpoint
+INFO:root:  - GET / - Root endpoint
+INFO:root:  - All other paths will be proxied to backend
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\ids_detector.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:root:Available endpoints:
+INFO:root:  - GET /test - Test endpoint
+INFO:root:  - GET / - Root endpoint
+INFO:root:  - All other paths will be proxied to backend
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\ids_service.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+[2025-04-30 04:55:20.141082] LOG DELETED - ID: 51
+[2025-04-30 05:05:07.543672] LOG DELETED - ID: 50
+[2025-04-30 11:57:25.651745] LOG DELETED - ID: 49
+[2025-04-30 12:17:22.495884] LOG DELETED - ID: 48
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.181:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:=== Request Received ===
+INFO:root:Path: export
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': 'session=.eJwty0EKgCAURdGt2BtLC3DUAtpBSIh8S9IMf0Ih7j0HjS5ncCtWFwzvxFBLhbh7wMVaYobEnDZ_it-uhAG6admfTLxDOROYJApThsJbjmiyn-gx8Qo02hTRPlmXIdE.aA3ffw.2NuLPQR_UcmfuF01vnexnCW9LB0'}
+INFO:root:=== New Request Details ===
+INFO:root:Path: export
+INFO:root:Method: GET
+INFO:root:IP: 127.0.0.1
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'en-US,en;q=0.9', 'Cookie': 'session=.eJwty0EKgCAURdGt2BtLC3DUAtpBSIh8S9IMf0Ih7j0HjS5ncCtWFwzvxFBLhbh7wMVaYobEnDZ_it-uhAG6admfTLxDOROYJApThsJbjmiyn-gx8Qo02hTRPlmXIdE.aA3ffw.2NuLPQR_UcmfuF01vnexnCW9LB0'}
+INFO:root:Data: b''
+INFO:root:User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO:root:Is login endpoint: False
+INFO:root:Full URL: http://localhost:1337/export
+INFO:root:Forwarding request to target: http://localhost:5000/export
+INFO:werkzeug:127.0.0.1 - - [30/Apr/2025 14:03:48] "[33mGET /export HTTP/1.1[0m" 404 -
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.181:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+[2025-04-30 14:14:40.965993] LOG DELETED - ID: 47
+[2025-04-30 14:14:41.841467] LOG DELETED - ID: 46
+[2025-04-30 14:14:43.964341] LOG DELETED - ID: 45
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\Yuk-Mari\\ids-project\\app\\routes\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:werkzeug: * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\Yuk-Mari\\ids-project\\app\\routes\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 325-444-744
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.181:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 432-023-497
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.181:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 432-023-497
+[2025-04-30 19:01:30.719902] LOG DELETED - ID: 44
+[2025-04-30 19:12:29.597593] LOG DELETED - ID: 43

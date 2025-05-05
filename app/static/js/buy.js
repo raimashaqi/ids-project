@@ -22,16 +22,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const submitButton = buyForm.querySelector('button[type="submit"]');
             const checkoutButton = buyForm.querySelector('button[type="button"]');
             const proceedButton = document.getElementById('proceedToPayment');
+            
+            if (!submitButton || !checkoutButton || !proceedButton) {
+                console.error('Required buttons not found');
+                alert('Terjadi kesalahan sistem. Silakan muat ulang halaman.');
+                return;
+            }
+
             const originalSubmitText = submitButton.innerHTML;
             const originalCheckoutText = checkoutButton.innerHTML;
             const originalProceedText = proceedButton.innerHTML;
             
-            submitButton.disabled = true;
-            checkoutButton.disabled = true;
-            proceedButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
-            checkoutButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
-            proceedButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            // Set loading state
+            const setLoadingState = (loading) => {
+                submitButton.disabled = loading;
+                checkoutButton.disabled = loading;
+                proceedButton.disabled = loading;
+                
+                if (loading) {
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                    checkoutButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                    proceedButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                } else {
+                    submitButton.innerHTML = originalSubmitText;
+                    checkoutButton.innerHTML = originalCheckoutText;
+                    proceedButton.innerHTML = originalProceedText;
+                }
+            };
+
+            setLoadingState(true);
             
             // Get form data
             const customerName = document.getElementById('customerName').value;
@@ -64,41 +83,45 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset reCAPTCHA
             grecaptcha.reset();
             
-            // Open Midtrans Snap popup
+            // Check if snap is loaded
+            if (!window.snap) {
+                throw new Error('Payment gateway not loaded. Please refresh the page.');
+            }
+            
+            // Open Midtrans Snap popup with updated configuration
             window.snap.pay(data.snap_token, {
                 onSuccess: function(result) {
-                    // Handle successful payment
-                    alert('Payment successful!');
+                    console.log('Payment success:', result);
+                    alert('Pembayaran berhasil! Order ID: ' + result.order_id);
                     buyForm.reset();
                     document.getElementById('customerDetailsForm').reset();
+                    window.location.href = '/buy';
                 },
                 onPending: function(result) {
-                    // Handle pending payment
-                    alert('Payment is pending. Please complete your payment.');
+                    console.log('Payment pending:', result);
+                    alert('Pembayaran dalam proses. Order ID: ' + result.order_id);
+                    window.location.href = '/buy';
                 },
                 onError: function(result) {
-                    // Handle payment error
-                    alert('Payment failed. Please try again.');
+                    console.error('Payment error:', result);
+                    alert('Pembayaran gagal. Silakan coba lagi. Error: ' + (result.message || 'Unknown error'));
+                    setLoadingState(false);
                 },
                 onClose: function() {
-                    // Handle when customer closes the popup
-                    submitButton.disabled = false;
-                    checkoutButton.disabled = false;
-                    proceedButton.disabled = false;
-                    submitButton.innerHTML = originalSubmitText;
-                    checkoutButton.innerHTML = originalCheckoutText;
-                    proceedButton.innerHTML = originalProceedText;
+                    console.log('Customer closed the popup without finishing the payment');
+                    setLoadingState(false);
                 }
             });
             
         } catch (error) {
+            console.error('Payment error:', error);
             alert(error.message || 'An error occurred. Please try again.');
-            submitButton.disabled = false;
-            checkoutButton.disabled = false;
-            proceedButton.disabled = false;
-            submitButton.innerHTML = originalSubmitText;
-            checkoutButton.innerHTML = originalCheckoutText;
-            proceedButton.innerHTML = originalProceedText;
+            setLoadingState(false);
+            
+            // Reset form if needed
+            if (error.message.includes('not loaded')) {
+                location.reload();
+            }
         }
     }
     
@@ -136,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle PDF generation
     const generatePdfBtn = document.getElementById('generatePdfBtn');
     generatePdfBtn.addEventListener('click', function() {
-        const modalContent = document.querySelector('.modal-body');
+        const modalContent = document.querySelector('.guideModalLabel');
         
         // Configure PDF options
         const options = {

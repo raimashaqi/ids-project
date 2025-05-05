@@ -71,33 +71,29 @@ def get_payload_path(filename):
     payload_dir = os.path.join(current_dir, 'static', 'payload')
     return os.path.join(payload_dir, filename)
 
-# Fungsi untuk load payloads
-def load_payloads(filepath, desc='Loading payloads'):
+# === LOAD ALL PAYLOADS TO MEMORY ONCE ===
+loaded_payloads = {}
+for attack_type, (filename, severity) in payload_files.items():
+    filepath = get_payload_path(filename)
     try:
-        with open(filepath, 'r', encoding='utf-8') as file:
-            lines = file.readlines()
-            payloads = []
-            for line in tqdm(lines, desc=desc, total=len(lines)):
-                payloads.append(r"{}".format(line.strip()))
-            return payloads
+        with open(filepath, 'r', encoding='utf-8') as f:
+            loaded_payloads[attack_type] = [line.strip().lower() for line in f if line.strip()]
     except FileNotFoundError:
         print(f"Warning: Payload file not found: {filepath}")
-        return []
+        loaded_payloads[attack_type] = []
 
 # Fungsi untuk deteksi payload
 def detect_attack(input_payload):
-    # Normalisasi input untuk menghindari false positive
+    print(f"[DEBUG] Original input: {input_payload}")
     normalized_input = input_payload.lower().strip()
-    
-    for attack_type, (filename, severity) in payload_files.items():
-        filepath = get_payload_path(filename)
-        attack_payloads = load_payloads(filepath, f"Loading {attack_type} payloads")
-        
-        # Check if the input matches any of the loaded payloads
-        for payload in attack_payloads:
-            if payload.lower() in normalized_input:
+    print(f"[DEBUG] Normalized input: {normalized_input}")
+    for attack_type, payloads in loaded_payloads.items():
+        for payload in payloads:
+            if payload in normalized_input:
+                severity = payload_files[attack_type][1]
+                print(f"[DEBUG] Attack detected! Type: {attack_type}, Payload: {payload}")
                 return attack_type, severity, payload
-        
+    print("[DEBUG] No attack detected")
     return None, None, None
 
 # Fungsi untuk mencatat log
@@ -154,7 +150,7 @@ def test_payload(payload, ip_src="127.0.0.1", tcp_sport=0, ip_dst="127.0.0.1", t
 def analyze_packet(packet):
     global running
     if not running:
-        return True  # Return True akan menghentikan sniffing
+        return True
     
     if IP in packet and TCP in packet:
         ip_src = packet[IP].src
@@ -162,11 +158,25 @@ def analyze_packet(packet):
         tcp_sport = packet[TCP].sport
         tcp_dport = packet[TCP].dport
 
+        # Fokus pada port admin (3000)
+        if tcp_dport != 3000:
+            return
+
         try:
             payload = bytes(packet[TCP].payload).decode('utf-8', errors='ignore')
             if payload:
+                # Deteksi serangan login
+                if '/api/auth/login' in payload:
+                    # Deteksi brute force
+                    if 'password' in payload.lower():
+                        log_message = f"Login attempt from {ip_src}"
+                        log_attack(log_message, ip_src, tcp_sport, ip_dst, tcp_dport, "MEDIUM", "Login Attempt")
+                
+                # Deteksi serangan umum
                 attack_type, severity = test_payload(payload, ip_src, tcp_sport, ip_dst, tcp_dport)
-                print(f"Detected {attack_type} attack with {severity} severity")
+                if attack_type != "Unknown":
+                    print(f"[ALERT] Detected {attack_type} attack from {ip_src} with {severity} severity")
+                    log_attack(f"{attack_type} Attack Detected", ip_src, tcp_sport, ip_dst, tcp_dport, severity, "Admin API")
         except UnicodeDecodeError:
             return
 
@@ -192,7 +202,7 @@ if __name__ == '__main__':
         print("\nLoading payload databases...")
         for attack_type, (filename, severity) in payload_files.items():
             filepath = get_payload_path(filename)
-            _ = load_payloads(filepath, f"Loading {attack_type} Payload")
+            _ = loaded_payloads[attack_type]
         
         # Daftarkan signal handler
         signal.signal(signal.SIGINT, signal_handler)

@@ -82,7 +82,6 @@ def determine_severity(severity_value):
         str: Severity yang sudah dinormalisasi.
     """
     if severity_value and isinstance(severity_value, str):
-        # Normalisasi: hapus spasi di awal/akhir dan ubah menjadi huruf kecil
         normalized = severity_value.strip().lower()
         if normalized == "critical":
             return "Critical"
@@ -92,8 +91,7 @@ def determine_severity(severity_value):
             return "Medium"
         elif normalized == "low":
             return "Low"
-    # Default jika nilai tidak sesuai atau tidak ada
-    # return "Informative"
+    return "Informative"
 
 @logs_bp.route('/get_logs')
 @login_required
@@ -112,13 +110,12 @@ def get_logs():
                 'tcp_sport': log.tcp_sport,
                 'ip_dst': log.ip_dst,
                 'tcp_dport': log.tcp_dport,
-                'severity': normalized_severity,
-                'location': log.location
+                'severity': normalized_severity
             })
-        return jsonify(logs_list)
+        return jsonify({'success': True, 'logs': logs_list})
     except Exception as e:
         print(f"Error in get_logs: {str(e)}")
-        return jsonify([])
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 # Routing Delete Log Route
 

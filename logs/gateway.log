@@ -1,0 +1,247 @@
+2025-04-25 13:27:11,686 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\ids-project\run_gateway.py:30]
+2025-04-25 13:27:11,688 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\ids-project\run_gateway.py:31]
+2025-04-25 13:27:11,914 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.8:5000 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:97]
+2025-04-25 13:27:11,915 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:97]
+2025-04-25 13:27:11,937 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:97]
+2025-04-25 13:27:15,735 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\ids-project\run_gateway.py:30]
+2025-04-25 13:27:15,735 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\ids-project\run_gateway.py:31]
+2025-04-25 13:27:15,793 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:97]
+2025-04-25 13:27:15,800 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:97]
+2025-04-27 10:56:37,421 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 10:56:37,423 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 10:56:37,557 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.11:5000 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:56:37,557 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:56:37,573 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:56:39,916 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 10:56:39,916 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 10:56:39,928 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:56:39,991 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:47,432 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:47,494 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:47,696 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:47,728 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:47,789 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:47] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:48,056 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:48] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 10:59:48,124 INFO: 127.0.0.1 - - [27/Apr/2025 10:59:48] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:00:25,650 INFO: 127.0.0.1 - - [27/Apr/2025 11:00:25] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:04:46,431 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:04:46,877 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:04:50,517 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:04:50,517 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:04:50,538 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:04:50,544 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:23:56,830 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:23:57,250 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:00,668 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:24:00,668 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:24:00,689 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:00,696 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:03,773 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:04,213 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:06,867 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:24:06,867 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:24:06,882 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:06,890 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:09,687 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:10,030 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:12,826 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:24:12,827 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:24:12,845 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:12,853 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:15,672 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:16,004 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:18,213 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:24:18,214 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:24:18,232 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:24:18,240 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:26,698 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\routes\\auth.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:27,077 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:29,824 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:25:29,824 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:25:29,840 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:29,848 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:38,923 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\utils\\decorators.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:39,301 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:41,857 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:25:41,857 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:25:41,870 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:25:41,877 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:28:56,363 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:28:56,363 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:28:56,483 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.11:5000 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:28:56,484 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:28:56,499 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:28:59,115 INFO: Starting API Gateway on 0.0.0.0:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:28:59,115 INFO: Target URL: http://localhost:8000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:28:59,129 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:28:59,135 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:45,829 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:46,871 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:47,356 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:50,510 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:32:50,510 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:32:50,530 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:50,537 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:55,254 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway_config.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:55,606 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:58,490 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:32:58,491 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:32:58,512 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:32:58,520 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:06,515 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\run_gateway.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:06,823 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:09,316 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:33:09,316 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:33:09,337 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:09,345 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:12,387 INFO:  * Detected change in 'C:\\Users\\LENOVO\\Downloads\\Yuk-Mari\\yuk-mari\\ids-project\\app\\gateway.py', reloading [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:12,696 INFO:  * Restarting with stat [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:15,106 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:33:15,106 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:33:15,125 WARNING:  * Debugger is active! [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:15,131 INFO:  * Debugger PIN: 325-444-744 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:34,170 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:34] "[31m[1mGET / HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:34,203 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:34] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:42,786 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:42] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:43,451 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:43] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:43,828 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:43] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:33:44,091 INFO: 127.0.0.1 - - [27/Apr/2025 11:33:44] "OPTIONS /api/login HTTP/1.1" 200 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:38:41,412 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-27 11:38:41,412 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-27 11:38:41,440 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:38:41,441 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:42:21,662 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:42:21,662 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:42:21,689 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:42:21,690 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:45:26,847 INFO: 127.0.0.1 - - [27/Apr/2025 11:45:26] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:45:31,576 INFO: 127.0.0.1 - - [27/Apr/2025 11:45:31] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:45:33,155 INFO: 127.0.0.1 - - [27/Apr/2025 11:45:33] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:45:38,666 INFO: 127.0.0.1 - - [27/Apr/2025 11:45:38] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:27,239 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:27] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:28,957 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:28] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:32,944 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:32] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:33,776 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:33] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:34,074 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:34] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:35,000 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:35] "[31m[1mGET /dashboard HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:47:37,219 INFO: 127.0.0.1 - - [27/Apr/2025 11:47:37] "[31m[1mGET /export HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:48:09,796 INFO: 127.0.0.1 - - [27/Apr/2025 11:48:09] "[31m[1mGET /login HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:48:10,065 INFO: 127.0.0.1 - - [27/Apr/2025 11:48:10] "[31m[1mGET /login HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:51:13,607 INFO: 127.0.0.1 - - [27/Apr/2025 11:51:13] "[31m[1mGET /login HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:51:15,204 INFO: 127.0.0.1 - - [27/Apr/2025 11:51:15] "[31m[1mGET /login HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:52:04,341 INFO: 127.0.0.1 - - [27/Apr/2025 11:52:04] "[31m[1mGET /login HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:53:03,282 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:30]
+2025-04-27 11:53:03,282 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\yuk-mari\ids-project\run_gateway.py:31]
+2025-04-27 11:53:03,303 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:53:03,303 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:53:08,234 INFO: 127.0.0.1 - - [27/Apr/2025 11:53:08] "[35m[1mGET /export HTTP/1.1[0m" 500 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:53:13,964 INFO: 127.0.0.1 - - [27/Apr/2025 11:53:13] "[35m[1mGET /export HTTP/1.1[0m" 500 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 11:56:14,387 INFO: 127.0.0.1 - - [27/Apr/2025 11:56:14] "[35m[1mGET /export HTTP/1.1[0m" 500 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 12:07:41,225 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-27 12:07:41,226 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-27 12:07:41,245 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 12:07:41,245 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 13:46:43,295 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-27 13:46:43,296 INFO: Target URL: http://localhost:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-27 13:46:43,314 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 13:46:43,315 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 13:54:09,203 INFO: 127.0.0.1 - - [27/Apr/2025 13:54:09] "[31m[1mGET /get_logs HTTP/1.1[0m" 403 - [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 14:31:36,372 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-27 14:31:36,372 INFO: Target URL: http://localhost:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-27 14:31:36,400 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 14:31:36,400 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 14:44:16,589 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-27 14:44:16,589 INFO: Target URL: http://localhost:5000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-27 14:44:16,620 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-27 14:44:16,621 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-28 13:42:15,485 INFO: Starting API Gateway on 0.0.0.0:1337 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:30]
+2025-04-28 13:42:15,485 INFO: Target URL: http://localhost:3000 [in C:\Users\LENOVO\Downloads\Yuk-Mari\Yuk-Mari\ids-project\run_gateway.py:31]
+2025-04-28 13:42:15,505 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.11:1337 [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-28 13:42:15,505 INFO: [33mPress CTRL+C to quit[0m [in C:\Users\LENOVO\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\_internal.py:96]
+2025-04-29 11:08:24,823 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:08:24.872561
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:08:24,888 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:08:24,912 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:08:24,912 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:10:36.100830
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:10:36,113 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:10:36,137 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:10:36,144 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:12:33.275954
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:12:33,314 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:12:33,315 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:14:47.597273
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:14:47,618 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:14:47,647 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:14:47,651 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:17:32,378 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:17:32,378 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:17:32.378331
+2025-04-29 11:17:32,387 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:17:32,388 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:17:32,390 - INFO - [gateway.py:48] - === CORS Configuration ===
+2025-04-29 11:17:32,390 - INFO - [gateway.py:49] - Allowed origins: Not set
+2025-04-29 11:17:32,390 - INFO - [gateway.py:50] - Allowed methods: Not set
+2025-04-29 11:17:32,390 - INFO - [gateway.py:51] - Allowed headers: Not set
+2025-04-29 11:17:32,400 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:17:32,419 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:17:32,419 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m

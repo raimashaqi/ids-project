@@ -1,0 +1,16 @@
+2025-04-29 11:31:36,965 - Starting proxy server on port 1337
+2025-04-29 11:31:36,966 - Frontend URL: http://localhost:3000
+2025-04-29 11:31:36,966 - Backend URL: http://localhost:5000
+2025-04-29 11:31:36,966 - Proxy URL: http://localhost:1337
+2025-04-29 11:31:37,021 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:31:37,022 - [33mPress CTRL+C to quit[0m
+2025-04-29 11:31:37,030 -  * Restarting with stat
+2025-04-29 11:31:38,370 - Starting proxy server on port 1337
+2025-04-29 11:31:38,379 - Frontend URL: http://localhost:3000
+2025-04-29 11:31:38,397 - Backend URL: http://localhost:5000
+2025-04-29 11:31:38,402 - Proxy URL: http://localhost:1337
+2025-04-29 11:31:38,450 -  * Debugger is active!
+2025-04-29 11:31:38,473 -  * Debugger PIN: 325-444-744

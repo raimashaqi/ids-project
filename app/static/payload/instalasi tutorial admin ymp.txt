@@ -1,0 +1,39 @@
+1. Download File
+2. Buka Command Prompt (CMD)
+
+	- Tekan Win + R, ketik cmd, lalu tekan Enter.
+	- Arahkan ke direktori tempat file project disimpan.
+
+	atau bisa langsung di cmd jika sudah ada di foldernya
+
+3 Buka Project di Visual Studio Code
+	code .
+
+4. Instalasi Dependencies
+
+	Buka terminal
+	- cd Admin-Frontend
+	- npm install
+
+	Buka terminal baru dan masuk ke folder backend:
+	- cd Admin-Backend
+	- npm install
+
+5. Menjalankan Project
+
+	Menjalankan Backend:
+	- npm start
+
+	Menjalankan Frontend:
+	- npm run dev
+
+Note BUAT LOGIN
+
+Email : yukmari@gmail.com
+Password : Yukmari123@
+
+user.neko701@gmail.com
+UserNeko123
+
+
+

@@ -13,9 +13,13 @@ import requests
 from app.routes.auth import SITE_KEY, SECRET_KEY
 
 # Initialize Midtrans Snap
+server_key = os.getenv("MIDTRANS_SERVER_KEY")
+if not server_key:
+    raise ValueError("MIDTRANS_SERVER_KEY environment variable is not set")
+
 snap = midtransclient.Snap(
     is_production=True,
-    server_key=os.getenv("MIDTRANS_SERVER_KEY")
+    server_key=server_key
 )
 
 main_bp = Blueprint('main', __name__,
@@ -45,12 +49,12 @@ def export():
         print(f"Current user: {session.get('user')}")  # Debug print
         
         # Query to join Log and Payload
-        logs_payloads = db.session.query(Log, Payload).outerjoin(Payload, Log.id == Payload.id_log).order_by(Log.log_time.desc()).all()
+        logs = db.session.query(Log).order_by(Log.log_time.desc()).all()
         
-        print(f"Found {len(logs_payloads)} logs and associated payloads")  # Debug print
+        print(f"Found {len(logs)} logs")  # Debug print
 
-        # Passing logs_payloads to the template
-        return render_template('export.html', logs_payloads=logs_payloads)
+        # Passing logs to the template
+        return render_template('export.html', logs=logs)
     
     except Exception as e:
         print(f"Error in export route: {str(e)}")  # Debug print
@@ -144,7 +148,7 @@ def create_payment():
         param = {
             "transaction_details": {
                 "order_id": f"ORDER-{order_id}",
-                "gross_amount": 1  # Amount in IDR (200,000)
+                "gross_amount": 1  
             },
             "credit_card": {
                 "secure": True
@@ -156,57 +160,70 @@ def create_payment():
             }
         }
 
-        # Create transaction
-        transaction = snap.create_transaction(param)
-        transaction_token = transaction['token']
+        try:
+            # Create transaction
+            transaction = snap.create_transaction(param)
+            transaction_token = transaction['token']
 
-        return jsonify({
-            'success': True,
-            'snap_token': transaction_token,
-            'order_id': param['transaction_details']['order_id']
-        })
+            return jsonify({
+                'success': True,
+                'snap_token': transaction_token,
+                'order_id': param['transaction_details']['order_id']
+            })
+        except Exception as e:
+            print(f"Midtrans Error: {str(e)}")  # Add logging for Midtrans errors
+            return jsonify({'success': False, 'message': f'Payment gateway error: {str(e)}'}), 500
 
     except Exception as e:
+        print(f"General Error: {str(e)}")  # Add general error logging
         return jsonify({'success': False, 'message': str(e)}), 500
 
 @main_bp.route('/upload-endpoint', methods=['POST'])
 @login_required
 def upload_file():
-    if 'file' not in request.files:
-        return jsonify(success=False, message='No file part')
-    
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify(success=False, message='No selected file')
-
-    # Validasi ekstensi file
-    allowed_extensions = {'txt', 'csv', 'xlsx'}
-    file_extension = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else ''
-    
-    if file_extension not in allowed_extensions:
-        return jsonify(success=False, message='Invalid file type. Please upload .txt, .csv, or .xlsx files.')
-
-    nama_payload = request.form.get('nama_payload')  # Ambil nama payload dari form
-
     try:
-        payload_dir = os.path.join('app', 'static', 'payload')
+        if 'file' not in request.files:
+            return jsonify(success=False, message='No file part')
+        
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify(success=False, message='No selected file')
+
+        # Validasi ekstensi file
+        allowed_extensions = {'txt', 'csv', 'xlsx'}
+        file_extension = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else ''
+        
+        if file_extension not in allowed_extensions:
+            return jsonify(success=False, message='Invalid file type. Please upload .txt, .csv, or .xlsx files.')
+
+        nama_payload = request.form.get('nama_payload')
+        if not nama_payload:
+            return jsonify(success=False, message='Payload name is required')
+
+        # Get the absolute path to the payload directory
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        payload_dir = os.path.join(current_dir, 'static', 'payload')
+        
+        # Create payload directory if it doesn't exist
         os.makedirs(payload_dir, exist_ok=True)
 
+        # Save the file
         file_path = os.path.join(payload_dir, f"{nama_payload}.{file_extension}")
-        
         file.save(file_path)
 
-        # Hitung jumlah baris berdasarkan tipe file
+        # Count lines based on file type
+        jumlah_baris = 0
         if file_extension == 'txt':
             with open(file_path, 'r', encoding='utf-8') as f:
                 jumlah_baris = sum(1 for line in f)
-        elif file_extension in ['csv', 'xlsx']:
-            if file_extension == 'csv':
-                df = pd.read_csv(file_path)
-            else:
-                df = pd.read_excel(file_path)
+        elif file_extension == 'csv':
+            df = pd.read_csv(file_path)
+            jumlah_baris = len(df)
+        elif file_extension == 'xlsx':
+            df = pd.read_excel(file_path)
             jumlah_baris = len(df)
 
+        # Save to database
         payload = Payload(
             nama_payload=nama_payload,
             jumlah_baris=jumlah_baris
@@ -221,10 +238,10 @@ def upload_file():
         })
 
     except Exception as e:
-        # Jika terjadi error, hapus file jika sudah terupload
-        if os.path.exists(file_path):
+        # Clean up if file was saved but database operation failed
+        if 'file_path' in locals() and os.path.exists(file_path):
             os.remove(file_path)
-        print(f"Error in upload_file: {str(e)}")  # Debug log
+        print(f"Error in upload_file: {str(e)}")
         return jsonify(success=False, message=str(e))
 
 @main_bp.route('/get_log_data', methods=['GET'])

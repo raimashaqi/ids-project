@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
@@ -151,40 +152,37 @@
         fetch('/get_logs')
             .then(response => response.json())
             .then(data => {
-                // Update total log threats dengan jumlah keseluruhan data
-                document.getElementById('totalLogsThreats').textContent = data.length;
-    
-                // Inisialisasi objek untuk menghitung jumlah tiap severity
+                // Tampilkan jumlah total log
+                document.getElementById('totalLogsThreats').textContent = data.logs.length;
+
+                // Hitung jumlah tiap severity
                 const severityCount = {
-                    // 'Informative': 0,
                     'Low': 0,
                     'Medium': 0,
                     'High': 0,
                     'Critical': 0
                 };
-    
-                // Iterasi setiap log dan hitung berdasarkan nilai severity yang tersimpan
-                data.forEach(log => {
-                    // Normalisasi nilai severity
-                    const normalizedSeverity = log.severity.charAt(0).toUpperCase() + log.severity.slice(1).toLowerCase();
-                    if (normalizedSeverity in severityCount) {
-                        severityCount[normalizedSeverity]++;
-                    }
+
+                data.logs.forEach(log => {
+                    let sev = (log.severity || '').toString().trim().toLowerCase();
+                    if (sev === 'critical') severityCount['Critical']++;
+                    else if (sev === 'high') severityCount['High']++;
+                    else if (sev === 'medium') severityCount['Medium']++;
+                    else if (sev === 'low') severityCount['Low']++;
                 });
-    
-                // Buat pie chart menggunakan Chart.js
+
+                // Pie chart
                 const ctx = document.getElementById('logThreatsChart').getContext('2d');
                 new Chart(ctx, {
                     type: 'pie',
                     data: {
-                        labels: Object.keys(severityCount),
+                        labels: ['Low', 'Medium', 'High', 'Critical'],
                         datasets: [{
-                            data: Object.values(severityCount),
+                            data: [severityCount['Low'], severityCount['Medium'], severityCount['High'], severityCount['Critical']],
                             backgroundColor: [
-                                // '#2655CD', // Informative 
-                                '#00FF26', // Low 
-                                '#FF6E00', // Medium 
-                                '#FF0C03', // High 
+                                '#00FF26', // Low
+                                '#FF6E00', // Medium
+                                '#FF0C03', // High
                                 '#D80000'  // Critical
                             ],
                             borderWidth: 1
@@ -199,24 +197,22 @@
                                     usePointStyle: true,
                                     pointStyle: 'circle',
                                     padding: 20,
-                                    font: {
-                                        size: 12
-                                    }
+                                    font: { size: 12 }
                                 }
                             }
                         }
                     }
                 });
-    
-                // Update jumlah severity di dashboard
-                // Pastikan element untuk 'Informative' tersedia jika ingin menampilkan, 
-                // saat ini bagian tersebut di HTML dikomentari
+
+                // Update counter per severity
                 document.getElementById('totalLow').textContent = severityCount['Low'];
                 document.getElementById('totalMedium').textContent = severityCount['Medium'];
                 document.getElementById('totalHigh').textContent = severityCount['High'];
                 document.getElementById('totalCriticals').textContent = severityCount['Critical'];
             })
-            .catch(error => console.error('Error fetching log data:', error));
+            .catch(error => {
+                console.error('Error fetching log data:', error);
+            });
     </script>
 
     <!-- Modal Tim Pengembang -->
@@ -276,7 +272,7 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    
     <script>
         // Initialize clock on page load
         document.addEventListener('DOMContentLoaded', function() {

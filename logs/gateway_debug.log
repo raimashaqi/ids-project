@@ -1,0 +1,69 @@
+2025-04-29 11:08:24,823 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:08:24.872561
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:08:24,872 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:08:24,880 - DEBUG - [protocol.py:338] - Starting authorization phase
+2025-04-29 11:08:24,880 - DEBUG - [protocol.py:352] - The provided initial strategy is mysql_native_password
+2025-04-29 11:08:24,888 - DEBUG - [authentication.py:278] - mysql_native_password completed succesfully
+2025-04-29 11:08:24,888 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:08:24,912 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:08:24,912 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:10:36.100830
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:10:36,100 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:10:36,100 - DEBUG - [protocol.py:338] - Starting authorization phase
+2025-04-29 11:10:36,100 - DEBUG - [protocol.py:352] - The provided initial strategy is mysql_native_password
+2025-04-29 11:10:36,100 - DEBUG - [authentication.py:278] - mysql_native_password completed succesfully
+2025-04-29 11:10:36,113 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:10:36,137 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:10:36,144 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:12:33.275954
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:12:33,275 - DEBUG - [protocol.py:338] - Starting authorization phase
+2025-04-29 11:12:33,275 - DEBUG - [protocol.py:352] - The provided initial strategy is mysql_native_password
+2025-04-29 11:12:33,275 - DEBUG - [authentication.py:278] - mysql_native_password completed succesfully
+2025-04-29 11:12:33,275 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:12:33,314 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:12:33,315 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:14:47.597273
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:14:47,597 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:14:47,612 - DEBUG - [protocol.py:338] - Starting authorization phase
+2025-04-29 11:14:47,612 - DEBUG - [protocol.py:352] - The provided initial strategy is mysql_native_password
+2025-04-29 11:14:47,615 - DEBUG - [authentication.py:278] - mysql_native_password completed succesfully
+2025-04-29 11:14:47,618 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:14:47,647 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:14:47,651 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
+2025-04-29 11:17:32,378 - INFO - [run_gateway.py:38] - === Gateway Service Started ===
+2025-04-29 11:17:32,378 - INFO - [run_gateway.py:39] - Current time: 2025-04-29 11:17:32.378331
+2025-04-29 11:17:32,387 - INFO - [run_gateway.py:40] - Target URL: http://localhost:5000
+2025-04-29 11:17:32,388 - INFO - [run_gateway.py:41] - Logging system initialized
+2025-04-29 11:17:32,390 - DEBUG - [protocol.py:338] - Starting authorization phase
+2025-04-29 11:17:32,390 - DEBUG - [protocol.py:352] - The provided initial strategy is mysql_native_password
+2025-04-29 11:17:32,390 - DEBUG - [authentication.py:278] - mysql_native_password completed succesfully
+2025-04-29 11:17:32,390 - INFO - [gateway.py:48] - === CORS Configuration ===
+2025-04-29 11:17:32,390 - INFO - [gateway.py:49] - Allowed origins: Not set
+2025-04-29 11:17:32,390 - INFO - [gateway.py:50] - Allowed methods: Not set
+2025-04-29 11:17:32,390 - INFO - [gateway.py:51] - Allowed headers: Not set
+2025-04-29 11:17:32,400 - INFO - [run_gateway.py:54] - Starting IDS Gateway. Target URL: http://localhost:5000
+2025-04-29 11:17:32,419 - INFO - [_internal.py:96] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.1.12:1337
+2025-04-29 11:17:32,419 - INFO - [_internal.py:96] - [33mPress CTRL+C to quit[0m
