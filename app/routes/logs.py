@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, make_response
 from app.models.log import Log
 from app import db
 from app.utils.decorators import login_required
@@ -7,10 +7,12 @@ from app.idsServer import detect_attack, log_attack
 import mysql.connector
 import socket
 import requests
+from flask_cors import CORS, cross_origin
 
 # Define Logs Route
-
 logs_bp = Blueprint('logs', __name__)
+
+# Do NOT initialize CORS at the blueprint level since we'll handle it manually
 
 def get_location_from_ip(location):
     """
@@ -164,11 +166,19 @@ def delete_log(id):
         print(f"Error in delete_log: {e}")
         return jsonify({'success': False, 'message': str(e)}), 500
 
-# Define Test Payload Route
+# Define Test Payload Route - Public access with enhanced CORS support
 
-@logs_bp.route('/test_payload', methods=['POST'])
-@login_required
+@logs_bp.route('/test_payload', methods=['POST', 'OPTIONS'])
 def test_payload():
+    # Handle preflight OPTIONS request
+    if request.method == 'OPTIONS':
+        response = make_response()
+        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.set('Access-Control-Allow-Credentials', 'false')
+        return response
+        
     try:
         if not request.is_json:
             return jsonify({'success': False, 'message': 'Invalid JSON'}), 400
@@ -205,14 +215,22 @@ def test_payload():
         # 🔹 Log attack with real IPs and ports
         log_attack(log_message, user_ip, source_port, server_ip, destination_port, severity, location)
 
-        return jsonify({
+        # Return response with appropriate CORS headers
+        response = jsonify({
             'success': True,
             'attack_type': attack_type,
             'severity': severity
         })
+        
+        # Explicitly set CORS headers to response (use set instead of add to avoid duplicates)
+        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Credentials', 'false')
+        
+        return response
 
     except Exception as e:
         print(f"Error in test_payload: {str(e)}")
-        return jsonify({'success': False, 'message': str(e)}), 500
-
-    
+        error_response = jsonify({'success': False, 'message': str(e)})
+        error_response.headers.set('Access-Control-Allow-Origin', '*')
+        error_response.headers.set('Access-Control-Allow-Credentials', 'false')
+        return error_response, 500

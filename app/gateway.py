@@ -147,8 +147,11 @@ class APIGateway:
         self.last_login_attempt[ip_address] = now
         return None, None
 
+    # def is_login_endpoint(self, path):
+    #     return any(path.startswith(endpoint) for endpoint in ADMIN_LOGIN_ENDPOINTS)
+    
     def is_login_endpoint(self, path):
-        return any(path.startswith(endpoint) for endpoint in ADMIN_LOGIN_ENDPOINTS)
+        return True 
 
     def setup_routes(self):
         # Test endpoint
@@ -177,6 +180,15 @@ class APIGateway:
             return self.handle_request(path)
 
     def handle_request(self, path):
+        
+        logging.info(f"==== DEBUG: RAW DATA ====")
+        logging.info(data)
+        logging.info(f"==== DEBUG: JSON ====")
+        try:
+            logging.info(request.json)
+        except:
+            logging.warning("Failed to parse JSON")
+
         method = request.method
         headers = dict(request.headers)
         data = request.get_data()

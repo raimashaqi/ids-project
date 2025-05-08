@@ -17,18 +17,18 @@ def setup_logging():
             logging.StreamHandler()  # Log to console
         ]
     )
-    
+
     # Log startup message
     logging.info("=== Gateway Service Started ===")
     logging.info("Frontend URL: http://localhost:3000")
     logging.info("Backend URL: http://localhost:5000")
     logging.info("Gateway URL: http://localhost:1337")
-    logging.info("Test endpoint available at: http://localhost:1337/test")
+    logging.info("Test endpoint available at: http://localhost:1337/testing")
 
 def main():
+    
     # Setup logging
     setup_logging()
-    
     # Initialize and run the gateway
     gateway = APIGateway('http://localhost:5000')
     

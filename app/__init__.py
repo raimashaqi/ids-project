@@ -2,6 +2,7 @@ from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_login import LoginManager
+from flask_cors import CORS
 
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -27,4 +28,9 @@ def create_app():
     app.register_blueprint(main_bp)
     app.register_blueprint(logs_bp)
 
-    return app 
+    # ✅ CORS FIX DENGAN credentials dan asal yang diizinkan
+    CORS(app, supports_credentials=True, resources={
+        r"/*": {"origins": ["http://127.0.0.1:5500", "http://localhost:5500"]}
+    })
+
+    return app

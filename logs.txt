@@ -3596,3 +3596,936 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 432-023-497
 [2025-04-30 19:01:30.719902] LOG DELETED - ID: 44
 [2025-04-30 19:12:29.597593] LOG DELETED - ID: 43
+[2025-05-05 10:17:59.074878] CRITICAL - SQL Injection Attack Detected!
+[2025-05-05 10:18:11.132309] CRITICAL - SQL Injection Attack Detected!
+[2025-05-05 10:18:14.317940] CRITICAL - SQL Injection Attack Detected!
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 101-933-561
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:=== New Request Details ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:IP: 127.0.0.1
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:Data: b''
+INFO:root:User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+INFO:root:Is login endpoint: False
+INFO:root:Full URL: http://localhost:1337/get_logs
+INFO:root:Forwarding request to target: http://localhost:5000/get_logs
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 10:34:45] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:=== New Request Details ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:IP: 127.0.0.1
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:Data: b''
+INFO:root:User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+INFO:root:Is login endpoint: False
+INFO:root:Full URL: http://localhost:1337/get_logs
+INFO:root:Forwarding request to target: http://localhost:5000/get_logs
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 10:34:50] "[33mGET /get_logs HTTP/1.1[0m" 404 -
+INFO:root:=== Request Received ===
+INFO:root:Path: testing
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:=== New Request Details ===
+INFO:root:Path: testing
+INFO:root:Method: GET
+INFO:root:IP: 127.0.0.1
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'none', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:Data: b''
+INFO:root:User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+INFO:root:Is login endpoint: False
+INFO:root:Full URL: http://localhost:1337/testing
+INFO:root:Forwarding request to target: http://localhost:5000/testing
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 10:34:53] "[33mGET /testing HTTP/1.1[0m" 404 -
+INFO:root:=== Request Received ===
+INFO:root:Path: importt
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:1337/export', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:=== New Request Details ===
+INFO:root:Path: importt
+INFO:root:Method: GET
+INFO:root:IP: 127.0.0.1
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:1337/export', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:Data: b''
+INFO:root:User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+INFO:root:Is login endpoint: False
+INFO:root:Full URL: http://localhost:1337/importt
+INFO:root:Forwarding request to target: http://localhost:5000/importt
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 10:34:55] "[33mGET /importt HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\run_gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 101-933-561
+[2025-05-05 10:52:12.996786] CRITICAL - SQL Injection Attack Detected!
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/test
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+[2025-05-05 12:20:26.690828] CRITICAL - SQL Injection Attack Detected!
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\run_gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+[2025-05-05 12:42:25.206510] CRITICAL - SQL Injection Attack Detected!
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:06] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: export
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:1337/importt', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:07] "[35m[1mGET /export HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:08] "GET /export?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:08] "GET /export?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:08] "GET /export?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:08] "[36mGET /export?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:09] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: dashboard
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:1337/importt', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:13] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:13] "GET /dashboard?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:13] "GET /dashboard?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:13] "GET /dashboard?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:13] "[36mGET /dashboard?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:14] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: importt
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Sec-Ch-Ua-Platform': '"Windows"', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-User': '?1', 'Sec-Fetch-Dest': 'document', 'Referer': 'http://localhost:1337/export', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:15] "[35m[1mGET /importt HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:15] "GET /importt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:16] "GET /importt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:16] "GET /importt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:16] "[36mGET /importt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:19] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:24] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:29] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:34] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:39] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:44] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:49] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:20:54] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:21:01] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\models\\log.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:21:08] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\gateway.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:21:16] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:1337
+ * Running on http://192.168.100.49:1337
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:24:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:25:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:26:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:27:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:28:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:29:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:30:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:31:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:32:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:33:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:34:16] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+INFO:root:=== Request Received ===
+INFO:root:Path: get_logs
+INFO:root:Method: GET
+INFO:root:Headers: {'Host': 'localhost:1337', 'Connection': 'keep-alive', 'Sec-Ch-Ua-Platform': '"Windows"', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'Sec-Ch-Ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"', 'Sec-Ch-Ua-Mobile': '?0', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'http://localhost:1337/testing', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7', 'Cookie': 'twk_idm_key=ndqC5RTLurXwO17MGuLuh; TawkConnectionTime=0; twk_uuid_67ce66c1c7388b190b531937=%7B%22uuid%22%3A%221.HQ2KZefiexTZOWYkYdZerT6rCt28BDx7FLgcGbVWe08yomoarK9ui5Q3e8Hm7td0JsiZ4Nb0B1iTXPkMPnkW8qEtHNvqvuOV1ETHs%22%2C%22version%22%3A3%2C%22domain%22%3Anull%2C%22ts%22%3A1742190448858%7D; PHPSESSID=2rbejffjkp2oa6r5lgt8gh4ei7; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIkxvZ2luIHN1Y2Nlc3NmdWwhIl19XSwiX2ZyZXNoIjpmYWxzZSwidXNlciI6Inl1a21hcmlAZ21haWwuY29tIn0.aBgtXA.BTC34gpSu4P_66KGSthxrhDBG2o'}
+INFO:root:==== DEBUG: RAW DATA ====
+INFO:werkzeug:127.0.0.1 - - [05/May/2025 14:35:15] "[35m[1mGET /get_logs HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\xampp\\htdocs\\MAGANG\\IDS BARU\\ids-project\\app\\routes\\logs.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:root:=== Gateway Service Started ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Test endpoint available at: http://localhost:1337/testing
+INFO:root:=== Gateway Configuration ===
+INFO:root:Frontend URL: http://localhost:3000
+INFO:root:Backend URL: http://localhost:5000
+INFO:root:Gateway URL: http://localhost:1337
+INFO:root:Starting IDS Gateway
+INFO:root:Starting gateway server on 0.0.0.0:1337
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 135-374-704
+[2025-05-05 15:09:38.877265] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 08:43:10.910003] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:04:57.986678] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:08:52.525207] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:08:57.244127] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:13:27.892148] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:13:33.326475] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:13:54.504989] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:14:33.797550] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:14:57.157402] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:15:12.401261] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:19:46.510573] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:19:53.362912] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 09:20:58.862756] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 11:54:34.035997] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 11:57:44.265598] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 11:58:01.073003] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 12:00:57.581214] LOW - Unknown Attack Detected!
+[2025-05-06 12:01:08.525710] LOW - Unknown Attack Detected!
+[2025-05-06 12:20:19.526190] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 12:24:18.720258] LOW - Unknown Attack Detected!
+[2025-05-06 12:39:13.092131] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 12:39:34.541883] LOG DELETED - ID: 79
+[2025-05-06 12:53:31.001198] LOW - Unknown Attack Detected!
+[2025-05-06 12:53:54.229071] LOG DELETED - ID: 80
+[2025-05-06 12:54:10.083754] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:09:28.145321] LOW - Unknown Attack Detected!
+[2025-05-06 13:09:28.227523] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:09:31.806323] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:09:46.172256] LOW - Unknown Attack Detected!
+[2025-05-06 13:09:51.773186] LOW - Unknown Attack Detected!
+[2025-05-06 13:09:52.080599] LOW - Unknown Attack Detected!
+[2025-05-06 13:09:52.699588] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:06.969228] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:07.028981] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:07.216098] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:15.885723] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:15.947558] LOW - Unknown Attack Detected!
+[2025-05-06 13:10:16.299074] LOW - Unknown Attack Detected!
+[2025-05-06 13:11:51.149338] LOW - Unknown Attack Detected!
+[2025-05-06 13:11:51.187237] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:11:57.075710] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:12:05.021050] LOW - Unknown Attack Detected!
+[2025-05-06 13:12:05.083882] LOW - Unknown Attack Detected!
+[2025-05-06 13:12:05.402130] LOW - Unknown Attack Detected!
+[2025-05-06 13:16:53.580926] LOW - Unknown Attack Detected!
+[2025-05-06 13:16:53.624367] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:16:55.251009] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:17:10.764495] LOW - Unknown Attack Detected!
+[2025-05-06 13:17:10.824449] LOW - Unknown Attack Detected!
+[2025-05-06 13:17:42.078884] LOW - Unknown Attack Detected!
+[2025-05-06 13:17:42.341891] LOW - Unknown Attack Detected!
+[2025-05-06 13:21:49.840253] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:22:03.902690] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:22:14.240434] LOW - Unknown Attack Detected!
+[2025-05-06 13:22:14.489188] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:22:15.543493] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:22:28.440043] LOW - Unknown Attack Detected!
+[2025-05-06 13:22:28.499898] LOW - Unknown Attack Detected!
+[2025-05-06 13:22:28.691369] LOW - Unknown Attack Detected!
+[2025-05-06 13:23:02.714007] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:23:16.665384] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:26:26.823317] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:26:50.722464] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:27:19.215357] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:27:34.536782] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:30:10.049979] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:37:53.795202] LOW - Unknown Attack Detected!
+[2025-05-06 13:37:53.925051] LOW - Unknown Attack Detected!
+[2025-05-06 13:37:54.116006] LOW - Unknown Attack Detected!
+[2025-05-06 13:38:07.941984] LOW - Unknown Attack Detected!
+[2025-05-06 13:38:08.098717] LOW - Unknown Attack Detected!
+[2025-05-06 13:38:08.271420] LOW - Unknown Attack Detected!
+[2025-05-06 13:38:26.109054] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:38:41.747959] LOW - Unknown Attack Detected!
+[2025-05-06 13:43:04.197372] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:43:42.658782] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:44:07.729188] LOW - Unknown Attack Detected!
+[2025-05-06 13:44:07.979881] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:44:23.537265] LOW - Unknown Attack Detected!
+[2025-05-06 13:44:23.783552] LOW - Unknown Attack Detected!
+[2025-05-06 13:44:35.667851] LOW - Unknown Attack Detected!
+[2025-05-06 13:44:35.884816] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:44:50.786285] LOW - Unknown Attack Detected!
+[2025-05-06 13:44:50.836027] LOW - Unknown Attack Detected!
+[2025-05-06 13:46:19.234456] LOW - Unknown Attack Detected!
+[2025-05-06 13:46:19.297739] LOW - Unknown Attack Detected!
+[2025-05-06 13:46:29.367659] LOW - Unknown Attack Detected!
+[2025-05-06 13:46:29.627107] LOW - Unknown Attack Detected!
+[2025-05-06 13:47:40.639290] LOW - Unknown Attack Detected!
+[2025-05-06 13:47:40.784137] LOW - Unknown Attack Detected!
+[2025-05-06 13:48:00.495613] LOW - Unknown Attack Detected!
+[2025-05-06 13:48:00.761371] LOW - Unknown Attack Detected!
+[2025-05-06 13:49:44.355522] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:49:55.660081] LOW - Unknown Attack Detected!
+[2025-05-06 13:50:12.529808] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 13:50:26.251649] LOW - Unknown Attack Detected!
+[2025-05-06 13:50:26.296612] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 13:50:47.344990] LOW - Unknown Attack Detected!
+[2025-05-06 13:50:47.393861] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:51:06.787001] LOW - Unknown Attack Detected!
+[2025-05-06 13:51:06.847836] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 13:51:14.996020] LOG DELETED - ID: 156
+[2025-05-06 13:51:24.678023] LOW - Unknown Attack Detected!
+[2025-05-06 13:51:24.891055] LOW - Unknown Attack Detected!
+[2025-05-06 13:51:45.425808] LOW - Unknown Attack Detected!
+[2025-05-06 13:51:45.474776] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 13:52:08.481423] LOW - Unknown Attack Detected!
+[2025-05-06 13:52:08.529900] LOW - Unknown Attack Detected!
+[2025-05-06 13:55:07.473878] LOW - Unknown Attack Detected!
+[2025-05-06 13:55:07.536709] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:55:20.710859] LOW - Unknown Attack Detected!
+[2025-05-06 13:55:20.758982] LOW - Unknown Attack Detected!
+[2025-05-06 13:57:56.737661] LOW - Unknown Attack Detected!
+[2025-05-06 13:57:56.786635] LOW - Unknown Attack Detected!
+[2025-05-06 13:57:59.872012] LOW - Unknown Attack Detected!
+[2025-05-06 13:58:00.191705] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 13:58:11.106804] LOW - Unknown Attack Detected!
+[2025-05-06 13:58:11.193659] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:03:21.253699] LOW - Unknown Attack Detected!
+[2025-05-06 14:03:21.316491] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:03:33.690386] LOW - Unknown Attack Detected!
+[2025-05-06 14:03:33.877753] LOW - Unknown Attack Detected!
+[2025-05-06 14:04:08.093149] LOW - Unknown Attack Detected!
+[2025-05-06 14:04:08.358550] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 14:04:34.390357] LOW - Unknown Attack Detected!
+[2025-05-06 14:04:34.652510] LOW - Unknown Attack Detected!
+[2025-05-06 14:08:37.267496] LOW - Unknown Attack Detected!
+[2025-05-06 14:08:37.344061] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:08:59.779457] LOW - Unknown Attack Detected!
+[2025-05-06 14:08:59.811372] LOW - Unknown Attack Detected!
+[2025-05-06 14:09:34.762321] LOW - Unknown Attack Detected!
+[2025-05-06 14:09:34.825032] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:09:49.668410] LOW - Unknown Attack Detected!
+[2025-05-06 14:09:49.894897] LOW - Unknown Attack Detected!
+[2025-05-06 14:10:26.913176] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 14:10:42.599284] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:12:47.149627] LOW - Unknown Attack Detected!
+[2025-05-06 14:12:47.211312] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:13:12.407764] LOW - Unknown Attack Detected!
+[2025-05-06 14:13:12.471783] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 14:13:47.707371] LOW - Unknown Attack Detected!
+[2025-05-06 14:13:47.772941] LOW - Unknown Attack Detected!
+[2025-05-06 14:15:25.564668] LOW - Unknown Attack Detected!
+[2025-05-06 14:15:25.703713] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:16:57.774189] LOW - Unknown Attack Detected!
+[2025-05-06 14:17:06.457921] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 14:17:17.669867] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 14:17:28.124630] LOW - Unknown Attack Detected!
+[2025-05-06 15:59:28.969384] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:02:12.801560] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:08:12.063878] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 16:28:41.048537] LOW - Unknown Attack Detected!
+[2025-05-06 16:29:40.738747] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:29:51.038427] LOW - Unknown Attack Detected!
+[2025-05-06 16:31:48.053369] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:32:02.943436] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 16:45:21.166050] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:45:37.780037] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 16:48:31.724275] CRITICAL - SQL Injection Attack Detected!
+[2025-05-06 16:48:47.231624] MEDIUM - XSS Injection Attack Detected!
+[2025-05-06 16:48:59.372599] LOW - Unknown Attack Detected!
+[2025-05-07 14:32:57.794540] MEDIUM - XSS Injection Attack Detected!
+[2025-05-07 14:33:40.158398] CRITICAL - SQL Injection Attack Detected!
+[2025-05-07 14:33:49.961966] LOW - Unknown Attack Detected!
+[2025-05-08 10:16:59.779768] LOW - Unknown Attack Detected!
+[2025-05-08 10:17:00.253330] LOW - Unknown Attack Detected!
+[2025-05-08 10:17:13.246147] LOW - Unknown Attack Detected!
+[2025-05-08 10:17:44.549208] LOW - Unknown Attack Detected!
+[2025-05-08 10:19:12.766515] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:20:06.947834] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:21:04.952890] LOW - Unknown Attack Detected!
+[2025-05-08 10:21:17.113019] LOW - Unknown Attack Detected!
+[2025-05-08 10:21:43.527178] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:22:32.729237] MEDIUM - XSS Injection Attack Detected!
+[2025-05-08 10:24:23.087123] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:24:44.021020] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:24:51.889955] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:27:37.602576] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 10:32:41.087216] MEDIUM - File Inclusion Attack Detected!
+[2025-05-08 11:41:59.153146] LOW - Unknown Attack Detected!
+[2025-05-08 11:42:06.988142] LOW - Unknown Attack Detected!
+[2025-05-08 11:47:33.577648] CRITICAL - SQL Injection Attack Detected!
+[2025-05-08 11:47:49.360178] LOW - Unknown Attack Detected!
+[2025-05-08 11:48:01.644774] MEDIUM - XSS Injection Attack Detected!
+[2025-05-08 11:48:10.094574] LOW - Unknown Attack Detected!

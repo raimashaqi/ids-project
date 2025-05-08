@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, session, request, jsonify
+from flask import Blueprint, render_template, flash, redirect, url_for, session, request, jsonify , send_from_directory
 from app.utils.decorators import login_required
 from app.models.log import Log
 from app.models.payload import Payload
@@ -359,3 +359,8 @@ def get_payload_content(id):
     except Exception as e:
         print(f"Error in get_payload_content: {str(e)}")
         return jsonify({'success': False, 'message': str(e)}), 500
+    
+@main_bp.route('/detector.js')
+def detector_js():
+    static_folder = os.path.join(os.path.dirname(__file__), '..', 'static', 'js')
+    return send_from_directory(static_folder, 'detector.js')
