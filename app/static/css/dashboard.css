@@ -27,14 +27,7 @@ html {
     margin: 0 0px;
     width: auto;
 }
-.nav-item.setting {
-    position: absolute;
-    bottom: 80px;
-    left: 0;
-    right: 0;
-    margin: 0 0px;
-    width: auto;
-}
+
 .sidebar.collapsed {
     width: 100px;
     min-height: 100vh;
@@ -80,6 +73,12 @@ html {
 }
 
 @media (max-width: 768px) {
+
+    .main-content {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+    }
+
     .sidebar {
         width: 100px;
         min-height: 100vh;
@@ -108,6 +107,7 @@ html {
         padding-right: 0;
     }
 
+    
     .nav-item.logout {
         position: absolute;
         bottom: 20px;
@@ -121,6 +121,38 @@ html {
         display: flex !important;
         margin: 20px auto;
     }
+    
+    #clock {
+        display: none;
+    }
+
+    .developer-modal {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+    
+    .developer-modal .card-body {
+        padding: 0.5rem;
+    }
+
+    .payload-modal {
+        max-width: 95%;
+        height: 90vh;
+    }
+    
+    .payload-modal .modal-body {
+        max-height: 65vh;
+    }
+
+    .import-modal {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+    
+    .import-modal .card-body {
+        padding: 0.5rem;
+    }
+
 }
 
 .logo {
@@ -177,12 +209,6 @@ body[data-page="import"] .hamburger i,
 body[data-page="export"] .hamburger i,
 body[data-page="buy"] .hamburger i {
     color: #ffffff !important;
-}
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
 }
 
 /* Navigation Items */
@@ -248,12 +274,6 @@ nav {
     width: calc(100% - 100px);
 }
 
-@media (max-width: 768px) {
-    .main-content {
-        margin-left: 100px;
-        width: calc(100% - 100px);
-    }
-}
 
 .top-bar {
     background: linear-gradient(90deg, #FFB800 0%, #FF6600 100%);
@@ -444,6 +464,8 @@ nav {
         padding-right: 0;
     }
 
+    
+
     .nav-item.logout {
         position: absolute;
         bottom: 20px;
@@ -462,10 +484,6 @@ nav {
     }
 }
 
-/* Media query untuk mobile tetap seperti sebelumnya */
-@media (max-width: 768px) {
-    /* ... existing mobile styles ... */
-}
 
 .card {
     border: none;
@@ -624,7 +642,7 @@ canvas {
     background: linear-gradient(90deg, #FFB800 0%, #ee8239 100%);
     padding: 10px 20px;
     margin-bottom: 25px;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -707,16 +725,6 @@ canvas {
     overflow-y: visible;
 }
 
-@media (max-width: 768px) {
-    .developer-modal {
-        max-width: 95%;
-        margin: 1rem auto;
-    }
-    
-    .developer-modal .card-body {
-        padding: 0.5rem;
-    }
-}
 
 /* Language Selector Styles */
 .language-btn {
@@ -789,16 +797,6 @@ canvas {
     max-height: 90vh; 
 }
 
-@media (max-width: 768px) {
-    .payload-modal {
-        max-width: 95%;
-        height: 90vh;
-    }
-    
-    .payload-modal .modal-body {
-        max-height: 65vh;
-    }
-}
 
 /* import Modal Styles */
 .import-modal {
@@ -824,13 +822,3 @@ canvas {
     overflow-y: visible;
 }
 
-@media (max-width: 768px) {
-    .import-modal {
-        max-width: 95%;
-        margin: 1rem auto;
-    }
-    
-    .import-modal .card-body {
-        padding: 0.5rem;
-    }
-}

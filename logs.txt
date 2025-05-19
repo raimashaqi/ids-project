@@ -4529,3 +4529,156 @@ INFO:werkzeug: * Debugger PIN: 135-374-704
 [2025-05-08 11:47:49.360178] LOW - Unknown Attack Detected!
 [2025-05-08 11:48:01.644774] MEDIUM - XSS Injection Attack Detected!
 [2025-05-08 11:48:10.094574] LOW - Unknown Attack Detected!
+[2025-05-09 08:53:14.619009] LOW - Unknown Attack Detected!
+[2025-05-09 08:53:39.628667] LOW - Unknown Attack Detected!
+[2025-05-09 08:53:56.798187] LOW - Unknown Attack Detected!
+[2025-05-09 08:54:33.523882] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 08:54:44.682831] LOW - Unknown Attack Detected!
+[2025-05-09 08:55:06.105490] LOW - Unknown Attack Detected!
+[2025-05-09 08:55:09.042321] LOW - Unknown Attack Detected!
+[2025-05-09 08:55:13.009904] LOW - Unknown Attack Detected!
+[2025-05-09 08:55:28.295041] LOW - Unknown Attack Detected!
+[2025-05-09 08:55:59.998203] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 09:30:10.993328] LOW - Unknown Attack Detected!
+[2025-05-09 09:34:28.731540] LOW - Unknown Attack Detected!
+[2025-05-09 09:34:35.541944] LOW - Unknown Attack Detected!
+[2025-05-09 09:57:46.827371] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 09:57:54.874468] LOW - Unknown Attack Detected!
+[2025-05-09 09:59:55.597173] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:03:48.463896] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:04:05.090554] LOW - Unknown Attack Detected!
+[2025-05-09 10:16:16.244675] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:16:36.243052] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 10:20:33.374387] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:23:59.988232] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:24:22.559298] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 10:26:48.521040] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:30:10.389359] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 10:54:12.117157] LOW - Unknown Attack Detected!
+[2025-05-09 10:56:07.250485] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 11:07:07.307106] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 11:07:25.588320] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 11:07:32.254991] LOW - Unknown Attack Detected!
+[2025-05-09 11:08:19.575569] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 13:22:30.604368] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 13:26:32.533429] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 13:49:21.627084] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 13:51:33.171099] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 13:58:14.842536] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 13:58:51.726593] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 15:17:53.737557] CRITICAL - SQL Injection Attack Detected!
+[2025-05-09 15:18:12.657525] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 15:59:28.127221] MEDIUM - XSS Injection Attack Detected!
+[2025-05-09 16:00:56.801411] MEDIUM - XSS Injection Attack Detected!
+[2025-05-13 09:37:17.454267] LOG DELETED - ID: 281
+[2025-05-13 09:37:18.149920] LOG DELETED - ID: 280
+[2025-05-13 09:37:22.709307] LOG DELETED - ID: 279
+[2025-05-13 09:37:29.708813] LOG DELETED - ID: 277
+[2025-05-13 09:57:53.062179] LOG DELETED - ID: 278
+[2025-05-14 08:55:06.436386] LOG DELETED - ID: 276
+[2025-05-14 09:05:20.186788] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 09:55:28.172498] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 09:58:13.399242] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:17:32.817131] MEDIUM - XSS Injection Attack Detected!
+[2025-05-14 10:32:51.626645] LOW - Unknown Attack Detected!
+[2025-05-14 10:37:25.307501] LOW - Unknown Attack Detected!
+[2025-05-14 10:37:25.359304] LOW - Unknown Attack Detected!
+[2025-05-14 10:37:44.892878] MEDIUM - XSS Injection Attack Detected!
+[2025-05-14 10:42:14.444766] MEDIUM - File Inclusion Attack Detected!
+[2025-05-14 10:42:48.680874] MEDIUM - Directory Traversal Attack Detected!
+[2025-05-14 10:43:07.726120] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:43:28.931231] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:43:49.769781] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:44:15.591617] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:46:56.688591] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:48:04.249531] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:48:28.213247] CRITICAL - Command Injection Attack Detected!
+[2025-05-14 10:48:52.886237] CRITICAL - NoSQL Injection Attack Detected!
+[2025-05-14 10:49:06.547602] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:49:56.672205] CRITICAL - Command Injection Attack Detected!
+[2025-05-14 10:50:18.415232] MEDIUM - CSV Injection Attack Detected!
+[2025-05-14 10:50:42.518259] MEDIUM - Directory Traversal Attack Detected!
+[2025-05-14 10:50:55.249082] MEDIUM - File Inclusion Attack Detected!
+[2025-05-14 10:51:07.539871] CRITICAL - NoSQL Injection Attack Detected!
+[2025-05-14 10:51:32.206039] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:51:53.756695] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 10:52:10.385940] HIGH - SST Injection Attack Detected!
+[2025-05-14 10:52:27.193926] CRITICAL - SQL Injection Attack Detected!
+[2025-05-14 11:12:27.316513] LOW - Unknown Attack Detected!
+[2025-05-14 11:14:19.194668] LOW - Unknown Attack Detected!
+[2025-05-14 11:17:21.156291] LOW - Unknown Attack Detected!
+[2025-05-14 11:24:04.191078] LOW - Unknown Attack Detected!
+[2025-05-14 11:27:27.523279] LOW - Unknown Attack Detected!
+[2025-05-14 12:24:36.958734] LOW - Unknown Attack Detected!
+[2025-05-14 12:40:26.991597] LOW - Unknown Attack Detected!
+[2025-05-14 12:53:50.910160] CRITICAL - nama Attack Detected!
+[2025-05-14 12:58:09.895023] HIGH - nama Attack Detected!
+[2025-05-14 13:07:00.714822] HIGH - nama Attack Detected!
+[2025-05-14 13:07:06.376502] HIGH - nama Attack Detected!
+[2025-05-14 13:07:13.065081] HIGH - nama Attack Detected!
+[2025-05-14 13:07:24.937548] LOW - Unknown Attack Detected!
+[2025-05-14 13:07:29.624619] HIGH - nama Attack Detected!
+[2025-05-14 13:08:02.061649] LOW - Unknown Attack Detected!
+[2025-05-14 13:08:34.277351] LOW - Unknown Attack Detected!
+[2025-05-14 13:08:38.692636] HIGH - nama Attack Detected!
+[2025-05-14 13:09:21.871081] LOW - Unknown Attack Detected!
+[2025-05-14 13:09:44.839779] LOW - Unknown Attack Detected!
+[2025-05-14 13:10:06.288646] LOW - Unknown Attack Detected!
+[2025-05-14 13:10:12.428949] LOW - Unknown Attack Detected!
+[2025-05-14 13:10:39.423850] HIGH - nama Attack Detected!
+[2025-05-14 13:10:58.142417] HIGH - nama Attack Detected!
+[2025-05-14 13:11:02.110525] HIGH - nama Attack Detected!
+[2025-05-14 13:11:10.696130] HIGH - nama Attack Detected!
+[2025-05-14 13:11:44.209240] HIGH - nama Attack Detected!
+[2025-05-14 13:12:06.527170] LOW - Unknown Attack Detected!
+[2025-05-14 13:13:30.182522] LOW - Unknown Attack Detected!
+[2025-05-15 11:02:35.246097] MEDIUM - XSS Injection Attack Detected!
+[2025-05-15 11:03:04.828442] CRITICAL - NoSQL Injection Attack Detected!
+[2025-05-16 10:24:19.699200] LOW - Unknown Attack Detected!
+[2025-05-16 10:24:31.659869] MEDIUM - XSS Injection Attack Detected!
+[2025-05-16 10:25:39.457135] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 08:22:12.377847] CRITICAL - Command Injection Attack Detected!
+[2025-05-17 08:22:44.682455] MEDIUM - CSV Injection Attack Detected!
+[2025-05-17 08:23:16.337727] MEDIUM - Directory Traversal Attack Detected!
+[2025-05-17 08:23:40.301351] MEDIUM - File Inclusion Attack Detected!
+[2025-05-17 08:24:09.658120] CRITICAL - NoSQL Injection Attack Detected!
+[2025-05-17 08:24:51.008125] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:25:08.042192] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:25:25.832056] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:25:52.252459] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:26:11.302320] HIGH - SST Injection Attack Detected!
+[2025-05-17 08:26:40.426883] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:26:56.194269] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:27:11.829472] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 08:27:48.050786] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 08:28:17.042581] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 08:28:42.050755] CRITICAL - SQL Injection Attack Detected!
+[2025-05-17 08:28:54.126509] HIGH - XML Injection Attack Detected!
+[2025-05-17 08:30:10.526534] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 13:09:40.645350] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 13:10:02.439421] MEDIUM - Directory Traversal Attack Detected!
+[2025-05-17 13:15:50.500377] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 13:17:52.153434] MEDIUM - XSS Injection Attack Detected!
+[2025-05-17 13:18:15.067164] LOW - Unknown Attack Detected!
+[2025-05-17 13:20:24.017789] MEDIUM - CSV Injection Attack Detected!
+[2025-05-17 13:21:15.860581] LOG DELETED - ID: 359
+[2025-05-17 13:24:56.471517] MEDIUM - CSV Injection Attack Detected!
+[2025-05-17 13:24:57.219893] MEDIUM - CSV Injection Attack Detected!
+[2025-05-17 13:25:10.592832] MEDIUM - CSV Injection Attack Detected!
+[2025-05-17 13:27:21.105695] HIGH - XML Injection Attack Detected!
+[2025-05-17 13:45:36.083519] HIGH - XML Injection Attack Detected!
+[2025-05-17 13:46:50.911483] CRITICAL - NoSQL Injection Attack Detected!
+[2025-05-17 14:01:50.101522] CRITICAL - Command Injection Attack Detected!
+[2025-05-19 10:04:59.205702] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:06:31.797213] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:07:49.972448] LOW - Unknown Attack Detected!
+[2025-05-19 10:07:57.053456] LOW - Unknown Attack Detected!
+[2025-05-19 10:08:02.696973] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:08:14.043596] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:08:22.285736] LOW - Unknown Attack Detected!
+[2025-05-19 10:09:19.946892] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:09:25.396627] LOW - Unknown Attack Detected!
+[2025-05-19 10:11:58.700946] LOW - Unknown Attack Detected!
+[2025-05-19 10:12:11.210746] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 10:12:52.378620] LOW - Unknown Attack Detected!
+[2025-05-19 10:24:19.677568] MEDIUM - XSS Injection Attack Detected!

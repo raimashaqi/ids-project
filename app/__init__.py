@@ -29,8 +29,21 @@ def create_app():
     app.register_blueprint(logs_bp)
 
     # ✅ CORS FIX DENGAN credentials dan asal yang diizinkan
-    CORS(app, supports_credentials=True, resources={
-        r"/*": {"origins": ["http://127.0.0.1:5500", "http://localhost:5500"]}
-    })
+    # CORS(app, supports_credentials=True, resources={
+    #     r"/*": {"origins": ["http://127.0.0.1:5500", "http://localhost:5500"]}
+    # })
+    
+    CORS(app, 
+    supports_credentials=True, 
+    resources={
+        r"/*": {
+                "origins": "*",                   # Allow all origins
+                "methods": "*",                   # Allow all methods (GET, POST, etc.)
+                "allow_headers": "*",             # Allow all headers
+                "expose_headers": "*",            # Expose all headers
+                "max_age": 86400                  # Cache preflight requests for 24 hours
+            }
+        }
+    )
 
     return app

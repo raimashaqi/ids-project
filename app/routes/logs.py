@@ -75,7 +75,7 @@ def get_location_from_ip(location):
 def determine_severity(severity_value):
     """
     Menentukan dan menormalisasi nilai severity berdasarkan objek severity.
-    Jika nilai tidak sesuai dengan kategori yang diharapkan, maka akan mengembalikan 'Informative'.
+    Perbaikan untuk mendukung berbagai format penulisan di database.
     
     Args:
         severity_value (str): Nilai severity yang tersimpan di database.
@@ -85,14 +85,18 @@ def determine_severity(severity_value):
     """
     if severity_value and isinstance(severity_value, str):
         normalized = severity_value.strip().lower()
-        if normalized == "critical":
+        
+        # Gunakan contains/in untuk pencocokan yang lebih fleksibel
+        if "critical" in normalized:
             return "Critical"
-        elif normalized == "high":
+        elif "high" in normalized:
             return "High"
-        elif normalized == "medium":
+        elif "medium" in normalized:
             return "Medium"
-        elif normalized == "low":
+        elif "low" in normalized:
             return "Low"
+    
+    # Nilai default untuk severity yang tidak cocok dengan kategori yang ada
     return "Informative"
 
 @logs_bp.route('/get_logs')
@@ -101,9 +105,30 @@ def get_logs():
     try:
         logs = Log.query.order_by(Log.log_time.desc()).all()
         logs_list = []
+        
+        # Untuk debugging
+        severity_counts = {
+            "Critical": 0,
+            "High": 0,
+            "Medium": 0,
+            "Low": 0,
+            "Informative": 0
+        }
+        
+        # Nilai severity asli yang ditemukan untuk debugging
+        original_severity_values = set()
+        
         for log in logs:
+            # Tambahkan nilai severity asli ke set untuk debugging
+            if log.severity:
+                original_severity_values.add(log.severity)
+            
             # Gunakan fungsi determine_severity untuk menormalisasi nilai severity
             normalized_severity = determine_severity(log.severity)
+            
+            # Hitung jumlah per kategori untuk debugging
+            severity_counts[normalized_severity] += 1
+            
             logs_list.append({
                 'id': log.id,
                 'log_message': log.log_message,
@@ -112,9 +137,23 @@ def get_logs():
                 'tcp_sport': log.tcp_sport,
                 'ip_dst': log.ip_dst,
                 'tcp_dport': log.tcp_dport,
-                'severity': normalized_severity
+                'severity': normalized_severity,
+                'original_severity': log.severity  # Tambahkan nilai severity asli untuk debugging
             })
-        return jsonify({'success': True, 'logs': logs_list})
+        
+        # Print informasi debugging ke console server
+        print(f"Total logs: {len(logs_list)}")
+        print(f"Severity counts: {severity_counts}")
+        print(f"Original severity values found: {original_severity_values}")
+        
+        return jsonify({
+            'success': True, 
+            'logs': logs_list,
+            'debug_info': {
+                'severity_counts': severity_counts,
+                'original_values': list(original_severity_values)
+            }
+        })
     except Exception as e:
         print(f"Error in get_logs: {str(e)}")
         return jsonify({'success': False, 'message': str(e)}), 500
@@ -165,6 +204,7 @@ def delete_log(id):
     except Exception as e:
         print(f"Error in delete_log: {e}")
         return jsonify({'success': False, 'message': str(e)}), 500
+    
 
 # Define Test Payload Route - Public access with enhanced CORS support
 
@@ -185,6 +225,8 @@ def test_payload():
 
         data = request.get_json()
         payload = data.get('payload')
+        
+        
 
         if not payload:
             return jsonify({'success': False, 'message': 'Payload is required'}), 400
@@ -234,3 +276,5 @@ def test_payload():
         error_response.headers.set('Access-Control-Allow-Origin', '*')
         error_response.headers.set('Access-Control-Allow-Credentials', 'false')
         return error_response, 500
+    
+    

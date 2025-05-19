@@ -1053,6 +1053,10 @@ mark {
     }
 }
 
+.content-area .disabled {
+    pointer-events: none;
+}
+
 .pagination .disabled {
     opacity: 0.5;
     pointer-events: none;

@@ -26,7 +26,9 @@
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
-                <div id="clock" class="text-center mt-3 text-white"></div>
+                    <div class="clock-container">
+        <div id="clock" class="text-center text-white"></div>
+    </div>
             </div>
             <nav>
                 <div class="nav flex-column">
@@ -66,8 +68,8 @@
                 <div class="welcome-header">
                     <div class="welcome-content d-flex justify-content-between align-items-center">
                         <h2>Selamat Datang di Dashboard <span class="text-muted text-white">Intrusion Detection System</span></h2>
-                        <div class="d-flex align-items-center gap-3">
-                            <!-- Language Selector -->
+                        <!-- <div class="d-flex align-items-center gap-3">
+                           
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-globe"></i>
@@ -81,9 +83,9 @@
                             <button class="btn" style="background-color: #D80000; color: white;" data-bs-toggle="modal" data-bs-target="#developerModal">
                                 <i class="fas fa-users"></i> Tim Pengembang
                             </button>
-                        </div>
+                        </div> -->
                     </div>
-                </div>
+                </div> 
 
                 <div class="content-area">
                     <div class="row d-flex justify-content-center align-items-center">
@@ -91,8 +93,8 @@
                         <div class="col-md-5">
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Ancaman Log</h5>
-                                    <canvas id="logThreatsChart"></canvas>
+                                    <h5 class="card-title text-center pb-3 ">ANCAMAN LOG</h5>
+                                    <canvas id="Pie_baru"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -116,25 +118,21 @@
                                         <h5 class="card-title text-center">Ancaman Logs </h5>
                                         <p class="text-muted text-center">Berdasarkan Tingkat Keparahan</p>
                                         <div class="severity-badges">
-                                            <!-- <div class="severity-item">
-                                                <div class="severity-count" id="totalInformative">0</div>
-                                                <span class="severity-badge bg-info">Informative</span>
-                                            </div> -->
                                             <div class="severity-item">
                                                 <div class="severity-count" id="totalLow">0</div>
-                                                <span class="severity-badge bg-success">Rendah</span>
+                                                <span class="severity-badge bg-success">Low</span>
                                             </div>
                                             <div class="severity-item">
                                                 <div class="severity-count" id="totalMedium">0</div>
-                                                <span class="severity-badge bg-warning">Sedang</span>
+                                                <span class="severity-badge bg-warning">Medium</span>
                                             </div>
                                             <div class="severity-item">
                                                 <div class="severity-count" id="totalHigh">0</div>
-                                                <span class="severity-badge bg-orange">Tinggi</span>
+                                                <span class="severity-badge bg-orange">High</span>
                                             </div>
                                             <div class="severity-item">
-                                                <div class="severity-count" id="totalCriticals">0</div>
-                                                <span class="severity-badge bg-danger">Genting</span>
+                                                <div class="severity-count" id="totalCritical">0</div>
+                                                <span class="severity-badge bg-danger">Critical</span>
                                             </div>
                                         </div>
                                     </div>
@@ -146,74 +144,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Ambil data log dari endpoint /get_logs dan update chart serta jumlah severity
-        fetch('/get_logs')
-            .then(response => response.json())
-            .then(data => {
-                // Tampilkan jumlah total log
-                document.getElementById('totalLogsThreats').textContent = data.logs.length;
 
-                // Hitung jumlah tiap severity
-                const severityCount = {
-                    'Low': 0,
-                    'Medium': 0,
-                    'High': 0,
-                    'Critical': 0
-                };
-
-                data.logs.forEach(log => {
-                    let sev = (log.severity || '').toString().trim().toLowerCase();
-                    if (sev === 'critical') severityCount['Critical']++;
-                    else if (sev === 'high') severityCount['High']++;
-                    else if (sev === 'medium') severityCount['Medium']++;
-                    else if (sev === 'low') severityCount['Low']++;
-                });
-
-                // Pie chart
-                const ctx = document.getElementById('logThreatsChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Low', 'Medium', 'High', 'Critical'],
-                        datasets: [{
-                            data: [severityCount['Low'], severityCount['Medium'], severityCount['High'], severityCount['Critical']],
-                            backgroundColor: [
-                                '#00FF26', // Low
-                                '#FF6E00', // Medium
-                                '#FF0C03', // High
-                                '#D80000'  // Critical
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'right',
-                                labels: {
-                                    usePointStyle: true,
-                                    pointStyle: 'circle',
-                                    padding: 20,
-                                    font: { size: 12 }
-                                }
-                            }
-                        }
-                    }
-                });
-
-                // Update counter per severity
-                document.getElementById('totalLow').textContent = severityCount['Low'];
-                document.getElementById('totalMedium').textContent = severityCount['Medium'];
-                document.getElementById('totalHigh').textContent = severityCount['High'];
-                document.getElementById('totalCriticals').textContent = severityCount['Critical'];
-            })
-            .catch(error => {
-                console.error('Error fetching log data:', error);
-            });
-    </script>
 
     <!-- Modal Tim Pengembang -->
     <div class="modal fade" id="developerModal" tabindex="-1" aria-labelledby="developerModalLabel" aria-hidden="true">
@@ -264,6 +195,24 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Developer 3 (Raifal) -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="row g-0">
+                                    <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
+                                        <img src="{{ url_for('static', filename='img/alfiyan.jpeg') }}" class="rounded-circle" alt="Raifal Bagus A" style="width: 80px; height: 80px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body py-2 ps-3">
+                                            <h5 class="card-title fs-5 mb-1">Raifal Bagus Afdiansah</h5>
+                                            <p class="card-text mb-0">Mahasiswa Magang</p>
+                                            <p class="card-text mb-0">Teknik Komputer</p>
+                                            <p class="card-text text-muted mb-0">Universitas Pendidikan Indonesia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,25 +221,157 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
-        // Initialize clock on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateClock();
-            setInterval(updateClock, 1000);
+    // Inisialisasi counter severity
+    const severityCount = {
+        Critical: 0,
+        High: 0,
+        Medium: 0,
+        Low: 0
+    };
 
-            // Initialize modal
-            var myModal = new bootstrap.Modal(document.getElementById('developerModal'), {
-                keyboard: true,
-                backdrop: true,
-                focus: true
-            });
+    // Warna untuk masing-masing severity
+    const severityColors = {
+        Critical: '#ff4c4c', // Merah
+        High: '#ff9900',     // Oranye
+        Medium: '#ffd700',   // Kuning
+        Low: '#4caf50'       // Hijau
+    };
 
-            // Add click handler for modal trigger button
-            document.querySelector('[data-bs-target="#developerModal"]').addEventListener('click', function() {
-                myModal.show();
-            });
+    // Fungsi untuk memperbarui chart dan counter
+    function updateDashboard(data) {
+        if (!data.success || !data.logs) {
+            console.error('Invalid data format:', data);
+            return;
+        }
+
+        // Reset counters
+        Object.keys(severityCount).forEach(key => {
+            severityCount[key] = 0;
         });
+
+        // Count severities
+        data.logs.forEach(log => {
+            // Normalisasi severity (pastikan huruf pertama kapital, sisanya lowercase)
+            let severity = log.severity;
+            if (typeof severity === 'string') {
+                severity = severity.charAt(0).toUpperCase() + severity.slice(1).toLowerCase();
+                
+                // Pastikan severity ada dalam daftar yang kita tracking
+                if (severityCount.hasOwnProperty(severity)) {
+                    severityCount[severity]++;
+                } else {
+                    console.warn("Severity tidak dikenal:", severity);
+                }
+            }
+        });
+
+        // Update HTML counters
+        document.getElementById('totalLogsThreats').textContent = data.logs.length;
+        document.getElementById('totalCritical').textContent = severityCount.Critical;
+        document.getElementById('totalHigh').textContent = severityCount.High;
+        document.getElementById('totalMedium').textContent = severityCount.Medium;
+        document.getElementById('totalLow').textContent = severityCount.Low;
+
+        // Buat array dari data untuk pie chart
+        const labels = Object.keys(severityCount);
+        const counts = labels.map(label => severityCount[label]);
+        const colors = labels.map(label => severityColors[label]);
+
+        // Buat pie chart
+        const ctx = document.getElementById('Pie_baru').getContext('2d');
+        
+        // Buat chart baru
+        window.Pie_baru = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            padding: 20,
+                            font: { 
+                                size: 12 
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Fetch logs and update dashboard
+    fetch('/get_logs')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateDashboard(data);
+        })
+        .catch(error => {
+            console.error('Error fetching logs:', error);
+        });
+
+    // Initialize clock
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Initialize clock on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Initialize modal
+        var myModal = new bootstrap.Modal(document.getElementById('developerModal'), {
+            keyboard: true,
+            backdrop: true,
+            focus: true
+        });
+
+        // Add click handler for modal trigger button
+        document.querySelector('[data-bs-target="#developerModal"]').addEventListener('click', function() {
+            myModal.show();
+        });
+    });
+
+    // Function to confirm logout
+    function confirmLogout(event) {
+        if (!confirm('Apakah Anda yakin ingin keluar?')) {
+            event.preventDefault();
+        }
+    }
     </script>
 
 </body>

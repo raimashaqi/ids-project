@@ -12,8 +12,12 @@ import socket
 import re
 
 
-SITE_KEY = '6LdA_ugqAAAAANRhelfTEZmF39WC_WPwCdOwufnx'
-SECRET_KEY = '6LdA_ugqAAAAAF8bkhqJO1AFw8HqtREhuLLNdhPh'
+# SITE_KEY = '6LdA_ugqAAAAANRhelfTEZmF39WC_WPwCdOwufnx'
+# SECRET_KEY = '6LdA_ugqAAAAAF8bkhqJO1AFw8HqtREhuLLNdhPh'
+
+SITE_KEY = '6LfwRCErAAAAAAQ-jgCTuYwRQaV9PDEpnwgMtORf'
+SECRET_KEY = '6LfwRCErAAAAAHhBEFn2uaIuGkawFw_wBpA6UkeD'
+
 VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify'
 
 
@@ -44,10 +48,13 @@ def login():
             return redirect(url_for('auth.login_page'))
             
         verify_response = requests.post(url=f'{VERIFY_URL}?secret={SECRET_KEY}&response={secret_response}').json()
+        print("reCAPTCHA response:", verify_response) 
         
         if not verify_response.get('success'):
             flash('reCAPTCHA verification failed. Please try again.', 'danger')
             return redirect(url_for('auth.login_page'))
+        
+        
 
         # Then proceed with login
         email = request.form.get('email')

@@ -17,7 +17,9 @@
     />
     <link rel="stylesheet" href="../static/css/dashboard.css" />
     <link rel="stylesheet" href="../static/css/export.css" />
+    <link rel="stylesheet" href="../static/css/import.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
   </head>
 
   <body data-page="import">
@@ -235,7 +237,7 @@
                       <option value="medium">Sedang</option>
                       <option value="high">Tinggi</option>
                     </select>
-                  </div>
+                  </div>  
                   <div
                     class="upload-area border-2 border-dashed border-gray-300 p-4 text-center rounded-lg mb-4"
                   >
@@ -414,37 +416,80 @@
         }
       }
 
-      function disablePayloadFeatures() {
-        // Disable import button
-        const importBtn = document.querySelector(".import");
-        if (importBtn) {
-          importBtn.disabled = true;
-          importBtn.style.opacity = "0.6";
-          importBtn.style.cursor = "not-allowed";
-        }
-
-        // Disable all delete buttons
-        document.querySelectorAll(".fa-trash-alt").forEach((btn) => {
-          btn.style.pointerEvents = "none";
-          btn.style.opacity = "0.6";
-          btn.style.cursor = "not-allowed";
-        });
-
-        // Disable file input if modal is opened
-        const fileInput = document.getElementById("fileInput");
-        if (fileInput) fileInput.disabled = true;
-
-        const submitUpload = document.getElementById("submitUpload");
-        if (submitUpload) submitUpload.disabled = true;
+     function disablePayloadFeatures() {
+      // Disable import button
+      const importBtn = document.querySelector(".import");
+      if (importBtn) {
+        importBtn.disabled = true;
+        importBtn.setAttribute("disabled", "disabled"); // Add HTML attribute
+        importBtn.style.opacity = "0.6";
+        importBtn.style.cursor = "not-allowed";
+        // Remove any click event listeners
+        importBtn.style.pointerEvents = "none";
       }
+
+      // Disable all delete buttons
+      document.querySelectorAll(".fa-trash-alt").forEach((btn) => {
+        // Need to properly handle the i element inside a button/link
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = "0.6";
+        btn.style.cursor = "not-allowed";
+        
+        // Handle parent element if it's the actual clickable element
+        const parentElement = btn.parentElement;
+        if (parentElement && parentElement.tagName === "I" || 
+            parentElement.classList.contains("btn-link") ||
+            parentElement.tagName === "BUTTON") {
+          parentElement.disabled = true;
+          parentElement.setAttribute("disabled", "disabled");
+          parentElement.style.pointerEvents = "none";
+          parentElement.style.cursor = "not-allowed";
+        }
+      });
+
+      // Disable view buttons too
+      document.querySelectorAll(".fa-eye").forEach((btn) => {
+        btn.style.pointerEvents = "none";
+        btn.style.opacity = "0.6";
+        btn.style.cursor = "not-allowed";
+        
+        const parentElement = btn.parentElement;
+        if (parentElement) {
+          parentElement.disabled = true;
+          parentElement.setAttribute("disabled", "disabled");
+          parentElement.style.pointerEvents = "none";
+          parentElement.style.cursor = "not-allowed";
+        }
+      });
+
+      // Disable file input if modal is opened
+      const fileInput = document.getElementById("fileInput");
+      if (fileInput) fileInput.disabled = true;
+
+      const submitUpload = document.getElementById("submitUpload");
+      if (submitUpload) {
+        submitUpload.disabled = true;
+        submitUpload.setAttribute("disabled", "disabled");
+        submitUpload.style.opacity = "0.6";
+        submitUpload.style.cursor = "not-allowed";
+      }
+
+    const mainContent = document.querySelector(".content-area");
+    if (mainContent) {
+      mainContent.classList.add("disabled");
+      mainContent.style.display = "none";
+    }
+    }
 
       function enablePayloadFeatures() {
         // Enable import button
         const importBtn = document.querySelector(".import");
         if (importBtn) {
           importBtn.disabled = false;
+          importBtn.removeAttribute("disabled");
           importBtn.style.opacity = "1";
           importBtn.style.cursor = "pointer";
+          importBtn.style.pointerEvents = "auto";
         }
 
         // Enable all delete buttons
@@ -452,14 +497,54 @@
           btn.style.pointerEvents = "auto";
           btn.style.opacity = "1";
           btn.style.cursor = "pointer";
+          
+          // Enable parent element if it exists
+          const parentElement = btn.parentElement;
+          if (parentElement && (parentElement.tagName === "I" || 
+              parentElement.classList.contains("btn-link") ||
+              parentElement.tagName === "BUTTON")) {
+            parentElement.disabled = false;
+            parentElement.removeAttribute("disabled");
+            parentElement.style.pointerEvents = "auto";
+            parentElement.style.cursor = "pointer";
+          }
+        });
+
+        // Enable view buttons too
+        document.querySelectorAll(".fa-eye").forEach((btn) => {
+          btn.style.pointerEvents = "auto";
+          btn.style.opacity = "1";
+          btn.style.cursor = "pointer";
+          
+          const parentElement = btn.parentElement;
+          if (parentElement) {
+            parentElement.disabled = false;
+            parentElement.removeAttribute("disabled");
+            parentElement.style.pointerEvents = "auto";
+            parentElement.style.cursor = "pointer";
+          }
         });
 
         // Enable file input if modal is opened
         const fileInput = document.getElementById("fileInput");
-        if (fileInput) fileInput.disabled = false;
+        if (fileInput) {
+          fileInput.disabled = false;
+          fileInput.removeAttribute("disabled");
+        }
 
         const submitUpload = document.getElementById("submitUpload");
-        if (submitUpload) submitUpload.disabled = false;
+        if (submitUpload) {
+          submitUpload.disabled = false;
+          submitUpload.removeAttribute("disabled");
+          submitUpload.style.opacity = "1";
+          submitUpload.style.cursor = "pointer";
+        }
+
+        const mainContent = document.querySelector(".content-area");
+        if (mainContent) {
+          mainContent.classList.remove("disabled");
+          mainContent.style.display = "block";
+        }
       }
 
       // Modify your existing deletePayload function to check activation

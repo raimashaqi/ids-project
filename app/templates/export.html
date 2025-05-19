@@ -328,6 +328,12 @@
             btn.style.opacity = enabled ? "1" : "0.6";
             btn.style.pointerEvents = enabled ? "auto" : "none";
           });
+
+          const contentArea = document.querySelector(".content-area");
+          if (contentArea) {
+            contentArea.style.display = enabled ? "block" : "none";
+          }
+
         }
 
         updateFeatureAccess();
@@ -522,11 +528,12 @@
         }
       }
 
-      // Export single row to Excel
+      // Export single row to Excel dengan tampilan rapi
       function exportSingleRowToExcel(id) {
         const row = document.querySelector(`tr[data-id="${id}"]`);
         if (!row) return;
-        
+
+        // Ambil data dari sel
         const data = [{
           'ID': row.cells[1].textContent.trim(),
           'Waktu Log': row.cells[2].textContent.trim(),
@@ -538,13 +545,29 @@
           'Keparahan': row.cells[8].querySelector('.severity-badge').textContent.trim()
         }];
 
-        const ws = XLSX.utils.json_to_sheet(data);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Log");
-        
-        const fileName = `attack_log_${id}_${new Date().toISOString().split('T')[0]}.xlsx`;
-        XLSX.writeFile(wb, fileName);
-      }
+          // Buat worksheet dan workbook
+          const ws = XLSX.utils.json_to_sheet(data, { origin: "A1" }); // Data mulai dari A2
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, "Log");
+
+
+          // Tambahkan lebar kolom agar tidak terpotong
+          ws['!cols'] = [
+            { wch: 5 },   // ID
+            { wch: 20 },  // Waktu Log
+            { wch: 40 },  // Pesan Log
+            { wch: 18 },  // IP Sumber
+            { wch: 12 },  // Port Sumber
+            { wch: 18 },  // IP Tujuan
+            { wch: 12 },  // Port Tujuan
+            { wch: 12 }   // Keparahan
+          ];
+
+          // Nama file
+          const fileName = `attack_log_${id}_${new Date().toISOString().split('T')[0]}.xlsx`;
+          XLSX.writeFile(wb, fileName);
+        }
+
     </script>
   </body>
 </html>

@@ -923,4 +923,6 @@ function fetchAndDisplayLogs() {
             alert('Failed to fetch logs data');
         });
     }
+
+    
     
