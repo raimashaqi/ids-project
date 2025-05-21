@@ -4682,3 +4682,4 @@ INFO:werkzeug: * Debugger PIN: 135-374-704
 [2025-05-19 10:12:11.210746] MEDIUM - XSS Injection Attack Detected!
 [2025-05-19 10:12:52.378620] LOW - Unknown Attack Detected!
 [2025-05-19 10:24:19.677568] MEDIUM - XSS Injection Attack Detected!
+[2025-05-19 12:39:01.063330] LOW - Unknown Attack Detected!

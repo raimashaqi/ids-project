@@ -105,6 +105,16 @@
         display: flex !important;
         margin: 20px auto;
     }
+
+    .nav-item.setting {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        margin: 0;
+    }
+
 }
 
 .logo {
@@ -569,28 +579,28 @@ nav {
 }
 
 /* Severity Badge Styles */
-.severity-badge {
+.severity-badgeEx {
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
 }
 
-.severity-badge.high {
+.severity-badgeEx.high {
     background-color: #ffe5e5;
     color: #ff4444;
 }
 
-.severity-badge.medium {
+.severity-badgeEx.medium {
     background-color: #fff3cd;
     color: #ffc107;
 }
 
-.severity-badge.low {
+.severity-badgeEx.low {
     background-color: #e8f5e9;
     color: #4caf50;
 }
-.severity-badge.critical {
+.severity-badgeEx.critical {
     background-color: #da8787;
     color: #911212;
 }
@@ -819,7 +829,7 @@ mark {
 }
 
 
-.severity-badge {
+.severity-badgeEx {
     display: inline-block;
     padding: 4px 8px;
     border-radius: 4px;

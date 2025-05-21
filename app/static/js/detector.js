@@ -5,8 +5,8 @@
 (function () {
   // Konfigurasi dasar
   const config = {
-    apiUrl: 'http://localhost:1337/test_payload',
-    // apiUrl: 'https://f1d3-114-10-45-131.ngrok-free.app/test_payload', // URL API untuk mendeteksi payload pastikan menggunakan ngrok Server
+    // apiUrl: 'http://localhost:1337/test_payload',
+    apiUrl: 'https://f1d3-114-10-45-131.ngrok-free.app/test_payload', // URL API untuk mendeteksi payload pastikan menggunakan ngrok Server
     debug: false,
     checkOnSubmit: true   // Periksa saat form disubmit
   };

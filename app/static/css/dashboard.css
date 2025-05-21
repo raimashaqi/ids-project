@@ -27,7 +27,14 @@ html {
     margin: 0 0px;
     width: auto;
 }
-
+.nav-item.setting {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    margin: 0 0px;
+    width: auto;
+}
 .sidebar.collapsed {
     width: 100px;
     min-height: 100vh;
@@ -73,12 +80,6 @@ html {
 }
 
 @media (max-width: 768px) {
-
-    .main-content {
-        margin-left: 100px;
-        width: calc(100% - 100px);
-    }
-
     .sidebar {
         width: 100px;
         min-height: 100vh;
@@ -107,7 +108,6 @@ html {
         padding-right: 0;
     }
 
-    
     .nav-item.logout {
         position: absolute;
         bottom: 20px;
@@ -121,36 +121,18 @@ html {
         display: flex !important;
         margin: 20px auto;
     }
-    
+
     #clock {
         display: none;
     }
 
-    .developer-modal {
-        max-width: 95%;
-        margin: 1rem auto;
-    }
-    
-    .developer-modal .card-body {
-        padding: 0.5rem;
-    }
-
-    .payload-modal {
-        max-width: 95%;
-        height: 90vh;
-    }
-    
-    .payload-modal .modal-body {
-        max-height: 65vh;
-    }
-
-    .import-modal {
-        max-width: 95%;
-        margin: 1rem auto;
-    }
-    
-    .import-modal .card-body {
-        padding: 0.5rem;
+    .nav-item.setting {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        margin: 0;
     }
 
 }
@@ -209,6 +191,12 @@ body[data-page="import"] .hamburger i,
 body[data-page="export"] .hamburger i,
 body[data-page="buy"] .hamburger i {
     color: #ffffff !important;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
 }
 
 /* Navigation Items */
@@ -274,6 +262,12 @@ nav {
     width: calc(100% - 100px);
 }
 
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+    }
+}
 
 .top-bar {
     background: linear-gradient(90deg, #FFB800 0%, #FF6600 100%);
@@ -348,34 +342,28 @@ nav {
 }
 
 .download {
-    background-color: #A89C29;  /* Warna hijau */
+    background-color: #FFB800;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.download i {
-    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .download:hover {
-    background-color: #A89C29;  /* Warna hijau yang lebih gelap saat hover */
+    background-color: #FF6600;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
-.download:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+mark {
+    background-color: yellow; 
+    font-weight: bold; }
 
 /* Modal Styles */
 .modal {
@@ -464,8 +452,6 @@ nav {
         padding-right: 0;
     }
 
-    
-
     .nav-item.logout {
         position: absolute;
         bottom: 20px;
@@ -484,6 +470,10 @@ nav {
     }
 }
 
+/* Media query untuk mobile tetap seperti sebelumnya */
+@media (max-width: 768px) {
+    /* ... existing mobile styles ... */
+}
 
 .card {
     border: none;
@@ -725,6 +715,16 @@ canvas {
     overflow-y: visible;
 }
 
+@media (max-width: 768px) {
+    .developer-modal {
+        max-width: 95%;
+        margin: 1rem auto;
+    }
+    
+    .developer-modal .card-body {
+        padding: 0.5rem;
+    }
+}
 
 /* Language Selector Styles */
 .language-btn {
@@ -797,6 +797,16 @@ canvas {
     max-height: 90vh; 
 }
 
+@media (max-width: 768px) {
+    .payload-modal {
+        max-width: 95%;
+        height: 90vh;
+    }
+    
+    .payload-modal .modal-body {
+        max-height: 65vh;
+    }
+}
 
 /* import Modal Styles */
 .import-modal {
@@ -822,3 +832,39 @@ canvas {
     overflow-y: visible;
 }
 
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .text-muted {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  
+  .severity-badges {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .severity-item {
+    min-width: 60px;
+    padding: 0.25rem;
+  }
+  
+  .severity-count {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .severity-badge {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
