@@ -737,8 +737,13 @@ nav {
 }
 
 #generateSerialBtn {
+    display: none;
     background-color: #0d6efd;
     border-color: #0d6efd;
+}
+
+#generateSerialBtn {
+    transition: opacity 0.3s ease;
 }
 
 #generateSerialBtn:hover {

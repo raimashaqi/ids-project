@@ -138,8 +138,20 @@ function addDeactivateButton() {
 }
 
 function removeDeactivateButton() {
-  const btn = document.getElementById("deactivateBtn");
-  if (btn) btn.remove();
+    const deactivateBtn = document.getElementById("deactivateBtn");
+    const generateBtn = document.getElementById('generateSerialBtn');
+    
+    if (deactivateBtn) {
+        deactivateBtn.remove();
+    }
+    
+    if (generateBtn) {
+        generateBtn.style.display = 'none';
+        // Clear localStorage to prevent button from appearing again
+        localStorage.removeItem('paymentSuccess');
+        localStorage.removeItem('orderID');
+        console.log('Button hidden and localStorage cleared');
+    }
 }
 
 // ================= SERIAL GENERATION ================= //

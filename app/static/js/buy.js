@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Check if payment was successful and show button
+    if (localStorage.getItem('paymentSuccess') === 'true') {
+        const generateBtn = document.getElementById('generateSerialBtn');
+        if (generateBtn) {
+            generateBtn.style.display = 'inline-block';
+            console.log('Button restored after page load');
+        }
+    }
+
     const buyForm = document.getElementById('buyForm');
     const customerDetailsModal = new bootstrap.Modal(document.getElementById('customerDetailsModal'));
     
@@ -22,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const submitButton = buyForm.querySelector('button[type="submit"]');
             const checkoutButton = buyForm.querySelector('button[type="button"]');
             const proceedButton = document.getElementById('proceedToPayment');
-            
+            const serialButton = document.getElementById('generateSerialBtn');
+
             if (!submitButton || !checkoutButton || !proceedButton) {
                 console.error('Required buttons not found');
                 alert('Terjadi kesalahan sistem. Silakan muat ulang halaman.');
@@ -32,21 +43,37 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalSubmitText = submitButton.innerHTML;
             const originalCheckoutText = checkoutButton.innerHTML;
             const originalProceedText = proceedButton.innerHTML;
-            
+            const originalSerialText = serialButton ? serialButton.innerHTML : '<i class="fas fa-sync-alt me-2"></i> GENERATE';
+
             // Set loading state
             const setLoadingState = (loading) => {
                 submitButton.disabled = loading;
                 checkoutButton.disabled = loading;
                 proceedButton.disabled = loading;
                 
+                // Add serial button to loading state
+                if (serialButton) {
+                    serialButton.disabled = loading;
+                }
+                
                 if (loading) {
                     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
                     checkoutButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
                     proceedButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                    
+                    // Serial button loading state
+                    if (serialButton) {
+                        serialButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                    }
                 } else {
                     submitButton.innerHTML = originalSubmitText;
                     checkoutButton.innerHTML = originalCheckoutText;
                     proceedButton.innerHTML = originalProceedText;
+                    
+                    // Serial button normal state
+                    if (serialButton) {
+                        serialButton.innerHTML = originalSerialText;
+                    }
                 }
             };
 
@@ -93,9 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 onSuccess: function(result) {
                     console.log('Payment success:', result);
                     alert('Pembayaran berhasil! Order ID: ' + result.order_id);
+
                     buyForm.reset();
                     document.getElementById('customerDetailsForm').reset();
-                    window.location.href = '/buy';
+                    
+                    const generateBtn = document.getElementById('generateSerialBtn');
+                    if (generateBtn) {
+                        generateBtn.style.display = 'inline-block';
+                        // Save to localStorage before redirect
+                        localStorage.setItem('paymentSuccess', 'true');
+                        localStorage.setItem('orderID', result.order_id);
+                    }
+                    
+                    setTimeout(() => {
+                        window.location.href = '/buy';
+                    }, 1500);
                 },
                 onPending: function(result) {
                     console.log('Payment pending:', result);
